@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class Connect {
     public Connection connect(){
-        String url = "jdbc::sqlserver://localhost:1433; databaseName= TheaterManager; user =root; password = root;" + "encrypt = true; trustServerCertificate = true";
+        String url = "jdbc:sqlserver://localhost:1433; databaseName= TheaterManager; user =root; password = root;" + "encrypt = true; trustServerCertificate = true";
         Connection sConn = null;
         try{
             sConn = DriverManager.getConnection(url);
