@@ -8,7 +8,7 @@ package ngthtrong.theatermanager;
  *
  * @author jhiny
  */
-public class TheaterManager {
+public class App {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
