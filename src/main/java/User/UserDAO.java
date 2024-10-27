@@ -9,5 +9,5 @@ package User;
  * @author jhiny
  */
 public class UserDAO {
-    
+
 }
