@@ -3,7 +3,11 @@
  */
 
 package ngthtrong.theatermanager;
-import ngthtrong.theatermanager.views.userForm.UserForm;
+
+import java.sql.Connection;
+
+import ngthtrong.theatermanager.data.Database;
+
 /**
  *
  * @author jhiny
@@ -11,8 +15,7 @@ import ngthtrong.theatermanager.views.userForm.UserForm;
 public class App {
 
     public static void main(String[] args) {
-        UserForm uf = new UserForm();
-        uf.setVisible(true);
-        uf.show(true);
+        Connection conn = new Database().connect();
+        System.out.println("Hello World!");
     }
 }
