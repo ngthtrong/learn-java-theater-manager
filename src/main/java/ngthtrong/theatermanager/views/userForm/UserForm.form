@@ -18,7 +18,6 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-8,0,0,3,77"/>
   </AuxValues>
 
   <Layout>
@@ -37,21 +36,25 @@
           <Group type="102" attributes="0">
               <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="idLabel" min="-2" pref="91" max="-2" attributes="0"/>
-                  <Component id="userNameLabel" min="-2" pref="91" max="-2" attributes="0"/>
-                  <Component id="fullNameLabel" min="-2" pref="91" max="-2" attributes="0"/>
-                  <Component id="emailLabel" min="-2" pref="91" max="-2" attributes="0"/>
-                  <Component id="passwordLabel" min="-2" pref="91" max="-2" attributes="0"/>
-                  <Component id="rePasswordLabel" min="-2" pref="91" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="idLabel" min="-2" pref="91" max="-2" attributes="0"/>
+                          <Component id="userNameLabel" min="-2" pref="91" max="-2" attributes="0"/>
+                          <Component id="fullNameLabel" min="-2" pref="91" max="-2" attributes="0"/>
+                          <Component id="emailLabel" min="-2" pref="91" max="-2" attributes="0"/>
+                          <Component id="passwordLabel" min="-2" pref="91" max="-2" attributes="0"/>
+                          <Component id="rePasswordLabel" min="-2" pref="91" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="addBtn" min="-2" max="-2" attributes="0"/>
                           <Component id="saveBtn" min="-2" pref="80" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="idText" min="-2" pref="134" max="-2" attributes="0"/>
                   <Component id="userNameText" min="-2" pref="134" max="-2" attributes="0"/>
@@ -63,8 +66,10 @@
                       <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                       <Component id="getDetailsBtn" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="adminCheckBox" min="-2" pref="87" max="-2" attributes="0"/>
+                  <Component id="notAdminCheckBox" min="-2" pref="87" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="listOfUserLabel" min="-2" pref="150" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="520" max="-2" attributes="0"/>
@@ -83,7 +88,7 @@
                   <Component id="Threater" min="-2" pref="49" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="26" pref="26" max="-2" attributes="0"/>
                       <Component id="idLabel" min="-2" pref="27" max="-2" attributes="0"/>
@@ -97,10 +102,11 @@
                       <Component id="passwordLabel" min="-2" pref="27" max="-2" attributes="0"/>
                       <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                       <Component id="rePasswordLabel" min="-2" pref="27" max="-2" attributes="0"/>
-                      <EmptySpace min="31" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="addBtn" min="-2" pref="40" max="-2" attributes="0"/>
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="saveBtn" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="27" pref="27" max="-2" attributes="0"/>
@@ -115,7 +121,11 @@
                       <Component id="passwordText" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
                       <Component id="rePasswordText" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="81" pref="81" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="adminCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="notAdminCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       <Component id="getDetailsBtn" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -309,6 +319,19 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Get details"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="adminCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Admin"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="notAdminCheckBox">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Not admin"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="notAdminCheckBoxActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

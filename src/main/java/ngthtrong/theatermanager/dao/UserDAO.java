@@ -13,8 +13,8 @@ import ngthtrong.theatermanager.views.userForm.bookForm;
 public class UserDAO {
     public void detailsFormViews(){
         detailsForm dtf = new detailsForm();
-        dtf.setLocationRelativeTo(null);
-        dtf.setVisible(true);
+
+
         dtf.show();
     }
     public void detailFromDispose(){
@@ -24,7 +24,7 @@ public class UserDAO {
     
     public void UserFromViews(){
         UserForm uf = new UserForm();
-        uf.setLocationRelativeTo(null);
+
         uf.setVisible(true);
         uf.show();
     }    
