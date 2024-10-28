@@ -109,6 +109,11 @@ public class detailsForm extends javax.swing.JFrame {
         bookedBtn.setText("Booked");
 
         addBookBtn.setText("Add book");
+        addBookBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBookBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,6 +223,14 @@ public class detailsForm extends javax.swing.JFrame {
         ud.detailFromDispose();
         ud.UserFromViews();
     }//GEN-LAST:event_backToListUserBtnActionPerformed
+
+    private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBtnActionPerformed
+        // TODO add your handling code here:
+        UserDAO ud = new UserDAO();
+        ud.detailFromDispose();
+        this.setVisible(false);
+        ud.bookFromViews();
+    }//GEN-LAST:event_addBookBtnActionPerformed
 
     /**
      * @param args the command line arguments

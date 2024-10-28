@@ -4,12 +4,12 @@
  */
 package ngthtrong.theatermanager.views.userForm;
 
+import ngthtrong.theatermanager.dao.UserDAO;
 /**
  *
  * @author ASUS PC
  */
 public class bookForm extends javax.swing.JFrame {
-
     /**
      * Creates new form bookForm
      */
@@ -62,6 +62,11 @@ public class bookForm extends javax.swing.JFrame {
 
         backToUserBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         backToUserBtn.setText("Back to user");
+        backToUserBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backToUserBtnActionPerformed(evt);
+            }
+        });
 
         submitBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         submitBtn.setText("Submit");
@@ -160,6 +165,14 @@ public class bookForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backToUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToUserBtnActionPerformed
+        // TODO add your handling code here:
+        UserDAO ud = new UserDAO();
+        ud.bookFromDispose();
+        this.setVisible(false);
+        ud.detailsFormViews();
+    }//GEN-LAST:event_backToUserBtnActionPerformed
 
     /**
      * @param args the command line arguments
