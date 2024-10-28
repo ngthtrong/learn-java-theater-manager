@@ -3,7 +3,7 @@
  */
 
 package ngthtrong.theatermanager;
-
+import ngthtrong.theatermanager.views.userForm.UserForm;
 /**
  *
  * @author jhiny
@@ -11,6 +11,8 @@ package ngthtrong.theatermanager;
 public class App {
 
     public static void main(String[] args) {
-        System.out.println("Hello trong cho!");
+        UserForm uf = new UserForm();
+        uf.setVisible(true);
+        uf.show(true);
     }
 }
