@@ -4,7 +4,7 @@
  */
 package ngthtrong.theatermanager.views.userForm;
 
-import ngthtrong.theatermanager.dao.UserDAO;
+import ngthtrong.theatermanager.controller.UserController;
 /**
  *
  * @author ASUS PC
@@ -168,7 +168,7 @@ public class bookForm extends javax.swing.JFrame {
 
     private void backToUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToUserBtnActionPerformed
         // TODO add your handling code here:
-        UserDAO ud = new UserDAO();
+        UserController ud = new UserController();
         ud.bookFromDispose();
         this.setVisible(false);
         ud.detailsFormViews();
