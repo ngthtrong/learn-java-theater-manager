@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngthtrong.theatermanager.views.userForm;
-import ngthtrong.theatermanager.dao.UserDAO;
+import ngthtrong.theatermanager.controller.UserController;
 /**
  *
  * @author ASUS PC
@@ -218,7 +218,7 @@ public class detailsForm extends javax.swing.JFrame {
 
     private void backToListUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToListUserBtnActionPerformed
         // TODO add your handling code here:
-        UserDAO ud = new UserDAO();
+        UserController ud = new UserController();
         this.setVisible(false);
         ud.detailFromDispose();
         ud.UserFromViews();
@@ -226,7 +226,7 @@ public class detailsForm extends javax.swing.JFrame {
 
     private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBtnActionPerformed
         // TODO add your handling code here:
-        UserDAO ud = new UserDAO();
+        UserController ud = new UserController();
         ud.detailFromDispose();
         this.setVisible(false);
         ud.bookFromViews();
