@@ -12,17 +12,14 @@ public class Theater {
   private int theater_id;
   private String theater_name;
   private boolean isUsing;
-  private int capactity;
-  private int size;
+  private int theater_capactity;
   public Theater() {
   }
-  public Theater(int theater_id, String theater_name, boolean isUsing, int capactity, int size) {
-    super();
+  public Theater(int theater_id, String theater_name, boolean isUsing, int theater_capactity) {
     this.theater_id = theater_id;
     this.theater_name = theater_name;
     this.isUsing = isUsing;
-    this.capactity = capactity;
-    this.size = size;
+    this.theater_capactity = theater_capactity;
   }
   public int getTheater_id() {
     return theater_id;
@@ -42,24 +39,15 @@ public class Theater {
   public void setIsUsing(boolean isUsing) {
     this.isUsing = isUsing;
   }
-  public int getCapactity() {
-    return capactity;
+  public int getTheater_capactity() {
+    return theater_capactity;
   }
-  public void setCapactity(int capactity) {
-    this.capactity = capactity;
-  }
-  public int getSize() {
-    return size;
-  }
-  public void setSize(int size) {
-    this.size = size;
+  public void setTheater_capactity(int theater_capactity) {
+    this.theater_capactity = theater_capactity;
   }
   @Override
   public String toString() {
-    return "Theater [theater_id=" + theater_id + ", theater_name=" + theater_name + ", isUsing=" + isUsing
-        + ", capactity=" + capactity + ", size=" + size + "]";
+    return "Theater{" + "theater_id=" + theater_id + ", theater_name=" + theater_name + ", isUsing=" + isUsing + ", theater_capactity=" + theater_capactity + '}';
   }
   
-
-
 }
