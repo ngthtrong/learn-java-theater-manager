@@ -6,20 +6,24 @@ package ngthtrong.theatermanager.models;
 
 import java.text.DateFormat;
 
+import microsoft.sql.DateTimeOffset;
+
 /**
  *
  * @author jhiny
  */
 public class Period {
     private int period_id;
-    private DateFormat timeShow;
+    private int period_size;
+    private DateTimeOffset period_time;
     private int movie_id;
     private int theater_id;
     public Period(){    
     }
-    public Period(int period_id, DateFormat timeShow, int movie_id, int theater_id) {
+    public Period(int period_id, int period_size, DateTimeOffset period_time, int movie_id, int theater_id){
         this.period_id = period_id;
-        this.timeShow = timeShow;
+        this.period_size = period_size;
+        this.period_time = period_time;
         this.movie_id = movie_id;
         this.theater_id = theater_id;
     }
@@ -29,11 +33,17 @@ public class Period {
     public void setPeriod_id(int period_id) {
         this.period_id = period_id;
     }
-    public DateFormat getTimeShow() {
-        return timeShow;
+    public int getPeriod_size() {
+        return period_size;
     }
-    public void setTimeShow(DateFormat timeShow) {
-        this.timeShow = timeShow;
+    public void setPeriod_size(int period_size) {
+        this.period_size = period_size;
+    }
+    public DateTimeOffset getPeriod_time() {
+        return period_time;
+    }
+    public void setPeriod_time(DateTimeOffset period_time) {
+        this.period_time = period_time;
     }
     public int getMovie_id() {
         return movie_id;
@@ -49,7 +59,7 @@ public class Period {
     }
     @Override
     public String toString() {
-        return "Period{" + "period_id=" + period_id + ", timeShow=" + timeShow + ", movie_id=" + movie_id + ", theater_id=" + theater_id + '}';
+        return "Period{" + "period_id=" + period_id + ", period_size=" + period_size + ", period_time=" + period_time + ", movie_id=" + movie_id + ", theater_id=" + theater_id + '}';
     }
-
+    
 }
