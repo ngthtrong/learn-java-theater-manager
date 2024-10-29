@@ -22,7 +22,7 @@ create table movie(
 	isAdmin bit
 ) create table [period](
 	period_id int primary key,
-	period_time date,
+	period_time smalldatetime,
 	period_size int,
 	movie_id int,
 	theater_id int,

@@ -138,16 +138,16 @@ public class MovieDAO {
         }
     }
 
-    public void UpdateMovie(Movie movie) {
+    public void UpdateMovie(){
         Connection conn = new Database().connect();
         String sql = "UPDATE movie SET movie_name = ?, description = ?, commingSoon = ?, onShowing = ? WHERE movie_id = ?";
         try {
             PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setString(1, movie.getMovie_name());
-            stm.setString(2, movie.getDescription());
-            stm.setBoolean(3, movie.isCommingSoon());
-            stm.setBoolean(4, movie.isOnShowing());
-            stm.setInt(5, movie.getMovie_id());
+            stm.setString(1, "movie_name");
+            stm.setString(2, "description");
+            stm.setBoolean(3, true);
+            stm.setBoolean(4, false);
+            stm.setInt(5, 1);
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -159,5 +159,6 @@ public class MovieDAO {
             }
         }
     }
+
 
 }

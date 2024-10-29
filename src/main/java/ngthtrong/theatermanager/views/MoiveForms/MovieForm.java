@@ -356,19 +356,11 @@ public class MovieForm extends javax.swing.JFrame {
         Movie movie = new Movie();
         movie.setMovie_name(txtMovieName.getText());
         movie.setDescription(txtDescription.getText());
-        if (onShowTrue.isSelected()) {
-            movie.setOnShowing(true);
-        } else {
-            movie.setOnShowing(false);
-        }
-        if (commingTrue.isSelected()) {
-            movie.setCommingSoon(true);
-        } else {
-            movie.setCommingSoon(false);
-        }
+        movie.setOnShowing(false);
+        movie.setCommingSoon(true);
         MoiveController control = new MoiveController();
         control.addMovieToDB(movie, this);
-        
+
     }//GEN-LAST:event_btnUserForm2ActionPerformed
 
     private void btnUserForm3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserForm3ActionPerformed
@@ -376,7 +368,7 @@ public class MovieForm extends javax.swing.JFrame {
         int id = Integer.valueOf(txtMovieID.getText());
         MoiveController control = new MoiveController();
         control.deleteMovieInDB(id, this);
-        
+
     }//GEN-LAST:event_btnUserForm3ActionPerformed
 
     private void btnUserForm4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserForm4ActionPerformed
