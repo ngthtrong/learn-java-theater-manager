@@ -4,6 +4,19 @@
  */
 package ngthtrong.theatermanager.views.userForm;
 import ngthtrong.theatermanager.controller.UserController;
+import ngthtrong.theatermanager.dao.UserDAO;
+import ngthtrong.theatermanager.models.User;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import ngthtrong.theatermanager.data.Database;
+
 /**
  *
  * @author ASUS PC
@@ -88,15 +101,15 @@ public class UserForm extends javax.swing.JFrame {
 
         ListOfUserTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "User name", "Full name", "Email", "Booked"
+                "ID", "User name", "Full name", "Email", "Admin", "Booked"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -115,9 +128,19 @@ public class UserForm extends javax.swing.JFrame {
 
         saveBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         getDetailsBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         getDetailsBtn.setText("Get details");
+        getDetailsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getDetailsBtnActionPerformed(evt);
+            }
+        });
 
         adminCheckBox.setText("Admin");
 
@@ -235,22 +258,68 @@ public class UserForm extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
-        UserController ud = new UserController();
-        this.setVisible(false);
-        ud.UserFromDispose();
-        ud.detailsFormViews();
+        int id = Integer.getInteger(idText.getText());
+        String username = userNameText.getText();
+        System.out.println(id);
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void notAdminCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notAdminCheckBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_notAdminCheckBoxActionPerformed
 
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        // TODO add your handling code here:                
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void getDetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getDetailsBtnActionPerformed
+        // TODO add your handling code here:  
+        UserController ud = new UserController();
+        this.setVisible(false);
+        UserFromDispose();
+        ud.detailsFormViews();
+    }//GEN-LAST:event_getDetailsBtnActionPerformed
+
+    public void UserFromViews(){
+        UserForm uf = new UserForm();
+        uf.setVisible(true);
+        uf.setTb();
+        uf.show();
+    }    
+    public void UserFromDispose(){
+        UserForm uf = new UserForm();
+        uf.dispose();
+    } 
+    public void setTb(){
+            UserDAO ud = new UserDAO();
+            User us = new User();
+            List<User> user = new ArrayList<>();
+            user = ud.getTableDefaut();
+            DefaultTableModel dtm = new DefaultTableModel();
+            dtm.addColumn("ID");
+            dtm.addColumn("Username");
+            dtm.addColumn("Fullname");
+            dtm.addColumn("Email");
+            dtm.addColumn("Admin");
+            dtm.addColumn("Booked");
+            Object[] oj = new Object[6];
+            for(User uss : user){
+                oj[0] = uss.getUser_id();
+                oj[1] = uss.getUsername();
+                oj[2] = uss.getFullName();
+                oj[3] = uss.getEmail();
+                oj[4] = uss.isIsAdmin();
+                oj[5] = uss.getBooking_amout();
+                dtm.addRow(oj);
+            }
+            ListOfUserTable.setModel(dtm);
+    }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+            //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
@@ -275,7 +344,7 @@ public class UserForm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(UserForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

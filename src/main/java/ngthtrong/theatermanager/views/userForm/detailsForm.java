@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngthtrong.theatermanager.views.userForm;
+
 import ngthtrong.theatermanager.controller.UserController;
 /**
  *
@@ -217,11 +218,11 @@ public class detailsForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backToListUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToListUserBtnActionPerformed
-        // TODO add your handling code here:
-        UserController ud = new UserController();
+       // TODO add your handling code here:
         this.setVisible(false);
-        ud.detailFromDispose();
-        ud.UserFromViews();
+        detailFromDispose();
+        UserForm uf = new UserForm();
+        uf.UserFromViews();
     }//GEN-LAST:event_backToListUserBtnActionPerformed
 
     private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBtnActionPerformed
@@ -231,7 +232,14 @@ public class detailsForm extends javax.swing.JFrame {
         this.setVisible(false);
         ud.bookFromViews();
     }//GEN-LAST:event_addBookBtnActionPerformed
-
+    public void detailsFormViews(){
+        detailsForm dtf = new detailsForm();
+        dtf.show();
+    }
+    public void detailFromDispose(){
+        detailsForm dtf = new detailsForm();
+        dtf.dispose();
+    }
     /**
      * @param args the command line arguments
      */

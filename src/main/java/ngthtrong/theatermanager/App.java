@@ -3,8 +3,13 @@
  */
 
 package ngthtrong.theatermanager;
+import ngthtrong.theatermanager.controller.UserController;
+import ngthtrong.theatermanager.views.userForm.*;
+import ngthtrong.theatermanager.dao.UserDAO;
+import ngthtrong.theatermanager.models.User;
 
 import java.sql.Connection;
+import ngthtrong.theatermanager.dao.UserDAO;
 
 import ngthtrong.theatermanager.data.Database;
 
@@ -15,7 +20,7 @@ import ngthtrong.theatermanager.data.Database;
 public class App {
 
     public static void main(String[] args) {
-        Connection conn = new Database().connect();
-        System.out.println("Hello World!");
+        UserForm uf = new UserForm();
+        uf.UserFromViews();
     }
 }
