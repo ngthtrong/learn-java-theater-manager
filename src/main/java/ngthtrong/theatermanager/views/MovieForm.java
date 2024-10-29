@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ngthtrong.theatermanager.views.MoiveForms;
+package ngthtrong.theatermanager.views;
 
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -23,11 +23,21 @@ public class MovieForm extends javax.swing.JFrame {
     }
 
     public void FormLoad() {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MovieForm().setVisible(true);
-            }
-        });
+        this.setVisible(true);
+        CleanTxt();
+
+    }
+
+    public void CleanTxt() {
+        txtMovieID.setText("");
+        txtMovieName.setText("");
+        txtDescription.setText("");
+        txtMovieID.requestFocus();
+        btnSave.setEnabled(false);
+        btnSave.setEnabled(false);
+        btnAdd.setEnabled(true);
+        txtMovieID.setEnabled(true);
+
     }
 
     /**
@@ -49,19 +59,13 @@ public class MovieForm extends javax.swing.JFrame {
         txtMovieID = new javax.swing.JTextField();
         lbMovieID1 = new javax.swing.JLabel();
         txtMovieName = new javax.swing.JTextField();
-        onShowTrue = new javax.swing.JRadioButton();
-        lbMovieOnShow = new javax.swing.JLabel();
-        onShowFalse = new javax.swing.JRadioButton();
-        lbMovieCommingSoon = new javax.swing.JLabel();
-        commingTrue = new javax.swing.JRadioButton();
-        commingFalse = new javax.swing.JRadioButton();
         lbMovieDescription = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
-        btnUserForm1 = new javax.swing.JButton();
-        btnUserForm2 = new javax.swing.JButton();
-        btnUserForm3 = new javax.swing.JButton();
-        btnUserForm4 = new javax.swing.JButton();
+        btnAdd = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
+        btnDeleteByID = new javax.swing.JButton();
+        btnGetDetail = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbAllMovies = new javax.swing.JTable();
 
@@ -72,11 +76,7 @@ public class MovieForm extends javax.swing.JFrame {
 
         btnUserForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnUserForm.setText("User");
-        btnUserForm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUserFormActionPerformed(evt);
-            }
-        });
+
 
         btnMovieForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMovieForm.setText("Movie");
@@ -97,6 +97,12 @@ public class MovieForm extends javax.swing.JFrame {
         lbMovieID.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbMovieID.setText("Movie ID:");
 
+        txtMovieID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtMovieIDKeyReleased(evt);
+            }
+        });
+
         lbMovieID1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbMovieID1.setText("Name:");
 
@@ -106,80 +112,45 @@ public class MovieForm extends javax.swing.JFrame {
             }
         });
 
-        btnGrOnShow.add(onShowTrue);
-        onShowTrue.setText("Yes");
-        onShowTrue.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onShowTrueActionPerformed(evt);
-            }
-        });
-
-        lbMovieOnShow.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbMovieOnShow.setText("On show:");
-
-        btnGrOnShow.add(onShowFalse);
-        onShowFalse.setText("No");
-        onShowFalse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onShowFalseActionPerformed(evt);
-            }
-        });
-
-        lbMovieCommingSoon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbMovieCommingSoon.setText("Comming soon:");
-
-        btnGrCommingSoon.add(commingTrue);
-        commingTrue.setText("Yes");
-        commingTrue.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                commingTrueActionPerformed(evt);
-            }
-        });
-
-        btnGrCommingSoon.add(commingFalse);
-        commingFalse.setText("No");
-        commingFalse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                commingFalseActionPerformed(evt);
-            }
-        });
-
         lbMovieDescription.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbMovieDescription.setText("Description:");
 
         txtDescription.setColumns(20);
+        txtDescription.setLineWrap(true);
         txtDescription.setRows(5);
         jScrollPane1.setViewportView(txtDescription);
 
-        btnUserForm1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnUserForm1.setText("Add");
-        btnUserForm1.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUserForm1ActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
-        btnUserForm2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnUserForm2.setText("Save");
-        btnUserForm2.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUserForm2ActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
 
-        btnUserForm3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnUserForm3.setText("Delete by ID");
-        btnUserForm3.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteByID.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDeleteByID.setText("Delete by ID");
+        btnDeleteByID.setEnabled(false);
+        btnDeleteByID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUserForm3ActionPerformed(evt);
+                btnDeleteByIDActionPerformed(evt);
             }
         });
 
-        btnUserForm4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnUserForm4.setText("Get Detail by ID");
-        btnUserForm4.addActionListener(new java.awt.event.ActionListener() {
+        btnGetDetail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGetDetail.setText("Get Detail by ID");
+        btnGetDetail.setEnabled(false);
+        btnGetDetail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUserForm4ActionPerformed(evt);
+                btnGetDetailActionPerformed(evt);
             }
         });
 
@@ -226,98 +197,84 @@ public class MovieForm extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(lbMovieDescription)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(lbMovieCommingSoon)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(commingTrue, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(commingFalse, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lbMovieID)
-                                .addComponent(lbMovieID1)
-                                .addComponent(lbMovieOnShow))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbMovieID))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(52, 52, 52)
+                                    .addComponent(btnUserForm, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(onShowTrue, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(onShowFalse, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(btnUserForm, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                                        .addComponent(txtMovieID))
-                                    .addComponent(txtMovieName, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtMovieID, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(6, 6, 6))))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnUserForm2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnUserForm1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnUserForm3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnUserForm4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(btnDeleteByID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnGetDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lbMovieID1)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(txtMovieName, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(6, 6, 6)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnMovieForm, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMovieForm, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnTheaterForm, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTheaterForm, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUserForm, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMovieForm, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTheaterForm, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUserForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnMovieForm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTheaterForm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 10, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbMovieID)
                             .addComponent(txtMovieID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbMovieID1)
                             .addComponent(txtMovieName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbMovieOnShow)
-                            .addComponent(onShowTrue)
-                            .addComponent(onShowFalse))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbMovieCommingSoon)
-                            .addComponent(commingTrue)
-                            .addComponent(commingFalse))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(lbMovieDescription)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnUserForm1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUserForm3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDeleteByID, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnUserForm2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUserForm4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(14, 14, 14))))
+                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGetDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUserFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserFormActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUserFormActionPerformed
+
 
     private void btnMovieFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovieFormActionPerformed
         // TODO add your handling code here:
@@ -331,27 +288,18 @@ public class MovieForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMovieNameActionPerformed
 
-    private void onShowTrueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onShowTrueActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_onShowTrueActionPerformed
+        btnSave.setEnabled(true);
+        txtMovieID.setText("");
+        txtMovieID.setEnabled(false);
+        txtMovieName.requestFocus();
+        btnAdd.setEnabled(false);
+        btnDeleteByID.setEnabled(false);
+        btnGetDetail.setEnabled(false);
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void onShowFalseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onShowFalseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_onShowFalseActionPerformed
-
-    private void commingTrueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commingTrueActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_commingTrueActionPerformed
-
-    private void commingFalseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commingFalseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_commingFalseActionPerformed
-
-    private void btnUserForm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserForm1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUserForm1ActionPerformed
-
-    private void btnUserForm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserForm2ActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         Movie movie = new Movie();
         movie.setMovie_name(txtMovieName.getText());
@@ -360,20 +308,32 @@ public class MovieForm extends javax.swing.JFrame {
         movie.setCommingSoon(true);
         MoiveController control = new MoiveController();
         control.addMovieToDB(movie, this);
+        CleanTxt();
 
-    }//GEN-LAST:event_btnUserForm2ActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
 
-    private void btnUserForm3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserForm3ActionPerformed
+    private void btnDeleteByIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteByIDActionPerformed
         // TODO add your handling code here:
         int id = Integer.valueOf(txtMovieID.getText());
         MoiveController control = new MoiveController();
         control.deleteMovieInDB(id, this);
 
-    }//GEN-LAST:event_btnUserForm3ActionPerformed
+    }//GEN-LAST:event_btnDeleteByIDActionPerformed
 
-    private void btnUserForm4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserForm4ActionPerformed
+    private void btnGetDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetDetailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUserForm4ActionPerformed
+    }//GEN-LAST:event_btnGetDetailActionPerformed
+
+    private void txtMovieIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMovieIDKeyReleased
+        // TODO add your handling code here:
+        if (txtMovieID.getText().equals("")) {
+            btnDeleteByID.setEnabled(false);
+            btnGetDetail.setEnabled(false);
+        }else{
+            btnDeleteByID.setEnabled(true);
+            btnGetDetail.setEnabled(true);
+        }
+    }//GEN-LAST:event_txtMovieIDKeyReleased
 
     public void setMovies(List<Movie> Movies) {
         DefaultTableModel model = new DefaultTableModel();
@@ -393,21 +353,21 @@ public class MovieForm extends javax.swing.JFrame {
         }
         tbAllMovies.setModel(model);
     }
-
-    public void setMovieById(Movie movie) {
-        txtMovieID.setText(String.valueOf(movie.getMovie_id()));
-        txtMovieName.setText(movie.getMovie_name());
-        if (movie.isOnShowing()) {
-            onShowFalse.setSelected(true);
-        } else {
-            onShowTrue.setSelected(true);
-        }
-        if (movie.isCommingSoon()) {
-            commingFalse.setSelected(true);
-        } else {
-            commingTrue.setSelected(true);
-        }
-    }
+//
+//    public void setMovieById(Movie movie) {
+//        txtMovieID.setText(String.valueOf(movie.getMovie_id()));
+//        txtMovieName.setText(movie.getMovie_name());
+//        if (movie.isOnShowing()) {
+//            onShowFalse.setSelected(true);
+//        } else {
+//            onShowTrue.setSelected(true);
+//        }
+//        if (movie.isCommingSoon()) {
+//            commingFalse.setSelected(true);
+//        } else {
+//            commingTrue.setSelected(true);
+//        }
+//    }
 
     /**
      * @param args the command line arguments
@@ -446,27 +406,21 @@ public class MovieForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnDeleteByID;
+    private javax.swing.JButton btnGetDetail;
     private javax.swing.ButtonGroup btnGrCommingSoon;
     private javax.swing.ButtonGroup btnGrOnShow;
     private javax.swing.JButton btnMovieForm;
+    private javax.swing.JButton btnSave;
     private javax.swing.JButton btnTheaterForm;
     private javax.swing.JButton btnUserForm;
-    private javax.swing.JButton btnUserForm1;
-    private javax.swing.JButton btnUserForm2;
-    private javax.swing.JButton btnUserForm3;
-    private javax.swing.JButton btnUserForm4;
-    private javax.swing.JRadioButton commingFalse;
-    private javax.swing.JRadioButton commingTrue;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lbMovieCommingSoon;
     private javax.swing.JLabel lbMovieDescription;
     private javax.swing.JLabel lbMovieID;
     private javax.swing.JLabel lbMovieID1;
-    private javax.swing.JLabel lbMovieOnShow;
     private javax.swing.JLabel lbTitle;
-    private javax.swing.JRadioButton onShowFalse;
-    private javax.swing.JRadioButton onShowTrue;
     private javax.swing.JTable tbAllMovies;
     private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtMovieID;

@@ -6,7 +6,7 @@ package ngthtrong.theatermanager.controller;
 
 import ngthtrong.theatermanager.dao.MovieDAO;
 import ngthtrong.theatermanager.models.Movie;
-import ngthtrong.theatermanager.views.MoiveForms.MovieForm;
+import ngthtrong.theatermanager.views.MovieForm;
 
 /**
  *
@@ -17,16 +17,10 @@ public class MoiveController {
     private MovieDAO movieDao;
     private MovieForm movieForm;
 
-    public void getMovieFormDB() {
-        movieDao = new MovieDAO();
-        movieForm = new MovieForm();
-        movieForm.setMovies(movieDao.GetAllMovie());
-        movieForm.setVisible(true);
-    }
-
     public void setMovieForm(MovieForm movieForm) {
         this.movieForm = movieForm;
     }
+
     public MovieForm getMovieForm() {
         return movieForm;
     }
@@ -35,11 +29,19 @@ public class MoiveController {
         movieForm.FormLoad();
     }
 
+    public void getMovieFormDB() {
+        movieDao = new MovieDAO();
+        movieForm = new MovieForm();
+        movieForm.setMovies(movieDao.GetAllMovie());
+        movieForm.FormLoad();
+    }
+
     public void addMovieToDB(Movie movie, MovieForm movieForm) {
         movieDao = new MovieDAO();
         movieDao.AddMovie(movie);
         movieForm.setMovies(movieDao.GetAllMovie());
     }
+
     public void deleteMovieInDB(int movie_id, MovieForm movieForm) {
         movieDao = new MovieDAO();
         movieDao.DeleteMovie(movie_id);

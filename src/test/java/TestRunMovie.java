@@ -1,6 +1,6 @@
 
 import ngthtrong.theatermanager.controller.MoiveController;
-import ngthtrong.theatermanager.views.MoiveForms.MovieForm;
+import ngthtrong.theatermanager.views.MovieForm;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license

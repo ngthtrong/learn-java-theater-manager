@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import ngthtrong.theatermanager.controller.MoiveController;
 
 import ngthtrong.theatermanager.data.Database;
-import ngthtrong.theatermanager.views.MoiveForms.MovieForm;
+import ngthtrong.theatermanager.views.MovieForm;
 
 /**
  *

@@ -19,6 +19,7 @@ import ngthtrong.theatermanager.models.Movie;
  * @author jhiny
  */
 public class MovieDAO {
+
     private int GetMaxId() {
         Connection conn = new Database().connect();
         String sql = "SELECT MAX(movie_id) FROM movie";
@@ -51,7 +52,7 @@ public class MovieDAO {
             while (rs.next()) {
                 Movie movie = new Movie();
                 movie.setMovie_id(rs.getInt("movie_id"));
-                movie.setMovie_name(rs.getString("movie_id"));
+                movie.setMovie_name(rs.getString("movie_name"));
                 movie.setDescription(rs.getString("description"));
                 movie.setCommingSoon(rs.getBoolean("commingSoon"));
                 movie.setOnShowing(rs.getBoolean("onShowing"));
@@ -100,14 +101,14 @@ public class MovieDAO {
 
     public void AddMovie(Movie movie) {
         Connection conn = new Database().connect();
-        String sql = "INSERT INTO movie (movie_name, description, commingSoon, onShowing, movie_id) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO movie (movie_id, movie_name, description, commingSoon, onShowing ) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setString(1, movie.getMovie_name());
-            stm.setString(2, movie.getDescription());
-            stm.setBoolean(3, movie.isCommingSoon());
-            stm.setBoolean(4, movie.isOnShowing());
-            stm.setInt(5, GetMaxId() + 1);
+            stm.setInt(1, GetMaxId() + 1);
+            stm.setString(2, movie.getMovie_name());
+            stm.setString(3, movie.getDescription());
+            stm.setBoolean(4, movie.isCommingSoon());
+            stm.setBoolean(5, movie.isOnShowing());
             stm.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -138,7 +139,7 @@ public class MovieDAO {
         }
     }
 
-    public void UpdateMovie(){
+    public void UpdateMovie() {
         Connection conn = new Database().connect();
         String sql = "UPDATE movie SET movie_name = ?, description = ?, commingSoon = ?, onShowing = ? WHERE movie_id = ?";
         try {
@@ -159,6 +160,5 @@ public class MovieDAO {
             }
         }
     }
-
 
 }
