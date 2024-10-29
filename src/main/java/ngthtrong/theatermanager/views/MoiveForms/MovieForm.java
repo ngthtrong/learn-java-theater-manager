@@ -4,6 +4,11 @@
  */
 package ngthtrong.theatermanager.views.MoiveForms;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import ngthtrong.theatermanager.controller.MoiveController;
+import ngthtrong.theatermanager.models.Movie;
+
 /**
  *
  * @author jhiny
@@ -15,6 +20,14 @@ public class MovieForm extends javax.swing.JFrame {
      */
     public MovieForm() {
         initComponents();
+    }
+
+    public void FormLoad() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MovieForm().setVisible(true);
+            }
+        });
     }
 
     /**
@@ -40,8 +53,8 @@ public class MovieForm extends javax.swing.JFrame {
         lbMovieOnShow = new javax.swing.JLabel();
         onShowFalse = new javax.swing.JRadioButton();
         lbMovieCommingSoon = new javax.swing.JLabel();
-        onShowTrue1 = new javax.swing.JRadioButton();
-        onShowFalse1 = new javax.swing.JRadioButton();
+        commingTrue = new javax.swing.JRadioButton();
+        commingFalse = new javax.swing.JRadioButton();
         lbMovieDescription = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
@@ -115,19 +128,19 @@ public class MovieForm extends javax.swing.JFrame {
         lbMovieCommingSoon.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbMovieCommingSoon.setText("Comming soon:");
 
-        btnGrCommingSoon.add(onShowTrue1);
-        onShowTrue1.setText("Yes");
-        onShowTrue1.addActionListener(new java.awt.event.ActionListener() {
+        btnGrCommingSoon.add(commingTrue);
+        commingTrue.setText("Yes");
+        commingTrue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onShowTrue1ActionPerformed(evt);
+                commingTrueActionPerformed(evt);
             }
         });
 
-        btnGrCommingSoon.add(onShowFalse1);
-        onShowFalse1.setText("No");
-        onShowFalse1.addActionListener(new java.awt.event.ActionListener() {
+        btnGrCommingSoon.add(commingFalse);
+        commingFalse.setText("No");
+        commingFalse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onShowFalse1ActionPerformed(evt);
+                commingFalseActionPerformed(evt);
             }
         });
 
@@ -215,9 +228,9 @@ public class MovieForm extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(lbMovieCommingSoon)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(onShowTrue1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(commingTrue, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(onShowFalse1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(commingFalse, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(lbTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,7 +275,6 @@ public class MovieForm extends javax.swing.JFrame {
                     .addComponent(btnUserForm, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMovieForm, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTheaterForm, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -283,8 +295,8 @@ public class MovieForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbMovieCommingSoon)
-                            .addComponent(onShowTrue1)
-                            .addComponent(onShowFalse1))
+                            .addComponent(commingTrue)
+                            .addComponent(commingFalse))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbMovieDescription)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -327,13 +339,13 @@ public class MovieForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_onShowFalseActionPerformed
 
-    private void onShowTrue1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onShowTrue1ActionPerformed
+    private void commingTrueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commingTrueActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_onShowTrue1ActionPerformed
+    }//GEN-LAST:event_commingTrueActionPerformed
 
-    private void onShowFalse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onShowFalse1ActionPerformed
+    private void commingFalseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commingFalseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_onShowFalse1ActionPerformed
+    }//GEN-LAST:event_commingFalseActionPerformed
 
     private void btnUserForm1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserForm1ActionPerformed
         // TODO add your handling code here:
@@ -341,15 +353,69 @@ public class MovieForm extends javax.swing.JFrame {
 
     private void btnUserForm2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserForm2ActionPerformed
         // TODO add your handling code here:
+        Movie movie = new Movie();
+        movie.setMovie_name(txtMovieName.getText());
+        movie.setDescription(txtDescription.getText());
+        if (onShowTrue.isSelected()) {
+            movie.setOnShowing(true);
+        } else {
+            movie.setOnShowing(false);
+        }
+        if (commingTrue.isSelected()) {
+            movie.setCommingSoon(true);
+        } else {
+            movie.setCommingSoon(false);
+        }
+        MoiveController control = new MoiveController();
+        control.addMovieToDB(movie, this);
+        
     }//GEN-LAST:event_btnUserForm2ActionPerformed
 
     private void btnUserForm3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserForm3ActionPerformed
         // TODO add your handling code here:
+        int id = Integer.valueOf(txtMovieID.getText());
+        MoiveController control = new MoiveController();
+        control.deleteMovieInDB(id, this);
+        
     }//GEN-LAST:event_btnUserForm3ActionPerformed
 
     private void btnUserForm4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserForm4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUserForm4ActionPerformed
+
+    public void setMovies(List<Movie> Movies) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Movie ID");
+        model.addColumn("Name");
+        model.addColumn("On Show");
+        model.addColumn("Comming Soon");
+        model.addColumn("Description");
+        for (Movie movie : Movies) {
+            model.addRow(new Object[]{
+                movie.getMovie_id(),
+                movie.getMovie_name(),
+                movie.isOnShowing(),
+                movie.isCommingSoon(),
+                movie.getDescription()
+            });
+        }
+        tbAllMovies.setModel(model);
+    }
+
+    public void setMovieById(Movie movie) {
+        txtMovieID.setText(String.valueOf(movie.getMovie_id()));
+        txtMovieName.setText(movie.getMovie_name());
+        if (movie.isOnShowing()) {
+            onShowFalse.setSelected(true);
+        } else {
+            onShowTrue.setSelected(true);
+        }
+        if (movie.isCommingSoon()) {
+            commingFalse.setSelected(true);
+        } else {
+            commingTrue.setSelected(true);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -397,6 +463,8 @@ public class MovieForm extends javax.swing.JFrame {
     private javax.swing.JButton btnUserForm2;
     private javax.swing.JButton btnUserForm3;
     private javax.swing.JButton btnUserForm4;
+    private javax.swing.JRadioButton commingFalse;
+    private javax.swing.JRadioButton commingTrue;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbMovieCommingSoon;
@@ -406,9 +474,7 @@ public class MovieForm extends javax.swing.JFrame {
     private javax.swing.JLabel lbMovieOnShow;
     private javax.swing.JLabel lbTitle;
     private javax.swing.JRadioButton onShowFalse;
-    private javax.swing.JRadioButton onShowFalse1;
     private javax.swing.JRadioButton onShowTrue;
-    private javax.swing.JRadioButton onShowTrue1;
     private javax.swing.JTable tbAllMovies;
     private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtMovieID;
