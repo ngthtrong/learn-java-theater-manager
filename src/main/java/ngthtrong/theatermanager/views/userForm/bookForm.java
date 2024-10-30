@@ -169,11 +169,18 @@ public class bookForm extends javax.swing.JFrame {
     private void backToUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backToUserBtnActionPerformed
         // TODO add your handling code here:
         UserController ud = new UserController();
-        ud.bookFromDispose();
-        this.setVisible(false);
+        bookFromDispose();
         ud.detailsFormViews();
     }//GEN-LAST:event_backToUserBtnActionPerformed
 
+    public void bookFromViews(){
+        this.setVisible(true);
+        this.show();
+    }    
+    public void bookFromDispose(){
+        this.setVisible(false);
+        this.dispose();
+    }
     /**
      * @param args the command line arguments
      */

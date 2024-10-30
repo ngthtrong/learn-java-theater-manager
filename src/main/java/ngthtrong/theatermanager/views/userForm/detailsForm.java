@@ -228,17 +228,15 @@ public class detailsForm extends javax.swing.JFrame {
     private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBtnActionPerformed
         // TODO add your handling code here:
         UserController ud = new UserController();
-        ud.detailFromDispose();
-        this.setVisible(false);
+        detailFromDispose();
         ud.bookFromViews();
     }//GEN-LAST:event_addBookBtnActionPerformed
     public void detailsFormViews(){
-        detailsForm dtf = new detailsForm();
-        dtf.show();
+        this.show();
     }
     public void detailFromDispose(){
-        detailsForm dtf = new detailsForm();
-        dtf.dispose();
+        this.setVisible(false);
+        this.dispose();
     }
     /**
      * @param args the command line arguments

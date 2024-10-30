@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngthtrong.theatermanager.views.userForm;
+import java.awt.Dialog;
 import ngthtrong.theatermanager.controller.UserController;
 import ngthtrong.theatermanager.dao.UserDAO;
 import ngthtrong.theatermanager.models.User;
@@ -13,7 +14,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import ngthtrong.theatermanager.data.Database;
 
@@ -64,7 +67,7 @@ public class UserForm extends javax.swing.JFrame {
         adminCheckBox = new javax.swing.JCheckBox();
         notAdminCheckBox = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         managerLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         managerLabel.setText("Manager:");
@@ -256,11 +259,16 @@ public class UserForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    @SuppressWarnings("deprecation")
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
-        int id = Integer.getInteger(idText.getText());
-        String username = userNameText.getText();
-        System.out.println(id);
+        if(passwordText.getText().equals(rePasswordText.getText())){            
+            getDetailsBtn.setEnabled(false);
+            idText.setEditable(false);
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Password not equal re-password");
+        }
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void notAdminCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notAdminCheckBoxActionPerformed
@@ -268,26 +276,51 @@ public class UserForm extends javax.swing.JFrame {
     }//GEN-LAST:event_notAdminCheckBoxActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        // TODO add your handling code here:                
+        // TODO add your handling code here:
+        String id       = idText.getText();
+        String userName = userNameText.getText();
+        String fullName = fullNameText.getText();
+        String email    = emailText.getText();
+        String password = passwordText.getText();
+        boolean isAdmin = adminCheckBox.isSelected();
+        String rePassword = rePasswordText.getText();
+        Object[] oj = new Object[6];
+        oj[0] = id;
+        oj[1] = userName;
+        oj[2] = fullName;
+        oj[3] = email;
+        oj[4] = password;
+        oj[5] = isAdmin;
+        UserDAO ud = new UserDAO();
+        ud.addObject(oj);
+        setTb();
+        getDetailsBtn.setEnabled(true);
+        idText.setEditable(true);
+        idText.setText("");
+        emailText.setText("");
+        userNameText.setText("");
+        fullNameText.setText("");
+        passwordText.setText("");
+        rePasswordText.setText("");
+        adminCheckBox.setSelected(false);
+        notAdminCheckBox.setSelected(false);
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void getDetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getDetailsBtnActionPerformed
         // TODO add your handling code here:  
         UserController ud = new UserController();
-        this.setVisible(false);
         UserFromDispose();
         ud.detailsFormViews();
     }//GEN-LAST:event_getDetailsBtnActionPerformed
 
     public void UserFromViews(){
-        UserForm uf = new UserForm();
-        uf.setVisible(true);
-        uf.setTb();
-        uf.show();
+        this.setVisible(true);
+        this.setTb();
+        this.show();
     }    
     public void UserFromDispose(){
-        UserForm uf = new UserForm();
-        uf.dispose();
+        this.setVisible(false);
+        this.dispose();
     } 
     public void setTb(){
             UserDAO ud = new UserDAO();

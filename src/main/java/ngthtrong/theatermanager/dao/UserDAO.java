@@ -45,4 +45,26 @@ public class UserDAO {
         
         return list;
     }
+    public void addObject(Object[] oj){
+        Database db = new Database();
+        Connection sConn = db.connect();
+        String sql = "INSERT INTO [user] ([user_id], username, [password], email, fullName, isAdmin)" +
+            "VALUES (?, ?, ?, ?, ?, ?);";
+        try {
+            PreparedStatement p = sConn.prepareStatement(sql);
+            int id = Integer.parseInt(String.valueOf(oj[0]));
+            p.setInt(1, id);
+            p.setString(2, String.valueOf(oj[1]));
+            p.setString(5, String.valueOf(oj[2]));
+            p.setString(3, String.valueOf(oj[4]));
+            p.setString(4, String.valueOf(oj[3]));
+            p.setBoolean(6, Boolean.parseBoolean(String.valueOf(oj[5])));
+            p.executeUpdate();
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }    
+    
 }
