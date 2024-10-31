@@ -38,7 +38,8 @@ public class MovieForm extends javax.swing.JFrame {
         btnSave.setEnabled(false);
         btnAdd.setEnabled(true);
         txtMovieID.setEnabled(true);
-
+        btnDeleteByID.setEnabled(false);
+        btnGetDetail.setEnabled(false);
     }
 
     /**
