@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import ngthtrong.theatermanager.data.Database;
 import ngthtrong.theatermanager.models.Movie;
 
@@ -39,6 +40,26 @@ public class MovieDAO {
             }
         }
         return 0;
+    }
+
+    public boolean MovieIdExist(int id) {
+        Connection conn = new Database().connect();
+        String sql = "SELECT * FROM movie WHERE movie_id = ?";
+        try {
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, String.valueOf(id));
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+            String[] options = {"Ok"};
+            JOptionPane.showOptionDialog(null, "Movie ID not found", "Error", JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public List<Movie> GetAllMovie() {
@@ -71,34 +92,35 @@ public class MovieDAO {
     }
 
     public Movie GetMovieByID(int id) {
-        Connection conn = new Database().connect();
-        String sql = "SELECT * FROM movie where movie_id = ?";
-        try {
-            PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setString(1, String.valueOf(id));
-            ResultSet rs = stm.executeQuery();
-            Movie movie = new Movie();
-            while (rs.next()) {
-                movie.setMovie_id(rs.getInt("movie_id"));
-                movie.setMovie_name(rs.getString("movie_name"));
-                movie.setDescription(rs.getString("description"));
-                movie.setCommingSoon(rs.getBoolean("commingSoon"));
-                movie.setOnShowing(rs.getBoolean("onShowing"));
-            }
-            return movie;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
+            Connection conn = new Database().connect();
+            String sql = "SELECT * FROM movie where movie_id = ?";
             try {
-                conn.close();
+                PreparedStatement stm = conn.prepareStatement(sql);
+                stm.setString(1, String.valueOf(id));
+                ResultSet rs = stm.executeQuery();
+                Movie movie = new Movie();
+                while (rs.next()) {
+                    movie.setMovie_id(rs.getInt("movie_id"));
+                    movie.setMovie_name(rs.getString("movie_name"));
+                    movie.setDescription(rs.getString("description"));
+                    movie.setCommingSoon(rs.getBoolean("commingSoon"));
+                    movie.setOnShowing(rs.getBoolean("onShowing"));
+                }
+                return movie;
             } catch (SQLException e) {
                 e.printStackTrace();
-            }
+            } finally {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
         }
         return null;
     }
 
     public void AddMovie(Movie movie) {
+
         Connection conn = new Database().connect();
         String sql = "INSERT INTO movie (movie_id, movie_name, description, commingSoon, onShowing ) VALUES (?, ?, ?, ?, ?)";
         try {
@@ -118,6 +140,7 @@ public class MovieDAO {
                 e.printStackTrace();
             }
         }
+
     }
 
     public void DeleteMovie(int id) {
@@ -158,7 +181,7 @@ public class MovieDAO {
                 e.printStackTrace();
             }
         }
-       
+
     }
 
 }
