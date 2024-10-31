@@ -65,7 +65,6 @@ public class UserForm extends javax.swing.JFrame {
         saveBtn = new javax.swing.JButton();
         getDetailsBtn = new javax.swing.JButton();
         adminCheckBox = new javax.swing.JCheckBox();
-        notAdminCheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +98,12 @@ public class UserForm extends javax.swing.JFrame {
         rePasswordLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rePasswordLabel.setText("Re-Password :");
 
+        idText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                idTextKeyReleased(evt);
+            }
+        });
+
         listOfUserLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         listOfUserLabel.setText("List of user :");
 
@@ -121,6 +126,7 @@ public class UserForm extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(ListOfUserTable);
 
+        addBtn.setBackground(new java.awt.Color(0, 204, 204));
         addBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         addBtn.setText("Add");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -129,6 +135,7 @@ public class UserForm extends javax.swing.JFrame {
             }
         });
 
+        saveBtn.setBackground(new java.awt.Color(204, 255, 255));
         saveBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -146,13 +153,6 @@ public class UserForm extends javax.swing.JFrame {
         });
 
         adminCheckBox.setText("Admin");
-
-        notAdminCheckBox.setText("Not admin");
-        notAdminCheckBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                notAdminCheckBoxActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,9 +180,9 @@ public class UserForm extends javax.swing.JFrame {
                             .addComponent(rePasswordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(addBtn)
-                            .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(saveBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(27, 27, 27)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(idText, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,8 +194,7 @@ public class UserForm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
                         .addComponent(getDetailsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(adminCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(notAdminCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(adminCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(listOfUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -245,9 +244,7 @@ public class UserForm extends javax.swing.JFrame {
                         .addComponent(rePasswordText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(adminCheckBox)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(notAdminCheckBox)
-                        .addGap(17, 17, 17)
+                        .addGap(43, 43, 43)
                         .addComponent(getDetailsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(listOfUserLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,19 +258,15 @@ public class UserForm extends javax.swing.JFrame {
 
     @SuppressWarnings("deprecation")
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
         if(passwordText.getText().equals(rePasswordText.getText())){            
             getDetailsBtn.setEnabled(false);
             idText.setEditable(false);
+            addBtn.setEnabled(false);
         }
         else{
             JOptionPane.showMessageDialog(rootPane, "Password not equal re-password");
-        }
+        }  
     }//GEN-LAST:event_addBtnActionPerformed
-
-    private void notAdminCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notAdminCheckBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_notAdminCheckBoxActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
@@ -283,7 +276,7 @@ public class UserForm extends javax.swing.JFrame {
         String email    = emailText.getText();
         String password = passwordText.getText();
         boolean isAdmin = adminCheckBox.isSelected();
-        String rePassword = rePasswordText.getText();
+
         Object[] oj = new Object[6];
         oj[0] = id;
         oj[1] = userName;
@@ -293,6 +286,7 @@ public class UserForm extends javax.swing.JFrame {
         oj[5] = isAdmin;
         UserDAO ud = new UserDAO();
         ud.addObject(oj);
+
         setTb();
         getDetailsBtn.setEnabled(true);
         idText.setEditable(true);
@@ -303,15 +297,36 @@ public class UserForm extends javax.swing.JFrame {
         passwordText.setText("");
         rePasswordText.setText("");
         adminCheckBox.setSelected(false);
-        notAdminCheckBox.setSelected(false);
+        addBtn.setEnabled(true);
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void getDetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getDetailsBtnActionPerformed
-        // TODO add your handling code here:  
-        UserController ud = new UserController();
         UserFromDispose();
-        ud.detailsFormViews();
+        
+        detailsForm uf = new detailsForm();
+        uf.detailsFormViews();
+
+//        if(){
+//            
+//        }
     }//GEN-LAST:event_getDetailsBtnActionPerformed
+
+    private void idTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idTextKeyReleased
+        // TODO add your handling code here:
+        UserDAO ud = new UserDAO();
+        int maxId = ud.getMaxId();
+        int maxIdText = Integer.parseInt(idText.getText());
+        if(maxId != maxIdText - 1){
+            addBtn.setEnabled(false);
+            saveBtn.setEnabled(false);
+            getDetailsBtn.setEnabled(false);
+            JOptionPane.showMessageDialog(rootPane, "ID error! Your ID must be before ID + 1");
+        }
+        else{
+            addBtn.setEnabled(true);
+            saveBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_idTextKeyReleased
 
     public void UserFromViews(){
         this.setVisible(true);
@@ -402,7 +417,6 @@ public class UserForm extends javax.swing.JFrame {
     private javax.swing.JTextField listOfUserLabel;
     private javax.swing.JLabel managerLabel;
     private javax.swing.JButton movieBtn;
-    private javax.swing.JCheckBox notAdminCheckBox;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField passwordText;
     private javax.swing.JLabel rePasswordLabel;

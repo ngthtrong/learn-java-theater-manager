@@ -232,6 +232,7 @@ public class detailsForm extends javax.swing.JFrame {
         ud.bookFromViews();
     }//GEN-LAST:event_addBookBtnActionPerformed
     public void detailsFormViews(){
+        this.setVisible(true);
         this.show();
     }
     public void detailFromDispose(){

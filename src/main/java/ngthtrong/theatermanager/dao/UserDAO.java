@@ -19,10 +19,29 @@ import java.util.ArrayList;
  * @author jhiny
  */
 public class UserDAO {
+    public int getBooking(int user_id) throws SQLException{
+        int result = 0;
+        Database db = new Database();
+        String sql = "select booking_amout from booking where [user_id] = ?;";
+        Connection sConn = db.connect();
+        try{
+            PreparedStatement p = sConn.prepareStatement(sql);
+            p.setInt(1, user_id);
+            ResultSet rs = p.executeQuery();
+            while(rs.next()){
+                result = Integer.parseInt(rs.getString("booking_amout"));
+            }        
+            sConn.close();
+            return result;
+        }catch(SQLException e){
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return result;
+    }
     public List<User> getTableDefaut(){
         Database db = new Database();
         Connection sConn = db.connect();
-        String sql = "SELECT [user].[user_id],[user].password, [user].username, [user].fullName, [user].email, [user].isAdmin, booking.booking_amout FROM [user], booking ;"; 
+        String sql = "SELECT [user_id], password, username, fullName, email, isAdmin FROM [user];"; 
         List<User> list = new ArrayList<>();
         try{
             PreparedStatement p = sConn.prepareStatement(sql);
@@ -34,13 +53,15 @@ public class UserDAO {
                 String password = rs.getString("password");
                 String email = rs.getString("email");
                 boolean isAdmin = rs.getBoolean("isAdmin");
-                int booked = rs.getInt("booking_amout");
+                int booked = getBooking(id);
                 User res = new User(id, username,password, email, fullName, isAdmin, booked);
                 list.add(res);
             }
+            
+            sConn.close();
         }
         catch(SQLException e){
-                    System.out.println(e);
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, e);
         }
         
         return list;
@@ -60,11 +81,49 @@ public class UserDAO {
             p.setString(4, String.valueOf(oj[3]));
             p.setBoolean(6, Boolean.parseBoolean(String.valueOf(oj[5])));
             p.executeUpdate();
+            
+            sConn.close();
         }
         catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+    }
+
+    public int getMaxId(){
+        int maxId = 0;
+        Database db = new Database();
+        Connection sConn = db.connect();
+        String sql = "select [user_id] from [user]";
+        try{
+            PreparedStatement p = sConn.prepareStatement(sql);
+            ResultSet rs = p.executeQuery();
+            while(rs.next()){
+                maxId = rs.getInt("user_id");
+            }
+            sConn.close();
+        }catch(SQLException e){
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, e);
+
+        }
+        return maxId;
     }    
+    
+    public List getInfoById(int user_id){
+        String sql = "select booking.booking_id, [period].movie_id, [period].theater_id, booking.booking_amout, [period].period_time" +
+            "from booking" +
+            "inner join [period] on booking.period_id = [period].period_id" +
+            "inner join [user] on booking.[user_id] = [user].[user_id] and [user].[user_id] = ?;"; 
+        Database db = new Database();
+        Connection sConn = db.connect();
+        PreparedStatement p; 
+        try {
+            p = sConn.prepareStatement(sql);
+            p.setString(1, user_id);
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ;
+    }
     
 }

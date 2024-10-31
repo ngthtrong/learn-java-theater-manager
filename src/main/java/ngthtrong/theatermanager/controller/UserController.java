@@ -23,14 +23,14 @@ import javax.swing.JTable;
  * @author jhiny
  */
 public class UserController {
-    public void detailsFormViews(){
-        detailsForm dtf = new detailsForm();
-        dtf.show();
-    }
-    public void detailFromDispose(){
-        detailsForm dtf = new detailsForm();
-        dtf.dispose();
-    }
+//    public void detailsFormViews(){
+//        detailsForm dtf = new detailsForm();
+//        dtf.show();
+//    }
+//    public void detailFromDispose(){
+//        detailsForm dtf = new detailsForm();
+//        dtf.dispose();
+//    }
     
 //    public void UserFromViews(){
 //        UserForm uf = new UserForm();

@@ -48,9 +48,9 @@
                       <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="addBtn" min="-2" max="-2" attributes="0"/>
-                          <Component id="saveBtn" min="-2" pref="80" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="saveBtn" pref="80" max="32767" attributes="0"/>
+                          <Component id="addBtn" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
@@ -67,7 +67,6 @@
                       <Component id="getDetailsBtn" min="-2" pref="100" max="-2" attributes="0"/>
                   </Group>
                   <Component id="adminCheckBox" min="-2" pref="87" max="-2" attributes="0"/>
-                  <Component id="notAdminCheckBox" min="-2" pref="87" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -123,9 +122,7 @@
                       <Component id="rePasswordText" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="adminCheckBox" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="notAdminCheckBox" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                       <Component id="getDetailsBtn" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -220,6 +217,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="idText">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="idTextKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="userNameText">
     </Component>
@@ -301,6 +301,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="addBtn">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="cc" green="cc" red="0" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
@@ -312,6 +315,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="saveBtn">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="cc" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>
         </Property>
@@ -336,14 +342,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Admin"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="notAdminCheckBox">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Not admin"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="notAdminCheckBoxActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
