@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import ngthtrong.theatermanager.controller.MoiveController;
 import ngthtrong.theatermanager.models.Movie;
+import ngthtrong.theatermanager.models.Period;
 
 /**
  *
@@ -24,20 +25,26 @@ public class MovieDetailForm extends javax.swing.JFrame {
 
     public void FormLoad() {
         this.setVisible(true);
-        CleanTxt();
+        
 
     }
 
-    public void CleanTxt() {
-        txtMovieID.setText("");
-        txtMovieName.setText("");
-        txtDescription.setText("");
-        txtMovieID.requestFocus();
-        btnSave.setEnabled(false);
-        btnSave.setEnabled(false);
-        btnAdd.setEnabled(true);
-        txtMovieID.setEnabled(true);
-
+    public void SetDetailMovie(Movie movie) {
+        txtMovieID.setText(String.valueOf(movie.getMovie_id()));
+        txtMovieName.setText(movie.getMovie_name());
+        txtDescription.setText(movie.getDescription());
+        onShowingTrue.setSelected(movie.isOnShowing());
+        onShowingFalse.setSelected(!movie.isOnShowing());
+        commingTrue.setSelected(movie.isCommingSoon());
+        commingFalse.setSelected(!movie.isCommingSoon());
+    }
+    public void SetPeriods(List<Period> periods) {
+        DefaultTableModel model = (DefaultTableModel) tbPeriods.getModel();
+        model.setRowCount(0);
+        for (Period period : periods) {
+            model.addRow(new Object[]{period.getPeriod_id(), period.getMovie_id(), period.getTheater_id(), period.getPeriod_time(), period.getPeriod_date()});
+        }
+        tbPeriods.setModel(model);
     }
 
     /**
@@ -74,6 +81,7 @@ public class MovieDetailForm extends javax.swing.JFrame {
         lbMovieID3 = new javax.swing.JLabel();
         commingTrue = new javax.swing.JRadioButton();
         commingFalse = new javax.swing.JRadioButton();
+        btnSave1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -175,6 +183,9 @@ public class MovieDetailForm extends javax.swing.JFrame {
         btnGrCommingSoon.add(commingFalse);
         commingFalse.setText("No");
 
+        btnSave1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSave1.setText("Back");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -200,7 +211,8 @@ public class MovieDetailForm extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                                    .addComponent(btnSave1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnGetDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -243,7 +255,7 @@ public class MovieDetailForm extends javax.swing.JFrame {
                         .addComponent(btnUserForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnMovieForm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTheaterForm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 10, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
@@ -277,6 +289,8 @@ public class MovieDetailForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnGetDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSave1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
@@ -332,6 +346,7 @@ public class MovieDetailForm extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btnGrOnShow;
     private javax.swing.JButton btnMovieForm;
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnSave1;
     private javax.swing.JButton btnTheaterForm;
     private javax.swing.JButton btnUserForm;
     private javax.swing.JRadioButton commingFalse;

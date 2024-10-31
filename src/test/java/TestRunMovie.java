@@ -14,8 +14,7 @@ public class TestRunMovie {
 
     public static void main(String[] args) {
         MoiveController control = new MoiveController();
-        MovieForm movieForm = new MovieForm();
-        control.getMovieFormDB();
+        control.showMovieFormDB();
         System.out.println("Hello World!");
     }
 }
