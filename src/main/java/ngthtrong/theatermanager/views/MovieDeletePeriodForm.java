@@ -23,9 +23,24 @@ public class MovieDeletePeriodForm extends javax.swing.JFrame {
         initComponents();
     }
 
+    private int movie_id;
+
+    public void SetMovieID(int movie_id) {
+        this.movie_id = movie_id;
+    }
+
+    public int GetMovieID() {
+        return this.movie_id;
+    }
+
+
     public void FormLoad() {
         this.setVisible(true);
-        
+    }
+
+    public void FormLoad(String movieName) {
+        this.setVisible(true);
+        lbMovieName.setText("List periods of Movie: " + movieName);
     }
 
     public void FormClose() {
@@ -46,7 +61,7 @@ public class MovieDeletePeriodForm extends javax.swing.JFrame {
         model.setRowCount(0);
         for (Period period : periods) {
             model.addRow(
-                    new Object[] { String.valueOf(period.getPeriod_id()), period.getMovie_id(), period.getTheater_id(),
+                    new Object[] { String.valueOf(period.getPeriod_id()), period.getMovie_name(), period.getTheater_name(),
                             period.getPeriod_time(), period.getPeriod_date() });
         }
         tbPeriods.setModel(model);
@@ -90,9 +105,20 @@ public class MovieDeletePeriodForm extends javax.swing.JFrame {
         lbMovieID.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbMovieID.setText("Period ID");
 
+        txtPeriodID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPeriodIDKeyReleased(evt);
+            }
+        });
+
         btnDeletePeriod.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnDeletePeriod.setText("Delete Period");
         btnDeletePeriod.setEnabled(false);
+        btnDeletePeriod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletePeriodActionPerformed(evt);
+            }
+        });
 
         tbPeriods.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -194,21 +220,23 @@ public class MovieDeletePeriodForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnEditActionPerformed
-      
-
-    }// GEN-LAST:event_btnEditActionPerformed
-
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCancelActionPerformed
-       
-
-    }// GEN-LAST:event_btnCancelActionPerformed
-
-    private void btnSaveChangeActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveChangeActionPerformed
+    private void txtPeriodIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPeriodIDKeyReleased
         // TODO add your handling code here:
-       
+        if(txtPeriodID.getText().isEmpty()){
+            btnDeletePeriod.setEnabled(false);
+        }else{
+            btnDeletePeriod.setEnabled(true);
+        }
+    }//GEN-LAST:event_txtPeriodIDKeyReleased
 
-    }// GEN-LAST:event_btnSaveChangeActionPerformed
+    private void btnDeletePeriodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletePeriodActionPerformed
+        // TODO add your handling code here:
+        MoiveController control = new MoiveController();
+        control.setMovieDeletePeriodForm(this);
+        control.deleteMovieInPeriod(Integer.parseInt(txtPeriodID.getText()),movie_id);
+        txtPeriodID.setText("");
+    }//GEN-LAST:event_btnDeletePeriodActionPerformed
+
 
     private void btnCreatePeriodActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCreatePeriodActionPerformed
         // TODO add your handling code here:
@@ -217,8 +245,11 @@ public class MovieDeletePeriodForm extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         MoiveController control = new MoiveController();
+        control.setMovieDeletePeriodForm(this);
         this.FormClose();
-        control.showMovieFormDB();
+        control.openMovieDetail(movie_id);
+
+
 
     }// GEN-LAST:event_btnBackActionPerformed
 

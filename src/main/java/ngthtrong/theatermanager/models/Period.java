@@ -21,6 +21,8 @@ public class Period {
     private Date period_date;
     private int movie_id;
     private int theater_id;
+    private String theater_name;
+    private String movie_name;
     public Period(){    
     }
     public Period(int period_id, int period_size, Time period_time, Date period_date, int movie_id, int theater_id){
@@ -79,6 +81,19 @@ public class Period {
     public void setTheater_id(int theater_id) {
         this.theater_id = theater_id;
     }
+    public String getTheater_name() {
+        return theater_name;
+    }
+    public void setTheater_name(String theater_name) {
+        this.theater_name = theater_name;
+    }
+    public String getMovie_name() {
+        return movie_name;
+    }
+    public void setMovie_name(String movie_name) {
+        this.movie_name = movie_name;
+    }
+
     @Override
     public String toString(){
         return "Period{" + "period_id=" + period_id + ", period_size=" + period_size + ", period_time=" + period_time + ", period_date=" + period_date + ", movie_id=" + movie_id + ", theater_id=" + theater_id + '}';

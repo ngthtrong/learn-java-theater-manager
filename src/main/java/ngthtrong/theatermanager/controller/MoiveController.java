@@ -27,6 +27,7 @@ public class MoiveController {
 
     public MoiveController() {
         movieDao = new MovieDAO();
+        periodDao = new PeriodDAO();
 
     }
 
@@ -93,19 +94,24 @@ public class MoiveController {
             movieForm.CleanTxt();
         }
     }
+    // --------------------MovieDetailForm--------------------//
 
     public void openMovieDetail(int movie_id) {
         // Movie movie = new Movie();
         // movie = null;
         // movie = movieDao.GetMovieByID(movie_id);
         if (movieDao.MovieIdExist(movie_id)) {
-            movieForm.FormClose();
+            if (movieForm != null) {
+                movieForm.FormClose();
+            }
+            if(movieDeletePeriodForm != null){
+                movieDeletePeriodForm.FormClose();
+            }
             movieDetailForm = new MovieDetailForm();
-            periodDao = new PeriodDAO();
             movieDetailForm.FormLoad();
             movieDetailForm.SetDetailMovie(movieDao.GetMovieByID(movie_id));
             movieDetailForm.SetPeriods(periodDao.getPeriodByMovie(movie_id));
-            if (periodDao.ExistPeriod(movie_id)) {
+            if (periodDao.ExistPeriodByMovieId(movie_id)) {
                 movieDetailForm.SetBtnDeleteEnable(true);
             } else {
                 movieDetailForm.SetBtnDeleteEnable(false);
@@ -116,7 +122,6 @@ public class MoiveController {
 
     }
 
-    // --------------------MovieDetailForm--------------------//
     public void updateMovieDetail(Movie movie) {
         movieDao.UpdateMovie(movie);
         movieDetailForm.SetDetailMovie(movie);
@@ -127,10 +132,29 @@ public class MoiveController {
     }
 
     // --------------------MovieDeletePeriod--------------------//
-    public void openMovieDeletePeriodForm(Movie movie) {
+    public void showDeletePeriodForm(int movie_id) {
         movieDetailForm.FormClose();
         movieDeletePeriodForm = new MovieDeletePeriodForm();
-        movieDeletePeriodForm.FormLoad();
-        movieDeletePeriodForm.SetPeriods(periodDao.getPeriodByMovie(movie.getMovie_id()));
+        movieDeletePeriodForm.SetMovieID(movie_id);
+        movieDeletePeriodForm.FormLoad(movieDao.GetMovieNameById(movie_id));
+        movieDeletePeriodForm.SetPeriods(periodDao.getPeriodByMovie(movie_id));
+    }
+
+    public void deleteMovieInPeriod(int period_id, int movie_id) {
+        if (!periodDao.ExistPeriodInMovieId(period_id, movie_id)) {
+            String[] options = { "Ok" };
+            JOptionPane.showOptionDialog(null,
+                    "Period of this movie with id: " + String.valueOf(period_id) + " not found!",
+                    "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+
+        } else {
+            periodDao.DeleteMovieInPeriod(period_id);
+            movieDeletePeriodForm.SetPeriods(periodDao.getPeriodByMovie(movie_id));
+            if (periodDao.ExistPeriodByMovieId(movie_id)) {
+                movieDeletePeriodForm.SetBtnDeleteEnable(true);
+            } else {
+                movieDeletePeriodForm.SetBtnDeleteEnable(false);
+            }
+        }
     }
 }

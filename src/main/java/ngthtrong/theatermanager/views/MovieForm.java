@@ -306,7 +306,7 @@ public class MovieForm extends javax.swing.JFrame {
     private void btnDeleteByIDActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDeleteByIDActionPerformed
         // TODO add your handling code here:
         String[] options = { "Cancel", "Delete" };
-        var selected = JOptionPane.showOptionDialog(null, "Add movie suscess!",
+        var selected = JOptionPane.showOptionDialog(null, "You sure to delete this movie with id = "+txtMovieID.getText()+"!", 
                 "Status add new user", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options,
                 options[0]);
         if (selected == 0) {
