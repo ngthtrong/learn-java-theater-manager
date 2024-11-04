@@ -31,6 +31,11 @@ public class MovieDetailForm extends javax.swing.JFrame {
     public void FormClose() {
         this.setVisible(false);
     }
+    public void Cancel() {
+        btnEdit.setEnabled(true);
+        btnSaveChange.setEnabled(false);
+        setEnable(false);
+    }
 
     public void setEnable(boolean enable) {
         txtDescription.setEnabled(enable);
@@ -50,6 +55,7 @@ public class MovieDetailForm extends javax.swing.JFrame {
     }
 
     public void SetPeriods(List<Period> periods) {
+        if(periods == null) return;
         DefaultTableModel model = (DefaultTableModel) tbPeriods.getModel();
         model.setRowCount(0);
         for (Period period : periods) {
@@ -149,8 +155,12 @@ public class MovieDetailForm extends javax.swing.JFrame {
         btnDeletePeriod.setEnabled(false);
 
         btnCreatePeriod.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnCreatePeriod.setText("Create Period");
-        btnCreatePeriod.setEnabled(false);
+        btnCreatePeriod.setText("Add Period");
+        btnCreatePeriod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreatePeriodActionPerformed(evt);
+            }
+        });
 
         tbPeriods.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -365,11 +375,16 @@ public class MovieDetailForm extends javax.swing.JFrame {
         movie.setOnShowing(onShowingTrue.isSelected());
         movie.setCommingSoon(commingTrue.isSelected());
         control.updateMovieDetail(movie);
+        this.Cancel();
         
         
         
         
     }//GEN-LAST:event_btnSaveChangeActionPerformed
+
+    private void btnCreatePeriodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePeriodActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCreatePeriodActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:

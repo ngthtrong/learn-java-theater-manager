@@ -92,29 +92,29 @@ public class MovieDAO {
     }
 
     public Movie GetMovieByID(int id) {
-            Connection conn = new Database().connect();
-            String sql = "SELECT * FROM movie where movie_id = ?";
+        Connection conn = new Database().connect();
+        String sql = "SELECT * FROM movie where movie_id = ?";
+        try {
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, String.valueOf(id));
+            ResultSet rs = stm.executeQuery();
+            Movie movie = new Movie();
+            while (rs.next()) {
+                movie.setMovie_id(rs.getInt("movie_id"));
+                movie.setMovie_name(rs.getString("movie_name"));
+                movie.setDescription(rs.getString("description"));
+                movie.setCommingSoon(rs.getBoolean("commingSoon"));
+                movie.setOnShowing(rs.getBoolean("onShowing"));
+            }
+            return movie;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
             try {
-                PreparedStatement stm = conn.prepareStatement(sql);
-                stm.setString(1, String.valueOf(id));
-                ResultSet rs = stm.executeQuery();
-                Movie movie = new Movie();
-                while (rs.next()) {
-                    movie.setMovie_id(rs.getInt("movie_id"));
-                    movie.setMovie_name(rs.getString("movie_name"));
-                    movie.setDescription(rs.getString("description"));
-                    movie.setCommingSoon(rs.getBoolean("commingSoon"));
-                    movie.setOnShowing(rs.getBoolean("onShowing"));
-                }
-                return movie;
+                conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+            }
         }
         return null;
     }
@@ -131,6 +131,9 @@ public class MovieDAO {
             stm.setBoolean(4, movie.isCommingSoon());
             stm.setBoolean(5, movie.isOnShowing());
             stm.executeUpdate();
+            String[] options = {"Ok"};
+            JOptionPane.showOptionDialog(null, "Add movie suscess!",
+                    "Status add new user", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -150,6 +153,9 @@ public class MovieDAO {
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, String.valueOf(id));
             stm.executeUpdate();
+            String[] options = {"Ok"};
+            JOptionPane.showOptionDialog(null, "Deleted movie with id = "+String.valueOf(id),
+                    "Status delete user", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
