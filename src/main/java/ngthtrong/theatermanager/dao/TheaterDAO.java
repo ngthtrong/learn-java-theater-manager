@@ -9,5 +9,10 @@ package ngthtrong.theatermanager.dao;
  * @author jhiny
  */
 public class TheaterDAO {
+    public TheaterDAO() {
+    }
+
+
     
+
 }

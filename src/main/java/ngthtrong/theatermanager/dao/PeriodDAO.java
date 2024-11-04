@@ -48,7 +48,7 @@ public class PeriodDAO {
         }
         return null;
     }
-    
+
     public List<Period> getPeriodByMovie(int movie_id) {
         List<Period> periods = new ArrayList<>();
         Connection conn = new Database().connect();
@@ -77,5 +77,27 @@ public class PeriodDAO {
             }
         }
         return null;
+    }
+
+    public boolean ExistPeriod(int movie_id) {
+        Connection conn = new Database().connect();
+        String sql = "SELECT * FROM period WHERE movie_id = " + String.valueOf(movie_id);
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 }

@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import ngthtrong.theatermanager.dao.MovieDAO;
 import ngthtrong.theatermanager.dao.PeriodDAO;
 import ngthtrong.theatermanager.models.Movie;
+import ngthtrong.theatermanager.views.MovieDeletePeriodForm;
 import ngthtrong.theatermanager.views.MovieDetailForm;
 import ngthtrong.theatermanager.views.MovieForm;
 
@@ -21,6 +22,7 @@ public class MoiveController {
     private MovieDAO movieDao;
     private MovieForm movieForm;
     private MovieDetailForm movieDetailForm;
+    private MovieDeletePeriodForm movieDeletePeriodForm;
     private PeriodDAO periodDao;
 
     public MoiveController() {
@@ -52,6 +54,14 @@ public class MoiveController {
         return movieDetailForm;
     }
 
+    public void setMovieDeletePeriodForm(MovieDeletePeriodForm movieDeletePeriodForm) {
+        this.movieDeletePeriodForm = movieDeletePeriodForm;
+    }
+
+    public MovieDeletePeriodForm getMovieDeletePeriodForm() {
+        return movieDeletePeriodForm;
+    }
+
     // --------------------MovieForm--------------------//
     public void showMovieFormDB() {
         movieForm = new MovieForm();
@@ -66,8 +76,9 @@ public class MoiveController {
     public void deleteMovieInDB(int movie_id) {
         if (movieDao.MovieIdExist(movie_id)) {
             if (movieDao.GetMovieByID(movie_id).isOnShowing()) {
-                String[] options = {"Edit Detail", "Cancal"};
-                var selection = JOptionPane.showOptionDialog(null, "This movie is on showing, do you want to edit detail?",
+                String[] options = { "Edit Detail", "Cancal" };
+                var selection = JOptionPane.showOptionDialog(null,
+                        "This movie is on showing, do you want to edit detail?",
                         "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
                 if (selection == 0) {
                     this.openMovieDetail(movie_id);
@@ -84,9 +95,9 @@ public class MoiveController {
     }
 
     public void openMovieDetail(int movie_id) {
-//        Movie movie = new Movie();
-//        movie = null;
-//        movie = movieDao.GetMovieByID(movie_id);
+        // Movie movie = new Movie();
+        // movie = null;
+        // movie = movieDao.GetMovieByID(movie_id);
         if (movieDao.MovieIdExist(movie_id)) {
             movieForm.FormClose();
             movieDetailForm = new MovieDetailForm();
@@ -94,6 +105,11 @@ public class MoiveController {
             movieDetailForm.FormLoad();
             movieDetailForm.SetDetailMovie(movieDao.GetMovieByID(movie_id));
             movieDetailForm.SetPeriods(periodDao.getPeriodByMovie(movie_id));
+            if (periodDao.ExistPeriod(movie_id)) {
+                movieDetailForm.SetBtnDeleteEnable(true);
+            } else {
+                movieDetailForm.SetBtnDeleteEnable(false);
+            }
         } else {
             movieForm.CleanTxt();
         }
@@ -104,11 +120,17 @@ public class MoiveController {
     public void updateMovieDetail(Movie movie) {
         movieDao.UpdateMovie(movie);
         movieDetailForm.SetDetailMovie(movie);
-        String[] options = {"Ok"};
+        String[] options = { "Ok" };
         JOptionPane.showOptionDialog(null, "Updated moive: " + movie.getMovie_name(),
                 "", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
-        
-        
+
     }
 
+    // --------------------MovieDeletePeriod--------------------//
+    public void openMovieDeletePeriodForm(Movie movie) {
+        movieDetailForm.FormClose();
+        movieDeletePeriodForm = new MovieDeletePeriodForm();
+        movieDeletePeriodForm.FormLoad();
+        movieDeletePeriodForm.SetPeriods(periodDao.getPeriodByMovie(movie.getMovie_id()));
+    }
 }

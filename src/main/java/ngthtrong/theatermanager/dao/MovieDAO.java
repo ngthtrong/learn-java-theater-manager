@@ -52,7 +52,7 @@ public class MovieDAO {
             while (rs.next()) {
                 return true;
             }
-            String[] options = {"Ok"};
+            String[] options = { "Ok" };
             JOptionPane.showOptionDialog(null, "Movie ID not found", "Error", JOptionPane.DEFAULT_OPTION,
                     JOptionPane.WARNING_MESSAGE, null, options, options[0]);
             return false;
@@ -131,9 +131,10 @@ public class MovieDAO {
             stm.setBoolean(4, movie.isCommingSoon());
             stm.setBoolean(5, movie.isOnShowing());
             stm.executeUpdate();
-            String[] options = {"Ok"};
+            String[] options = { "Ok" };
             JOptionPane.showOptionDialog(null, "Add movie suscess!",
-                    "Status add new user", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+                    "Status add new user", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options,
+                    options[0]);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -153,9 +154,10 @@ public class MovieDAO {
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, String.valueOf(id));
             stm.executeUpdate();
-            String[] options = {"Ok"};
-            JOptionPane.showOptionDialog(null, "Deleted movie with id = "+String.valueOf(id),
-                    "Status delete user", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+            String[] options = { "Ok" };
+            JOptionPane.showOptionDialog(null, "Deleted movie with id = " + String.valueOf(id),
+                    "Status delete user", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options,
+                    options[0]);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -190,4 +192,25 @@ public class MovieDAO {
 
     }
 
+    public String GetMovieNameById(int id) {
+        Connection conn = new Database().connect();
+        String sql = "SELECT movie_name FROM movie WHERE movie_id = ?";
+        try {
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, String.valueOf(id));
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                return rs.getString("movie_name");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 }
