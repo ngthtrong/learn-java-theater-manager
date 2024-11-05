@@ -113,6 +113,71 @@ public class PeriodDAO {
         }
     }
 
+    public void AddMovieInPeriod(int period_id, int movie_id) {
+        Connection conn = new Database().connect();
+        String sql = "Update period set movie_id = " + String.valueOf(movie_id) + " where period_id = "
+                + String.valueOf(period_id);
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+            String[] options = { "Ok" };
+            JOptionPane.showOptionDialog(null, "Added movie in period with id: " + String.valueOf(period_id),
+                    "", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public boolean ExistPeriodId(int period_id) {
+        Connection conn = new Database().connect();
+        String sql = "SELECT * FROM period WHERE period_id = " + String.valueOf(period_id);
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    public boolean PeriodMovieIdIsNull(int period_id) {
+        Connection conn = new Database().connect();
+        String sql = "SELECT * FROM period WHERE period_id = " + String.valueOf(period_id) + " AND movie_id IS NULL";
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
     public boolean ExistPeriodByMovieId(int movie_id) {
         Connection conn = new Database().connect();
         String sql = "SELECT * FROM period WHERE movie_id = " + String.valueOf(movie_id);

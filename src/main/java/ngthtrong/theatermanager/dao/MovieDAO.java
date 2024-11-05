@@ -213,4 +213,23 @@ public class MovieDAO {
         }
         return null;
     }
+    public void SetMovieOnShowing(int id,boolean onShowing) {
+        Connection conn = new Database().connect();
+        String sql = "UPDATE movie SET onShowing = ? WHERE movie_id = ?";
+        try {
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setBoolean(1, onShowing);
+            stm.setInt(2, id);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import ngthtrong.theatermanager.dao.MovieDAO;
 import ngthtrong.theatermanager.dao.PeriodDAO;
 import ngthtrong.theatermanager.models.Movie;
+import ngthtrong.theatermanager.views.MovieAddPeriodForm;
 import ngthtrong.theatermanager.views.MovieDeletePeriodForm;
 import ngthtrong.theatermanager.views.MovieDetailForm;
 import ngthtrong.theatermanager.views.MovieForm;
@@ -20,10 +21,11 @@ import ngthtrong.theatermanager.views.MovieForm;
 public class MoiveController {
 
     private MovieDAO movieDao;
+    private PeriodDAO periodDao;
     private MovieForm movieForm;
     private MovieDetailForm movieDetailForm;
     private MovieDeletePeriodForm movieDeletePeriodForm;
-    private PeriodDAO periodDao;
+    private MovieAddPeriodForm movieAddPeriodForm;
 
     public MoiveController() {
         movieDao = new MovieDAO();
@@ -61,6 +63,14 @@ public class MoiveController {
 
     public MovieDeletePeriodForm getMovieDeletePeriodForm() {
         return movieDeletePeriodForm;
+    }
+
+    public void setMovieAddPeriodForm(MovieAddPeriodForm movieAddPeriodForm) {
+        this.movieAddPeriodForm = movieAddPeriodForm;
+    }
+
+    public MovieAddPeriodForm getMovieAddPeriodForm() {
+        return movieAddPeriodForm;
     }
 
     // --------------------MovieForm--------------------//
@@ -104,7 +114,7 @@ public class MoiveController {
             if (movieForm != null) {
                 movieForm.FormClose();
             }
-            if(movieDeletePeriodForm != null){
+            if (movieDeletePeriodForm != null) {
                 movieDeletePeriodForm.FormClose();
             }
             movieDetailForm = new MovieDetailForm();
@@ -149,12 +159,47 @@ public class MoiveController {
 
         } else {
             periodDao.DeleteMovieInPeriod(period_id);
+            movieDao.SetMovieOnShowing(movie_id,false);
             movieDeletePeriodForm.SetPeriods(periodDao.getPeriodByMovie(movie_id));
             if (periodDao.ExistPeriodByMovieId(movie_id)) {
                 movieDeletePeriodForm.SetBtnDeleteEnable(true);
             } else {
                 movieDeletePeriodForm.SetBtnDeleteEnable(false);
+
             }
         }
     }
+
+    // --------------------MovieAddPeriod--------------------//
+    public void showAddPeriodForm(int movie_id) {
+        movieDetailForm.FormClose();
+        movieAddPeriodForm = new MovieAddPeriodForm();
+        movieAddPeriodForm.SetMovieID(movie_id);
+        movieAddPeriodForm.FormLoad(movieDao.GetMovieNameById(movie_id));
+        movieAddPeriodForm.SetPeriods(periodDao.GetAllPeriod());
+    }
+
+    public void addMovieInPeriod(int period_id, int movie_id) {
+        if (periodDao.ExistPeriodInMovieId(period_id, movie_id)) {
+            String[] options = { "Ok" };
+            JOptionPane.showOptionDialog(null,
+                    "Period of this movie with id: " + String.valueOf(period_id) + " already exist!",
+                    "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+        } else if(!periodDao.ExistPeriodId(period_id)) {
+            String[] options = { "Ok" };
+            JOptionPane.showOptionDialog(null,
+                    "Period with id: " + String.valueOf(period_id) + " not found!",
+                    "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+        }else if(!periodDao.PeriodMovieIdIsNull(period_id)) {
+            String[] options = { "Ok" };
+            JOptionPane.showOptionDialog(null,
+                    "Period with id: " + String.valueOf(period_id) + " already have movie!",
+                    "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+        }else {
+            periodDao.AddMovieInPeriod(period_id, movie_id);
+            movieDao.SetMovieOnShowing(movie_id,true);
+            movieAddPeriodForm.SetPeriods(periodDao.GetAllPeriod());
+        }
+    }
+
 }

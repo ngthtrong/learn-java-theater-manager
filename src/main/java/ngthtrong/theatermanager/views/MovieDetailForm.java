@@ -48,6 +48,7 @@ public class MovieDetailForm extends javax.swing.JFrame {
     public void SetBtnDeleteEnable(boolean enable) {
         btnDeletePeriod.setEnabled(enable);
     }
+
     public void SetDetailMovie(Movie movie) {
         txtMovieID.setText(String.valueOf(movie.getMovie_id()));
         txtMovieName.setText(movie.getMovie_name());
@@ -59,14 +60,15 @@ public class MovieDetailForm extends javax.swing.JFrame {
     }
 
     public void SetPeriods(List<Period> periods) {
-        if (periods == null)
+        if (periods == null) {
             return;
+        }
         DefaultTableModel model = (DefaultTableModel) tbPeriods.getModel();
         model.setRowCount(0);
         for (Period period : periods) {
             model.addRow(
-                    new Object[] { String.valueOf(period.getPeriod_id()), period.getMovie_name(), period.getTheater_name(),
-                            period.getPeriod_time(), period.getPeriod_date() });
+                    new Object[]{String.valueOf(period.getPeriod_id()), period.getMovie_name(), period.getTheater_name(),
+                        period.getPeriod_time(), period.getPeriod_date()});
         }
         tbPeriods.setModel(model);
     }
@@ -379,6 +381,9 @@ public class MovieDetailForm extends javax.swing.JFrame {
 
     private void btnCreatePeriodActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCreatePeriodActionPerformed
         // TODO add your handling code here:
+        MoiveController control = new MoiveController();
+        control.setMovieDetailForm(this);
+        control.showAddPeriodForm(Integer.valueOf(txtMovieID.getText()));
     }// GEN-LAST:event_btnCreatePeriodActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBackActionPerformed
