@@ -4,12 +4,16 @@
  */
 package ngthtrong.theatermanager.views;
 
+import javax.swing.JOptionPane;
+import ngthtrong.theatermanager.controller.UserController;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /**
  *
  * @author jhiny
  */
 public class LoginForm extends javax.swing.JFrame {
-
+    private UserController userController;
     /**
      * Creates new form LoginFrom
      */
@@ -29,14 +33,14 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        loginLabel = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
+        passLabel = new javax.swing.JLabel();
+        usernameField = new javax.swing.JTextField();
+        btnSubmit = new javax.swing.JButton();
+        signTrans = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        passwordField = new javax.swing.JPasswordField();
 
         jLabel2.setText("jLabel2");
 
@@ -48,71 +52,77 @@ public class LoginForm extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 332));
         jPanel1.setLayout(null);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
-        jLabel3.setText("Login");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(140, 10, 130, 60);
+        loginLabel.setFont(new java.awt.Font("Segoe UI", 1, 42)); // NOI18N
+        loginLabel.setText("Login");
+        jPanel1.add(loginLabel);
+        loginLabel.setBounds(140, 10, 130, 60);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
-        jLabel4.setText("Username");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(10, 80, 120, 52);
+        usernameLabel.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
+        usernameLabel.setText("Username");
+        jPanel1.add(usernameLabel);
+        usernameLabel.setBounds(10, 80, 120, 52);
 
-        jTextField1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        passLabel.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
+        passLabel.setText("Password");
+        jPanel1.add(passLabel);
+        passLabel.setBounds(10, 130, 120, 52);
+
+        usernameField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        usernameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                usernameFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(130, 140, 240, 30);
+        jPanel1.add(usernameField);
+        usernameField.setBounds(130, 90, 240, 30);
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
-        jLabel6.setText("Password");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(10, 130, 120, 52);
-
-        jTextField3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        btnSubmit.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                btnSubmitActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3);
-        jTextField3.setBounds(130, 90, 240, 30);
+        jPanel1.add(btnSubmit);
+        btnSubmit.setBounds(260, 210, 131, 70);
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(260, 210, 131, 70);
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
-        jLabel5.setText("Sign up?");
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+        signTrans.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        signTrans.setText("Sign up?");
+        signTrans.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
+                signTransMouseClicked(evt);
             }
         });
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(20, 290, 70, 30);
+        jPanel1.add(signTrans);
+        signTrans.setBounds(20, 290, 70, 30);
 
         jLayeredPane1.setBackground(new java.awt.Color(102, 102, 102));
         jLayeredPane1.setOpaque(true);
+
+        passwordField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordFieldActionPerformed(evt);
+            }
+        });
+
+        jLayeredPane1.setLayer(passwordField, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(630, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 611, Short.MAX_VALUE)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGap(141, 141, 141)
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(439, Short.MAX_VALUE))
         );
 
         jPanel1.add(jLayeredPane1);
@@ -145,21 +155,32 @@ public class LoginForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_usernameFieldActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+        
+        String username = usernameField.getText();
+            String password = String.valueOf(passwordField.getPassword());
+            if (userController.login(username, password)) {
+                JOptionPane.showMessageDialog(null, "Login successful!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid username or password.");
+            }
+        
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void signTransMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signTransMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        new SignupForm().setVisible(true);
+                dispose();
+    }//GEN-LAST:event_signTransMouseClicked
 
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,6 +212,7 @@ public class LoginForm extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new LoginForm().setVisible(true);
             }
@@ -198,16 +220,16 @@ public class LoginForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel loginLabel;
+    private javax.swing.JLabel passLabel;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel signTrans;
+    private javax.swing.JTextField usernameField;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }

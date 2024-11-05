@@ -8,6 +8,6 @@ package ngthtrong.theatermanager.controller;
  *
  * @author jhiny
  */
-public class LoginController {
+public class LoginController  {
     
 }
