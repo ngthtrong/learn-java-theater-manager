@@ -88,14 +88,13 @@ public class MoiveController {
         if (movieDao.MovieIdExist(movie_id)) {
             if (movieDao.GetMovieByID(movie_id).isOnShowing()) {
                 String[] options = { "Edit Detail", "Cancal" };
-                var selection = JOptionPane.showOptionDialog(null,
+                var selection = JOptionPane.showOptionDialog(movieForm,
                         "This movie is on showing, do you want to edit detail?",
                         "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
                 if (selection == 0) {
                     this.openMovieDetail(movie_id);
-                } else if (selection == 1) {
-                    movieForm.CleanTxt();
                 }
+                movieForm.CleanTxt();
             } else {
                 movieDao.DeleteMovie(movie_id);
                 movieForm.setMovies(movieDao.GetAllMovie());
@@ -158,15 +157,25 @@ public class MoiveController {
                     "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
 
         } else {
-            periodDao.DeleteMovieInPeriod(period_id);
-            movieDao.SetMovieOnShowing(movie_id,false);
-            movieDeletePeriodForm.SetPeriods(periodDao.getPeriodByMovie(movie_id));
-            if (periodDao.ExistPeriodByMovieId(movie_id)) {
-                movieDeletePeriodForm.SetBtnDeleteEnable(true);
-            } else {
-                movieDeletePeriodForm.SetBtnDeleteEnable(false);
+            String[] options = { "Cancel", "Delete!" };
+            var selection = JOptionPane.showOptionDialog(movieDeletePeriodForm,
+                    "Do you want to delete this period?",
+                    "", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+            if (selection == 1) {
 
+                periodDao.DeleteMovieInPeriod(period_id);
+                movieDao.SetMovieOnShowing(movie_id, false);
+                movieDeletePeriodForm.SetPeriods(periodDao.getPeriodByMovie(movie_id));
+                if (periodDao.ExistPeriodByMovieId(movie_id)) {
+                    movieDeletePeriodForm.SetBtnDeleteEnable(true);
+                } else {
+                    movieDeletePeriodForm.SetBtnDeleteEnable(false);
+                }
+            }else if(selection == 0){
+                return;
             }
+            
+
         }
     }
 
@@ -185,19 +194,19 @@ public class MoiveController {
             JOptionPane.showOptionDialog(null,
                     "Period of this movie with id: " + String.valueOf(period_id) + " already exist!",
                     "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
-        } else if(!periodDao.ExistPeriodId(period_id)) {
+        } else if (!periodDao.ExistPeriodId(period_id)) {
             String[] options = { "Ok" };
             JOptionPane.showOptionDialog(null,
                     "Period with id: " + String.valueOf(period_id) + " not found!",
                     "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
-        }else if(!periodDao.PeriodMovieIdIsNull(period_id)) {
+        } else if (!periodDao.PeriodMovieIdIsNull(period_id)) {
             String[] options = { "Ok" };
             JOptionPane.showOptionDialog(null,
                     "Period with id: " + String.valueOf(period_id) + " already have movie!",
                     "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
-        }else {
+        } else {
             periodDao.AddMovieInPeriod(period_id, movie_id);
-            movieDao.SetMovieOnShowing(movie_id,true);
+            movieDao.SetMovieOnShowing(movie_id, true);
             movieAddPeriodForm.SetPeriods(periodDao.GetAllPeriod());
         }
     }
