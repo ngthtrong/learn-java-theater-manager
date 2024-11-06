@@ -15,14 +15,17 @@ import microsoft.sql.DateTimeOffset;
  * @author jhiny
  */
 public class Period {
+    
     private int period_id;
     private int period_size;
     private Time period_time;
     private Date period_date;
     private int movie_id;
     private int theater_id;
+    
     public Period(){    
     }
+    
     public Period(int period_id, int period_size, Time period_time, Date period_date, int movie_id, int theater_id){
         this.period_id = period_id;
         this.period_size = period_size;
@@ -79,6 +82,7 @@ public class Period {
     public void setTheater_id(int theater_id) {
         this.theater_id = theater_id;
     }
+    
     @Override
     public String toString(){
         return "Period{" + "period_id=" + period_id + ", period_size=" + period_size + ", period_time=" + period_time + ", period_date=" + period_date + ", movie_id=" + movie_id + ", theater_id=" + theater_id + '}';

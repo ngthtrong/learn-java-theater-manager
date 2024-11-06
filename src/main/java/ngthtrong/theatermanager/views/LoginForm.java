@@ -4,11 +4,14 @@
  */
 package ngthtrong.theatermanager.views;
 
+import javax.swing.JOptionPane;
+import java.awt.event.ActionListener;
+import ngthtrong.theatermanager.models.User;
 /**
  *
  * @author adkm2
  */
-public class LoginForm extends javax.swing.JPanel {
+public class LoginForm extends javax.swing.JFrame {
 
     /**
      * Creates new form LoginForm
@@ -112,6 +115,27 @@ public class LoginForm extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
 
+    private boolean authenticateUser (String username, String password) {
+        if (username == null || password == null || username.isBlank() || password.isBlank()) {
+            JOptionPane.showMessageDialog(rootPane, "username and password must not be blank!");
+            return false;
+        }
+        return true;
+    }
+    
+    public User getDangNhap() {
+        String username = usernameField.getText();
+        String password = new String(passwordField.getPassword());
+        System.out.println(password);
+        if (!authenticateUser (username, password)) {
+            return null;
+        }
+        User currentUser = new User (username, password);
+
+//        System.out.println("LoginView: " + matKhau);
+        return currentUser;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbLogin;

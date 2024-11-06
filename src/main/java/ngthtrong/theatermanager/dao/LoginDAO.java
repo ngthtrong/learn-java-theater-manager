@@ -4,12 +4,10 @@
  */
 package ngthtrong.theatermanager.dao;
 
-
 /**
  *
- * @author jhiny
+ * @author adkm2
  */
-public class UserDAO {
+public class LoginDAO {
     
 }
-
