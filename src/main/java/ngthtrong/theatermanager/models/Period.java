@@ -6,9 +6,6 @@ package ngthtrong.theatermanager.models;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.text.DateFormat;
-
-import microsoft.sql.DateTimeOffset;
 
 /**
  *
@@ -83,8 +80,4 @@ public class Period {
     public String toString(){
         return "Period{" + "period_id=" + period_id + ", period_size=" + period_size + ", period_time=" + period_time + ", period_date=" + period_date + ", movie_id=" + movie_id + ", theater_id=" + theater_id + '}';
     }
-<<<<<<< HEAD
-    
-=======
->>>>>>> main
 }

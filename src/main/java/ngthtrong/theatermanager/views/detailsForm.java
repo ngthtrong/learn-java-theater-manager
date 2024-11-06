@@ -2,9 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ngthtrong.theatermanager.views.userForm;
+package ngthtrong.theatermanager.views;
 
+import ngthtrong.theatermanager.views.UserForm;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import ngthtrong.theatermanager.controller.UserController;
+import ngthtrong.theatermanager.dao.UserDAO;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ASUS PC
@@ -27,7 +34,6 @@ public class detailsForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        managerLabel = new javax.swing.JLabel();
         userBtn = new javax.swing.JButton();
         movieBtn = new javax.swing.JButton();
         Threater = new javax.swing.JButton();
@@ -48,9 +54,8 @@ public class detailsForm extends javax.swing.JFrame {
         addBookBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        managerLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        managerLabel.setText("Manager:");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setForeground(java.awt.Color.lightGray);
 
         userBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         userBtn.setText("User");
@@ -75,17 +80,17 @@ public class detailsForm extends javax.swing.JFrame {
 
         bookingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Movie", "Threater", "Amount", "Time"
+                "ID", "Movie", "Threater", "Amount", "Time", "Date"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -99,6 +104,11 @@ public class detailsForm extends javax.swing.JFrame {
 
         watchedBtn.setText("Watched");
         watchedBtn.setToolTipText("");
+        watchedBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                watchedBtnActionPerformed(evt);
+            }
+        });
 
         backToListUserBtn.setText("Back to list user");
         backToListUserBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +118,11 @@ public class detailsForm extends javax.swing.JFrame {
         });
 
         bookedBtn.setText("Booked");
+        bookedBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookedBtnActionPerformed(evt);
+            }
+        });
 
         addBookBtn.setText("Add book");
         addBookBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -121,55 +136,55 @@ public class detailsForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(managerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(userBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(movieBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(Threater, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(watchedBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(bookedBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(173, 173, 173)
+                        .addComponent(userBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(movieBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(Threater, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(backToListUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(addBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(idText, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(watchedBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(bookedBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(userNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(backToListUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(addBookBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(fullNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(fullNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(9, 9, 9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(idLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(idText, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(userNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(userNameText, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(fullNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(fullNameText, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(emailLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(emailText, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)))))
+                        .addGap(68, 68, 68)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(194, 194, 194))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(managerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(movieBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Threater, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -211,7 +226,8 @@ public class detailsForm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         pack();
@@ -221,24 +237,100 @@ public class detailsForm extends javax.swing.JFrame {
        // TODO add your handling code here:
         this.setVisible(false);
         detailFromDispose();
-        UserForm uf = new UserForm();
-        uf.UserFromViews();
+        UserController uc = new UserController();
+        uc.userFormLoad();
     }//GEN-LAST:event_backToListUserBtnActionPerformed
-
+    
+    public void setTableDefault(int id){
+        UserController uc = new UserController();
+        boolean checkExitsBooking = uc.checkIdBookingExist(id);
+        if(checkExitsBooking == false){
+            JOptionPane.showMessageDialog(this, "Id not exist booking");
+        }
+        List<Object[]> list = uc.getInfoById(id);
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.addColumn("ID");
+        dtm.addColumn("Movie");
+        dtm.addColumn("Theater");
+        dtm.addColumn("Amount");
+        dtm.addColumn("Time");
+        dtm.addColumn("Date");
+        for(Object[] oj1 : list){
+            dtm.addRow(oj1);
+        }
+        bookingTable.setModel(dtm);
+    }
+    
+    public void setIdInfo(int user_id){
+        UserController uc = new UserController();
+        Object[] ojj = new Object[4];
+        ojj = uc.getInfoToFillDetailsForm(user_id);
+        idText.setText(String.valueOf(ojj[3]));
+        fullNameText.setText(String.valueOf(ojj[1]));
+        emailText.setText(String.valueOf(ojj[2]));
+        userNameText.setText(String.valueOf(ojj[0]));
+    }
+    
     private void addBookBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBookBtnActionPerformed
         // TODO add your handling code here:
-        UserController ud = new UserController();
-        detailFromDispose();
-        ud.bookFromViews();
+        int user_id = Integer.parseInt(idText.getText());
+        UserController uc = new UserController();
+        uc.setDetailsForm(this);
+        
+        uc.bookFormLoad(user_id);
     }//GEN-LAST:event_addBookBtnActionPerformed
+    
+    
+    public void setWatched(int user_id){
+        UserController uc = new UserController();
+        List<Object[]> list = uc.getWatched(user_id);
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.addColumn("ID");
+        dtm.addColumn("Movie");
+        dtm.addColumn("Theater");
+        dtm.addColumn("Amount");
+        dtm.addColumn("Time");
+        dtm.addColumn("Date");
+        for(Object[] oj : list){
+            dtm.addRow(oj);
+        }
+        bookingTable.setModel(dtm);
+    }
+    public void setBooked(int user_id){
+        UserController uc = new UserController();
+        List<Object[]> list = uc.getBooked(user_id);
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.addColumn("ID");
+        dtm.addColumn("Movie");
+        dtm.addColumn("Theater");
+        dtm.addColumn("Amount");
+        dtm.addColumn("Time");
+        dtm.addColumn("Date");
+        for(Object[] oj : list){
+            dtm.addRow(oj);
+        }
+        bookingTable.setModel(dtm);
+    }
+    
+        
+    private void watchedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_watchedBtnActionPerformed
+        int user_id = Integer.parseInt(idText.getText());
+        setWatched(user_id);
+    }//GEN-LAST:event_watchedBtnActionPerformed
+
+    private void bookedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookedBtnActionPerformed
+        int user_id = Integer.parseInt(idText.getText());
+        setBooked(user_id);
+    }//GEN-LAST:event_bookedBtnActionPerformed
+
     public void detailsFormViews(){
         this.setVisible(true);
-        this.show();
     }
     public void detailFromDispose(){
         this.setVisible(false);
-        this.dispose();
     }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -292,7 +384,6 @@ public class detailsForm extends javax.swing.JFrame {
     private javax.swing.JTextField idText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel managerLabel;
     private javax.swing.JButton movieBtn;
     private javax.swing.JButton userBtn;
     private javax.swing.JLabel userNameLabel;
