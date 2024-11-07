@@ -18,28 +18,10 @@ import ngthtrong.theatermanager.models.User;
  * @author adkm2
  */
 public class LoginDAO {
-     public boolean authenticateUser(String username, String password) {
-         User validLogin = new User();
-         validLogin = null;
-         Connection conn = new Database().connect();
-         String sql = "SELECT * FROM user WHERE username=? AND password=?";
-         try {
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, username);
-            stmt.setString(2, password);
-            ResultSet rs = stmt.executeQuery();
-         
-         if (rs.next()) { // Kiểm tra nếu có kết quả trả về từ DB
-                String user = rs.getString("Username");
-                String pass = rs.getString("Password");
-                validLogin = new User(username, password);
-                return true;  // Đăng nhập thành công
-            }   
-         }catch (SQLException ex) { Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex); }     
-        return false;
-  }
-     
-     public boolean isExistUser(String username) {
+    
+    public LoginDAO () {}
+    
+    public boolean isExistUser(String username) {
         Connection conn = new Database().connect();
         String sql = "SELECT * FROM user WHERE username = ?";
 
@@ -56,4 +38,29 @@ public class LoginDAO {
 
         return false;
     }
+    
+     public boolean authenticateUser(String username, String password) {
+         User validLogin = new User();
+         validLogin = null;
+         Connection conn = new Database().connect();
+         String sql = "SELECT * FROM user WHERE username=? AND password=?";
+         try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+         
+         if (rs.next()) { // Kiểm tra nếu có kết quả trả về từ DB
+                String user = rs.getString("Username");
+                String pass = rs.getString("Password");
+                if (username.equals("admin") && password.equals("password")) {
+                    validLogin = new User(username, password, true);
+                } else validLogin = new User(username, password, false);
+                return true;  // Đăng nhập thành công
+            }   
+         }catch (SQLException ex) { Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex); }     
+        return false;
+  }
+     
+     
 }

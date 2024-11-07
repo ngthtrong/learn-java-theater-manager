@@ -30,7 +30,7 @@ public class SignUpController {
 
     }
 
-    public void showResgisterView() {
+    public void showSignupForm() {
         this.registerView.setVisible(true);
     }
 
@@ -43,13 +43,6 @@ public class SignUpController {
         return dangNhapDAO.isExistUser(tenDangNhap);
     }
 
-    private class HuyListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            disposeRegisterView();
-        }
-    }
 
     private class DangKiListener implements ActionListener {
 

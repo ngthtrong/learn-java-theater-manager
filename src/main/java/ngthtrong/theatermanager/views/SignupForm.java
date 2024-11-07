@@ -1,13 +1,12 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngthtrong.theatermanager.views;
 
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import ngthtrong.theatermanager.models.User;
-
 
 /**
  *
@@ -16,14 +15,13 @@ import ngthtrong.theatermanager.models.User;
 public class SignupForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form SignupForm
+     * Creates new form SSignupForm
      */
     public SignupForm() {
         initComponents();
-        this.setSize(534, 464);
+   //     this.setSize(534, 464);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setVisible(true);
     }
 
     /**
@@ -48,6 +46,8 @@ public class SignupForm extends javax.swing.JFrame {
         confirmField = new javax.swing.JPasswordField();
         backLogin = new javax.swing.JLabel();
         signupBtn = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lbSignUp.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lbSignUp.setText("Sign Up");
@@ -111,8 +111,8 @@ public class SignupForm extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -183,6 +183,8 @@ public class SignupForm extends javax.swing.JFrame {
                 .addComponent(backLogin)
                 .addGap(26, 26, 26))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
@@ -201,7 +203,6 @@ public class SignupForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_signupBtnActionPerformed
 
-    
     public boolean validateDangKy(String username, String fullname, String email) {
         if (fullname == null || username == null || email == null) {
             JOptionPane.showMessageDialog(rootPane, "Không được để trống!");
@@ -250,6 +251,41 @@ public class SignupForm extends javax.swing.JFrame {
     }
     
     
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(SignupForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(SignupForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(SignupForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(SignupForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SignupForm().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLogin;
@@ -266,5 +302,4 @@ public class SignupForm extends javax.swing.JFrame {
     private javax.swing.JButton signupBtn;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
-
 }

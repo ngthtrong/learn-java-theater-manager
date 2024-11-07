@@ -7,9 +7,12 @@ package ngthtrong.theatermanager.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import ngthtrong.theatermanager.dao.LoginDAO;
+import ngthtrong.theatermanager.models.User;
 import ngthtrong.theatermanager.views.LoginForm;
 import ngthtrong.theatermanager.views.SignupForm;
-
+import ngthtrong.theatermanager.models.CurrentUser;
+import ngthtrong.theatermanager.views.UserForm;
 
 /**
  *
@@ -20,16 +23,14 @@ public class LoginController  {
 
     private SignupForm signupForm;
 
-  //  private AdminView adminView;
+    private UserForm userForm;
 
-   // private UserView userView;
-
-   // private NguoiDungHienTai nguoiDung;
+    private CurrentUser nguoiDung;
 
     public LoginController(LoginForm loginForm) {
         this.loginForm = loginForm;
-        loginForm.addLoginListener(new DangNhapListener());
-      //  loginForm.addDangKyListener(new DangKyListener());
+        loginForm.addLoginListener(new LoginListener());
+
     }
 
     public void showLoginForm() {
@@ -40,66 +41,49 @@ public class LoginController  {
         loginForm.dispose();
     }
 
-    public String checkLogin(String username, String password) { // trả về role
+public String checkLogin(String username, String password) { // trả về role
         String role = null; // null : no account
         LoginDAO dnDao = new LoginDAO();
-        if (dnDao.isExistChuDichVu(tenDangNhap)) {
-            if (dnDao.validateChuDichVuLogin(tenDangNhap, MatKhau)) {
-                System.out.println("check login cdv");
-                return "chudichvu";
+        if (dnDao.isExistUser(username)) {
+            if (dnDao.authenticateUser(username, password)) {
+               // System.out.println("check login cdv");
+                return "Login Success";
             } else {
-                return "err";
+                return "error";
             }
         }
-        if (dnDao.isExistKhachDuLich(tenDangNhap)) {
-            if (dnDao.validateKhachDuLichLogin(tenDangNhap, MatKhau)) {
-                System.out.println("check login kdl");
-                return "khachdulich";
-            } else {
-                System.out.println(" err check login kdl");
-                return "err";
-            }
-        }
+        
         return role;
     }
-
-    private class DangNhapListener implements ActionListener {
+    
+    
+    private class LoginListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            DangNhap dt = loginView.getDangNhap(); // trả về tên và mật khẩu
-            if (dt != null) {
+            User user = loginForm.getDangNhap(); // trả về tên và mật khẩu
+            if (user != null) {
                 //kiểm tra role để hiện thị lên view
-                String ketQua = checkLogin(dt.getTenDangNhap(), dt.getMatKhau());
+                String ketQua = checkLogin(user.getUsername(), user.getPassword());
                 switch (ketQua) {
-                    case "chudichvu" -> {
+                    case "Login Success" -> {
 
 //                        nguoiDung.setTenDangNhap(dt.getTenDangNhap());
 //                        nguoiDung.setVaitro("chudichvu");
-                        nguoiDung.setNguoiDungHienTai(dt.getTenDangNhap(), "chudichvu");
+                        nguoiDung.setNguoiDungHienTai(user.getUsername(), false);
 //                        dt.setNguoiDungHienTai((NguoiDung) dt);
-                        adminView = new AdminView();
-                        ChuDichVuController adminController = new ChuDichVuController(adminView);
-                        adminController.showAdminView();
-                        disposeLoginView();
-                    }
-                    case "khachdulich" -> {
-//                        nguoiDung.setTenDangNhap(dt.getTenDangNhap());
-//                        nguoiDung.setVaitro("chudichvu");
-//                        new NguoiDungHienTai(nguoiDung);
-//                        dt.setNguoiDungHienTai((NguoiDung) dt);
-                        nguoiDung.setNguoiDungHienTai(dt.getTenDangNhap(), "khachdulich");
-                        userView = new UserView();
-                        KhachDuLichController userController = new KhachDuLichController(userView);
-                        userController.showUserView();
-                        disposeLoginView();
+                        userForm = new UserForm();
+                        
+                        UserController userController = new UserController();
+                       // userController.userFormLoad();                        
+                        disposeLoginForm();
                     }
                     case "err" ->
-                        JOptionPane.showMessageDialog(loginView, "Mật Khẩu không đúng! Vui lòng nhập lại.");
+                        JOptionPane.showMessageDialog(loginForm, "Mật Khẩu không đúng! Vui lòng nhập lại.");
                     case null ->
-                        JOptionPane.showMessageDialog(loginView, "Tài khoản không tồn tại!");
+                        JOptionPane.showMessageDialog(loginForm, "Tài khoản không tồn tại!");
                     default -> // Xử lý trường hợp bất ngờ
-                        JOptionPane.showMessageDialog(loginView, "Đã xảy ra lỗi, vui lòng thử lại!");
+                        JOptionPane.showMessageDialog(loginForm, "Đã xảy ra lỗi, vui lòng thử lại!");
                 }
             }
         }

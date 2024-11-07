@@ -1,12 +1,14 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngthtrong.theatermanager.views;
 
-import javax.swing.JOptionPane;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import ngthtrong.theatermanager.models.User;
+
 /**
  *
  * @author adkm2
@@ -14,7 +16,7 @@ import ngthtrong.theatermanager.models.User;
 public class LoginForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form LoginForm
+     * Creates new form LoginnForm
      */
     public LoginForm() {
         initComponents();
@@ -33,18 +35,17 @@ public class LoginForm extends javax.swing.JFrame {
     private void initComponents() {
 
         lbLogin = new javax.swing.JLabel();
-        lbUsername = new javax.swing.JLabel();
         lbPassword = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
         usernameField = new javax.swing.JTextField();
-        submitBtn = new javax.swing.JButton();
+        lbUsername = new javax.swing.JLabel();
         lbSignup = new javax.swing.JLabel();
+        submitBtn = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lbLogin.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lbLogin.setText("Login");
-
-        lbUsername.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
-        lbUsername.setText("Username");
 
         lbPassword.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
         lbPassword.setText("Password");
@@ -58,8 +59,8 @@ public class LoginForm extends javax.swing.JFrame {
 
         usernameField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        submitBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        submitBtn.setText("Submit");
+        lbUsername.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        lbUsername.setText("Username");
 
         lbSignup.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         lbSignup.setText("Sign up?");
@@ -68,6 +69,9 @@ public class LoginForm extends javax.swing.JFrame {
                 lbSignupMouseClicked(evt);
             }
         });
+
+        submitBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        submitBtn.setText("Submit");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,8 +117,10 @@ public class LoginForm extends javax.swing.JFrame {
                 .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbSignup)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
@@ -125,7 +131,7 @@ public class LoginForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         SignupForm signup = new SignupForm();
         signup.setVisible(true);
-            //dispose();
+        dispose();
     }//GEN-LAST:event_lbSignupMouseClicked
 
     private boolean authenticateUser (String username, String password) {
@@ -137,22 +143,40 @@ public class LoginForm extends javax.swing.JFrame {
     }
     
     public User getDangNhap() {
+        boolean isAdmin;
         String username = usernameField.getText();
         String password = new String(passwordField.getPassword());
         System.out.println(password);
         if (!authenticateUser (username, password)) {
             return null;
         }
-        User currentUser = new User (username, password);
-
+        isAdmin = username.equalsIgnoreCase("admin") & password.equalsIgnoreCase("admin");
+        
+        User currentUser = new User (username, password, isAdmin);
         return currentUser;
     }
     
-    public void addLoginListener(ActionListener listener) {
-        submitBtn.addActionListener(listener);
-    }
+ //   public void addLoginListener(ActionListener listener) {
+  //      submitBtn.addActionListener(listener);
+  //  }
     
-    public static void main(String args[]) {
+    private void addSubmitButtonListener () {
+        submitBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = usernameField.getText();
+                String password = new String(passwordField.getPassword()); 
+                if (username.isBlank() || password.isBlank()) {
+                    JOptionPane.showMessageDialog(LoginForm.this, "Please enter both username and password.");
+                }
+            }
+        });}
+    
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main ( String args[] ) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -166,13 +190,13 @@ public class LoginForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MovieForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MovieForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MovieForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MovieForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -184,7 +208,6 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
     }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lbLogin;
