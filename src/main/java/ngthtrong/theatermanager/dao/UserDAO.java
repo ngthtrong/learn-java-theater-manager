@@ -17,25 +17,6 @@ import ngthtrong.theatermanager.data.Database;
  */
 public class UserDAO {
     
-    private int GetMaxUserId() {
-        Connection conn = new Database().connect();
-        String sql = "SELECT MAX(user_id) FROM user";
-        try {
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                return rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return 0;
-    }
+
 }
 

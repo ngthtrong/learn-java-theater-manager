@@ -29,4 +29,13 @@ public class Database {
         
         return sConn;
     }
+    
+    public static void main(String[] args) {
+    Database db = new Database(); Connection connection = db.connect();
+    if (connection != null) {
+        System.out.println("Connection to database was successful!");
+    } else {
+        System.out.println("Failed to connect to database.");
+    }
+    }
 }

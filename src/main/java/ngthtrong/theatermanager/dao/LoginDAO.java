@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.SQLException;
+import java.sql.Statement;
 import ngthtrong.theatermanager.data.Database;
 import ngthtrong.theatermanager.models.User;
 
@@ -39,6 +40,27 @@ public class LoginDAO {
         return false;
     }
     
+    public static int GetMaxUserId() {
+        Connection conn = new Database().connect();
+        String sql = "SELECT MAX(user_id) FROM user";
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
+    
      public boolean authenticateUser(String username, String password) {
          User validLogin = new User();
          validLogin = null;
@@ -62,5 +84,26 @@ public class LoginDAO {
         return false;
   }
      
-     
+     public static boolean SignupUser(User user) {
+        Connection conn = new Database().connect();
+        if (conn != null) {
+            try {
+                String query = "INSERT INTO [user] (user_id, fullname, email, username, password) VALUES (?, ?, ?, ?, ?)";
+                PreparedStatement pst = conn.prepareStatement(query);
+                user.setUser_id(GetMaxUserId() + 1);
+                pst.setInt(1, user.getUser_id());
+                pst.setString(2, user.getFullName());
+                pst.setString(3, user.getEmail());
+                pst.setString(4, user.getUsername());
+                pst.setString(5, user.getPassword());
+                pst.executeUpdate(); 
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
 }
+     
+

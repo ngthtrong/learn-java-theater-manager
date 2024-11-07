@@ -19,8 +19,13 @@ import ngthtrong.theatermanager.views.UserForm;
  * @author jhiny
  */
 public class LoginController  {
+    
+    private User user;
+    
     private LoginForm loginForm;
 
+    private LoginDAO loginDAO;
+    
     private SignupForm signupForm;
 
     private UserForm userForm;
@@ -30,9 +35,23 @@ public class LoginController  {
     public LoginController(LoginForm loginForm) {
         this.loginForm = loginForm;
         loginForm.addLoginListener(new LoginListener());
+       //loginForm.addSubmitButtonListener();
 
     }
+    
+    public LoginController() {
+        this.loginDAO = new LoginDAO();
+    }
 
+    public boolean login(String username, String password) {
+        return loginDAO.authenticateUser(username, password);
+    }
+
+    public static boolean register(int id, String fullname, String email, String username, String password, boolean isAdmin) {
+        User user = new User(id, fullname, email, username, password, false);
+        return LoginDAO.SignupUser(user);
+    }
+    
     public void showLoginForm() {
         loginForm.setVisible(true);
     }
@@ -68,10 +87,8 @@ public String checkLogin(String username, String password) { // trả về role
                 switch (ketQua) {
                     case "Login Success" -> {
 
-//                        nguoiDung.setTenDangNhap(dt.getTenDangNhap());
-//                        nguoiDung.setVaitro("chudichvu");
                         nguoiDung.setNguoiDungHienTai(user.getUsername(), false);
-//                        dt.setNguoiDungHienTai((NguoiDung) dt);
+
                         userForm = new UserForm();
                         
                         UserController userController = new UserController();

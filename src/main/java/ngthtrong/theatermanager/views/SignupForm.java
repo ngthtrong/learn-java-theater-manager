@@ -4,8 +4,11 @@
  */
 package ngthtrong.theatermanager.views;
 
+import ngthtrong.theatermanager.dao.LoginDAO;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import ngthtrong.theatermanager.controller.LoginController;
+import static ngthtrong.theatermanager.dao.LoginDAO.GetMaxUserId;
 import ngthtrong.theatermanager.models.User;
 
 /**
@@ -14,6 +17,7 @@ import ngthtrong.theatermanager.models.User;
  */
 public class SignupForm extends javax.swing.JFrame {
 
+    private int id = GetMaxUserId() + 1;;
     /**
      * Creates new form SSignupForm
      */
@@ -102,6 +106,11 @@ public class SignupForm extends javax.swing.JFrame {
 
         backLogin.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         backLogin.setText("Back to Login");
+        backLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backLoginMouseClicked(evt);
+            }
+        });
 
         signupBtn.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         signupBtn.setText("Sign Up");
@@ -201,7 +210,33 @@ public class SignupForm extends javax.swing.JFrame {
 
     private void signupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupBtnActionPerformed
         // TODO add your handling code here:
+        
+                String fullname = fullnameField.getText();
+                String email = emailField.getText();
+                String username = usernameField.getText();
+                String password = String.valueOf(passwordField.getPassword());
+                String rePassword = String.valueOf(confirmField.getPassword());
+
+                if (!password.equals(rePassword)) {
+                    JOptionPane.showMessageDialog(null, "Passwords do not match.");
+                    return;
+                }
+
+                if (LoginController.register(id, fullname, email, username, password, false)) {
+                    JOptionPane.showMessageDialog(null, "SignUp successful!");
+                    new LoginForm().setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "SignUp failed.");
+                }
     }//GEN-LAST:event_signupBtnActionPerformed
+
+    private void backLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLoginMouseClicked
+        // TODO add your handling code here:
+        LoginForm login = new LoginForm();
+        login.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_backLoginMouseClicked
 
     public boolean validateDangKy(String username, String fullname, String email) {
         if (fullname == null || username == null || email == null) {

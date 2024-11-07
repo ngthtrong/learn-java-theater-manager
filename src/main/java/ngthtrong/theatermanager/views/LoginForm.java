@@ -7,6 +7,7 @@ package ngthtrong.theatermanager.views;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import ngthtrong.theatermanager.controller.LoginController;
 import ngthtrong.theatermanager.models.User;
 
 /**
@@ -15,6 +16,7 @@ import ngthtrong.theatermanager.models.User;
  */
 public class LoginForm extends javax.swing.JFrame {
 
+    private LoginController loginController;
     /**
      * Creates new form LoginnForm
      */
@@ -72,6 +74,11 @@ public class LoginForm extends javax.swing.JFrame {
 
         submitBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         submitBtn.setText("Submit");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,6 +141,26 @@ public class LoginForm extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_lbSignupMouseClicked
 
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+        // TODO add your handling code here:
+            String username = usernameField.getText();
+            String password = String.valueOf(passwordField.getPassword());
+            if (this.loginController == null) {
+                JOptionPane.showMessageDialog(null, "Please Signup First!");
+            }
+            
+            if (loginController.login(username, password)) {
+                JOptionPane.showMessageDialog(null, "Login successful!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid username or password.");
+            }
+            
+            if (username.isBlank() || password.isBlank()) {
+                    JOptionPane.showMessageDialog(LoginForm.this, "Please enter both username and password.");
+                }
+        
+    }//GEN-LAST:event_submitBtnActionPerformed
+
     private boolean authenticateUser (String username, String password) {
         if (username == null || password == null || username.isBlank() || password.isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "username and password must not be blank!");
@@ -156,21 +183,10 @@ public class LoginForm extends javax.swing.JFrame {
         return currentUser;
     }
     
- //   public void addLoginListener(ActionListener listener) {
-  //      submitBtn.addActionListener(listener);
-  //  }
+    public void addLoginListener(ActionListener listener) {
+        submitBtn.addActionListener(listener); 
+    }
     
-    private void addSubmitButtonListener () {
-        submitBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String username = usernameField.getText();
-                String password = new String(passwordField.getPassword()); 
-                if (username.isBlank() || password.isBlank()) {
-                    JOptionPane.showMessageDialog(LoginForm.this, "Please enter both username and password.");
-                }
-            }
-        });}
     
     
     /**
