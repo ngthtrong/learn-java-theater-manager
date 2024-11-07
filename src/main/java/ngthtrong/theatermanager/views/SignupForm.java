@@ -4,17 +4,26 @@
  */
 package ngthtrong.theatermanager.views;
 
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import ngthtrong.theatermanager.models.User;
+
+
 /**
  *
  * @author adkm2
  */
-public class SignupForm extends javax.swing.JPanel {
+public class SignupForm extends javax.swing.JFrame {
 
     /**
      * Creates new form SignupForm
      */
     public SignupForm() {
         initComponents();
+        this.setSize(534, 464);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setVisible(true);
     }
 
     /**
@@ -192,6 +201,55 @@ public class SignupForm extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_signupBtnActionPerformed
 
+    
+    public boolean validateDangKy(String username, String fullname, String email) {
+        if (fullname == null || username == null || email == null) {
+            JOptionPane.showMessageDialog(rootPane, "Không được để trống!");
+            return false;
+        }
+        if (username.isBlank() || fullname.isBlank() || email.isBlank()) {
+            JOptionPane.showMessageDialog(rootPane, "Không được để trống!");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validateMatKhau(String password, String passwordConfirm){
+        if(password == null || password.isBlank() || passwordConfirm == null || passwordConfirm.isBlank() ){
+            JOptionPane.showMessageDialog(rootPane, "Không được để trống mật khẩu");
+            return false;
+        }
+        if (!(passwordConfirm.equals(password))){
+            JOptionPane.showMessageDialog(rootPane, "Mật khẩu không khớp !");
+            return false;
+        } 
+        return true;
+    }
+
+    
+    //DOC DU LIEU TU TEXTFILD
+    public User getDangKy() {
+        
+        String username = usernameField.getText();
+        String fullname = fullnameField.getText();
+        String email = emailField.getText();
+        String password = new String (passwordField.getPassword());
+        String passwordConfirm = new String (confirmField.getPassword());
+        
+        if (!validateDangKy(username, fullname, email)) {
+            return null;
+        }
+        if(!validateMatKhau(password, passwordConfirm)){
+            return null;
+        }
+        return new User ( username, password, email, fullname, false);
+    }
+    
+    public void addDangKyListener (ActionListener listener){
+        signupBtn.addActionListener(listener);
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLogin;
@@ -208,4 +266,5 @@ public class SignupForm extends javax.swing.JPanel {
     private javax.swing.JButton signupBtn;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
+
 }
