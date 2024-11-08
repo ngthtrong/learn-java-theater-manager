@@ -17,6 +17,7 @@ import ngthtrong.theatermanager.models.User;
 public class LoginForm extends javax.swing.JFrame {
 
     private LoginController loginController;
+    
     /**
      * Creates new form LoginnForm
      */
@@ -145,10 +146,11 @@ public class LoginForm extends javax.swing.JFrame {
         // TODO add your handling code here:
             String username = usernameField.getText();
             String password = String.valueOf(passwordField.getPassword());
-            if (this.loginController == null) {
-                JOptionPane.showMessageDialog(null, "Please Signup First!");
-            }
-            
+            loginController = new LoginController();
+           // if (this.loginController == null) {
+          //      JOptionPane.showMessageDialog(null, "Please Signup First!");
+           // }
+           
             if (loginController.login(username, password)) {
                 JOptionPane.showMessageDialog(null, "Login successful!");
             } else {
