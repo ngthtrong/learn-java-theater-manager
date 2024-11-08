@@ -23,7 +23,7 @@ public class LoginDAO {
     public LoginDAO() {
     }
 
-    public boolean isExistUser(String username) {
+    public static boolean isExistUser(String username) {
         Connection conn = new Database().connect();
         String sql = "SELECT * FROM [user] WHERE username = ?";
 

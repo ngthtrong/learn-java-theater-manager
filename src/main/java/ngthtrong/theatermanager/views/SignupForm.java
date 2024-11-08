@@ -9,6 +9,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import ngthtrong.theatermanager.controller.LoginController;
 import static ngthtrong.theatermanager.dao.LoginDAO.GetMaxUserId;
+import ngthtrong.theatermanager.dao.LoginDAO;
+import static ngthtrong.theatermanager.dao.LoginDAO.isExistUser;
 import ngthtrong.theatermanager.models.User;
 
 /**
@@ -16,14 +18,16 @@ import ngthtrong.theatermanager.models.User;
  * @author adkm2
  */
 public class SignupForm extends javax.swing.JFrame {
+
     private LoginController loginController = new LoginController();
-    private int id ;
+    private int id;
+
     /**
      * Creates new form SSignupForm
      */
     public SignupForm() {
         initComponents();
-   //     this.setSize(534, 464);
+        //     this.setSize(534, 464);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -210,28 +214,25 @@ public class SignupForm extends javax.swing.JFrame {
 
     private void signupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupBtnActionPerformed
         // TODO add your handling code here:
-                int id = GetMaxUserId() + 1;
-                String username = usernameField.getText();
-                String fullname = fullnameField.getText();
-                String email = emailField.getText();
-              //  String username = usernameField.getText();
-                String password = String.valueOf(passwordField.getPassword());
-                String rePassword = String.valueOf(confirmField.getPassword());
+        int id = GetMaxUserId() + 1;
+        String username = usernameField.getText();
+        String fullname = fullnameField.getText();
+        String email = emailField.getText();
+        //  String username = usernameField.getText();
+        String password = String.valueOf(passwordField.getPassword());
+        String rePassword = String.valueOf(confirmField.getPassword());
 
-                if (!password.equals(rePassword)) {
-                    JOptionPane.showMessageDialog(null, "Passwords do not match.");
-                    return;
-                }
-
-                if (loginController.register(id, fullname, email, username, password, false)) {
-                    JOptionPane.showMessageDialog(null, "SignUp successful!");
-                    new LoginForm().setVisible(true);
-                    dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, "SignUp failed.");
-                }
-                validateSignUp(username, fullname, email);
-                validatePassword(password, rePassword);
+        if (isExistUser(username)) {
+            JOptionPane.showMessageDialog(null, "Username already exist! Please try another username");
+        } else if (loginController.register(id, fullname, email, username, password, false)) {
+            JOptionPane.showMessageDialog(null, "SignUp successful!");
+            new LoginForm().setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "SignUp failed");
+        }
+        validateSignUp(username, fullname, email);
+        validatePassword(password, rePassword);
     }//GEN-LAST:event_signupBtnActionPerformed
 
     private void backLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLoginMouseClicked
@@ -253,42 +254,40 @@ public class SignupForm extends javax.swing.JFrame {
         return true;
     }
 
-    public boolean validatePassword(String password, String passwordConfirm){
-        if(password == null || password.isBlank() || passwordConfirm == null || passwordConfirm.isBlank() ){
+    public boolean validatePassword(String password, String passwordConfirm) {
+        if (password == null || password.isBlank() || passwordConfirm == null || passwordConfirm.isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Password must not be blank!!");
             return false;
         }
-        if (!(passwordConfirm.equals(password))){
+        if (!(passwordConfirm.equals(password))) {
             JOptionPane.showMessageDialog(rootPane, "Password do not match!!");
             return false;
-        } 
+        }
         return true;
     }
 
-    
     //DOC DU LIEU TU TEXTFILD
     public User getDangKy() {
-        
+
         String username = usernameField.getText();
         String fullname = fullnameField.getText();
         String email = emailField.getText();
-        String password = new String (passwordField.getPassword());
-        String passwordConfirm = new String (confirmField.getPassword());
-        
+        String password = new String(passwordField.getPassword());
+        String passwordConfirm = new String(confirmField.getPassword());
+
         if (!validateSignUp(username, fullname, email)) {
             return null;
         }
-        if(!validatePassword(password, passwordConfirm)){
+        if (!validatePassword(password, passwordConfirm)) {
             return null;
         }
-        return new User ( username, password, email, fullname, false);
+        return new User(username, password, email, fullname, false);
     }
-    
-    public void addDangKyListener (ActionListener listener){
+
+    public void addDangKyListener(ActionListener listener) {
         signupBtn.addActionListener(listener);
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
