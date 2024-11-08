@@ -25,7 +25,7 @@ public class LoginDAO {
 
     public boolean isExistUser(String username) {
         Connection conn = new Database().connect();
-        String sql = "SELECT * FROM user WHERE username = ?";
+        String sql = "SELECT * FROM [user] WHERE username = ?";
 
         PreparedStatement stm;
         try {
@@ -37,7 +37,6 @@ public class LoginDAO {
         } catch (SQLException ex) {
             Logger.getLogger(LoginDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return false;
     }
 
@@ -92,16 +91,19 @@ public class LoginDAO {
 
     public static boolean SignupUser(User user) {
         Connection conn = new Database().connect();
+        boolean isAdmin;
         if (conn != null) {
             try {
-                String query = "INSERT INTO [user] (user_id, fullname, email, username, password) VALUES (?, ?, ?, ?, ?)";
+                String query = "INSERT INTO [user] (user_id, fullname, email, username, password, isAdmin) VALUES (?, ?, ?, ?, ?, ?)";
                 PreparedStatement pst = conn.prepareStatement(query);
-            //    user.setUser_id(GetMaxUserId() + 1);
+                //    user.setUser_id(GetMaxUserId() + 1);
+                //isAdmin = user.getUsername().equalsIgnoreCase("admin") & user.getPassword().equalsIgnoreCase("admin");
                 pst.setInt(1, user.getUser_id());
                 pst.setString(2, user.getUsername());
                 pst.setString(3, user.getPassword());
                 pst.setString(4, user.getEmail());
                 pst.setString(5, user.getFullName());
+                pst.setBoolean(6, false);
                 pst.executeUpdate();
                 return true;
             } catch (SQLException e) {
