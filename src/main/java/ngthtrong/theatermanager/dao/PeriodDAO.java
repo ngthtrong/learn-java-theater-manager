@@ -6,6 +6,7 @@ package ngthtrong.theatermanager.dao;
 
 import java.sql.Statement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,28 @@ import ngthtrong.theatermanager.models.Period;
  * @author jhiny
  */
 public class PeriodDAO {
+
+    public int GetMaxPeriodId() {
+        Connection conn = new Database().connect();
+        String sql = "SELECT MAX(period_id) FROM period";
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+            return 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
 
     public List<Period> GetAllPeriod() {
         List<Period> periods = new ArrayList<>();
@@ -93,6 +116,35 @@ public class PeriodDAO {
         return null;
     }
 
+    public void AddPeriod(Period period) {
+        Connection conn = new Database().connect();
+        period.setPeriod_id(GetMaxPeriodId() + 1);
+        //period: date, time, size, movie_id, theater_id
+        String sql = "INSERT INTO period VALUES (?, ?, ?, ?, ?, ?)";
+        try {
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, period.getPeriod_id());
+            stmt.setDate(2, period.getPeriod_date());
+            stmt.setTime(3, period.getPeriod_time());
+            stmt.setInt(4, period.getPeriod_size());
+            stmt.setInt(5, period.getMovie_id());
+            stmt.setInt(6, period.getTheater_id());
+            stmt.executeUpdate();
+            String[] options = { "Ok" };
+            JOptionPane.showOptionDialog(null, "Added period with id: " + String.valueOf(period.getPeriod_id()), "",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+
+    }
     public void DeleteMovieInPeriod(int period_id) {
         Connection conn = new Database().connect();
         String sql = "Update period set movie_id = null where period_id = " + String.valueOf(period_id);
@@ -222,4 +274,29 @@ public class PeriodDAO {
         }
         return false;
     }
+
+    public boolean ExistPeriodInfo(Period period) {
+        Connection conn = new Database().connect();
+        String sql = "SELECT * FROM period WHERE period_size = " + String.valueOf(period.getPeriod_size())
+                + " AND period_time = '" + period.getPeriod_time() + "' AND period_date = '" + period.getPeriod_date()
+                + "' AND theater_id = " + String.valueOf(period.getTheater_id());
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if (rs.next()) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
 }

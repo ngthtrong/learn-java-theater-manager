@@ -244,6 +244,10 @@ public class MovieAddPeriodForm extends javax.swing.JFrame {
     }// GEN-LAST:event_txtPeriodIDKeyReleased
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCreateActionPerformed
+        // TODO add your handling code here:
+        MoiveController control = new MoiveController();
+        control.setMovieAddPeriodForm(this);
+        control.showCreatePeriodForm(movie_id);
 
     }// GEN-LAST:event_btnCreateActionPerformed
 
@@ -255,10 +259,7 @@ public class MovieAddPeriodForm extends javax.swing.JFrame {
         control.addMovieInPeriod(period_id, movie_id);
     }// GEN-LAST:event_btnAddActionPerformed
 
-    private void btnCreatePeriodActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCreatePeriodActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_btnCreatePeriodActionPerformed
-
+  
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBackActionPerformed
         MoiveController control = new MoiveController();
         control.setMovieAddPeriodForm(this);

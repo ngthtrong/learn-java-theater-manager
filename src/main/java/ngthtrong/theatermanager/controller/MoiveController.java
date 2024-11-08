@@ -5,11 +5,15 @@
 package ngthtrong.theatermanager.controller;
 
 import java.lang.ref.Cleaner;
+
 import javax.swing.JOptionPane;
 import ngthtrong.theatermanager.dao.MovieDAO;
 import ngthtrong.theatermanager.dao.PeriodDAO;
+import ngthtrong.theatermanager.dao.TheaterDAO;
 import ngthtrong.theatermanager.models.Movie;
+import ngthtrong.theatermanager.models.Period;
 import ngthtrong.theatermanager.views.MovieAddPeriodForm;
+import ngthtrong.theatermanager.views.MovieCreatePeriodForm;
 import ngthtrong.theatermanager.views.MovieDeletePeriodForm;
 import ngthtrong.theatermanager.views.MovieDetailForm;
 import ngthtrong.theatermanager.views.MovieForm;
@@ -26,6 +30,7 @@ public class MoiveController {
     private MovieDetailForm movieDetailForm;
     private MovieDeletePeriodForm movieDeletePeriodForm;
     private MovieAddPeriodForm movieAddPeriodForm;
+    private MovieCreatePeriodForm movieCreatePeriodForm;
 
     public MoiveController() {
         movieDao = new MovieDAO();
@@ -71,6 +76,14 @@ public class MoiveController {
 
     public MovieAddPeriodForm getMovieAddPeriodForm() {
         return movieAddPeriodForm;
+    }
+
+    public void setMovieCreatePeriodForm(MovieCreatePeriodForm movieCreatePeriodForm) {
+        this.movieCreatePeriodForm = movieCreatePeriodForm;
+    }
+
+    public MovieCreatePeriodForm getMovieCreatePeriodForm() {
+        return movieCreatePeriodForm;
     }
 
     // --------------------MovieForm--------------------//
@@ -137,6 +150,7 @@ public class MoiveController {
         String[] options = { "Ok" };
         JOptionPane.showOptionDialog(null, "Updated moive: " + movie.getMovie_name(),
                 "", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        movieDetailForm.SetPeriods(periodDao.getPeriodByMovie(movie.getMovie_id()));
 
     }
 
@@ -171,17 +185,18 @@ public class MoiveController {
                 } else {
                     movieDeletePeriodForm.SetBtnDeleteEnable(false);
                 }
-            }else if(selection == 0){
+            } else if (selection == 0) {
                 return;
             }
-            
 
         }
     }
 
     // --------------------MovieAddPeriod--------------------//
     public void showAddPeriodForm(int movie_id) {
-        movieDetailForm.FormClose();
+        if (movieDetailForm != null) {
+            movieDetailForm.FormClose();
+        }
         movieAddPeriodForm = new MovieAddPeriodForm();
         movieAddPeriodForm.SetMovieID(movie_id);
         movieAddPeriodForm.FormLoad(movieDao.GetMovieNameById(movie_id));
@@ -208,6 +223,34 @@ public class MoiveController {
             periodDao.AddMovieInPeriod(period_id, movie_id);
             movieDao.SetMovieOnShowing(movie_id, true);
             movieAddPeriodForm.SetPeriods(periodDao.GetAllPeriod());
+        }
+    }
+
+    // --------------------MovieAddPeriod--------------------//
+    public void showCreatePeriodForm(int movie_id) {
+        movieAddPeriodForm.FormClose();
+        movieCreatePeriodForm = new MovieCreatePeriodForm();
+        movieCreatePeriodForm.FormLoad(movie_id);
+        TheaterDAO theaterDAO = new TheaterDAO();
+        movieCreatePeriodForm.SetTheaters(theaterDAO.GetAllTheaterIsUsing());
+    }
+
+    public void createPeriod(Period period) {
+        if (period == null) {
+            String[] options = { "Ok" };
+            JOptionPane.showOptionDialog(null,
+                    "Period is null!",
+                    "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+        } else if (periodDao.ExistPeriodInfo(period)) {
+            String[] options = { "Ok" };
+            JOptionPane.showOptionDialog(null,
+                    "Period with date: " + period.getPeriod_date() + " and time: " + period.getPeriod_time()
+                            + " already exist!",
+                    "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
+        } else {
+            periodDao.AddPeriod(period);
+            TheaterDAO theaterDAO = new TheaterDAO();
+            movieCreatePeriodForm.SetTheaters(theaterDAO.GetAllTheaterIsUsing());
         }
     }
 
