@@ -16,8 +16,8 @@ import ngthtrong.theatermanager.models.User;
  * @author adkm2
  */
 public class SignupForm extends javax.swing.JFrame {
-
-    private int id = GetMaxUserId() + 1;;
+    private LoginController loginController = new LoginController();
+    private int id ;
     /**
      * Creates new form SSignupForm
      */
@@ -210,10 +210,11 @@ public class SignupForm extends javax.swing.JFrame {
 
     private void signupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupBtnActionPerformed
         // TODO add your handling code here:
-        
+                int id = GetMaxUserId() + 1;
+                String username = usernameField.getText();
                 String fullname = fullnameField.getText();
                 String email = emailField.getText();
-                String username = usernameField.getText();
+              //  String username = usernameField.getText();
                 String password = String.valueOf(passwordField.getPassword());
                 String rePassword = String.valueOf(confirmField.getPassword());
 
@@ -222,13 +223,15 @@ public class SignupForm extends javax.swing.JFrame {
                     return;
                 }
 
-                if (LoginController.register(id, fullname, email, username, password, false)) {
+                if (loginController.register(id, fullname, email, username, password, false)) {
                     JOptionPane.showMessageDialog(null, "SignUp successful!");
                     new LoginForm().setVisible(true);
                     dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "SignUp failed.");
                 }
+                validateDangKy(username, fullname, email);
+                validateMatKhau(password, rePassword);
     }//GEN-LAST:event_signupBtnActionPerformed
 
     private void backLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLoginMouseClicked

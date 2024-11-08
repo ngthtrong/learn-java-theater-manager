@@ -43,7 +43,7 @@ public class LoginDAO {
 
     public static int GetMaxUserId() {
         Connection conn = new Database().connect();
-        String sql = "SELECT MAX(user_id) FROM user";
+        String sql = "SELECT MAX(user_id) FROM [user]";
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -66,7 +66,7 @@ public class LoginDAO {
         User validLogin = new User();
         validLogin = null;
         Connection conn = new Database().connect();
-        String sql = "SELECT * FROM user WHERE username=? AND password=?";
+        String sql = "SELECT * FROM [user] WHERE username=? AND password=?";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, username);
@@ -96,12 +96,12 @@ public class LoginDAO {
             try {
                 String query = "INSERT INTO [user] (user_id, fullname, email, username, password) VALUES (?, ?, ?, ?, ?)";
                 PreparedStatement pst = conn.prepareStatement(query);
-                user.setUser_id(GetMaxUserId() + 1);
+            //    user.setUser_id(GetMaxUserId() + 1);
                 pst.setInt(1, user.getUser_id());
-                pst.setString(2, user.getFullName());
-                pst.setString(3, user.getEmail());
-                pst.setString(4, user.getUsername());
-                pst.setString(5, user.getPassword());
+                pst.setString(2, user.getUsername());
+                pst.setString(3, user.getPassword());
+                pst.setString(4, user.getEmail());
+                pst.setString(5, user.getFullName());
                 pst.executeUpdate();
                 return true;
             } catch (SQLException e) {
