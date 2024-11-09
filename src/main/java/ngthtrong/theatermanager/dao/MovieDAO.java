@@ -231,5 +231,23 @@ public class MovieDAO {
             }
         }
     }
+    public void SetComingSoon(int id,boolean commingSoon) {
+        Connection conn = new Database().connect();
+        String sql = "UPDATE movie SET commingSoon = ? WHERE movie_id = ?";
+        try {
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setBoolean(1, commingSoon);
+            stm.setInt(2, id);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }

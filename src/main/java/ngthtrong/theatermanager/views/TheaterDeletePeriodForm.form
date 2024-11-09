@@ -30,35 +30,32 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="btnCreate" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="btnUserForm" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                          <Component id="btnMovieForm" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnTheaterForm" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lbMovieID" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="txtPeriodID" min="-2" pref="146" max="-2" attributes="0"/>
-                      </Group>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="btnDeletePeriod" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="btnUserForm" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Component id="btnMovieForm" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="btnTheaterForm" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="lbMovieID" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+                      <Component id="txtPeriodID" min="-2" pref="146" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane2" max="32767" attributes="0"/>
-                  <Component id="lbMovieName" pref="529" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" pref="537" max="32767" attributes="0"/>
+                  <Component id="lbMovieName" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,22 +75,20 @@
                           <Component id="lbMovieID" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtPeriodID" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
-                      <Component id="btnAdd" min="-2" pref="45" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnCreate" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                          <Component id="btnDeletePeriod" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                           <Component id="btnBack" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="78" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="lbMovieName" min="-2" pref="37" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="411" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="403" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -137,15 +132,16 @@
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPeriodIDKeyTyped"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnCreate">
+    <Component class="javax.swing.JButton" name="btnDeletePeriod">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Create Period"/>
+        <Property name="text" type="java.lang.String" value="Delete Period"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeletePeriodActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -194,7 +190,7 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -224,20 +220,8 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="List periods available for add to movie: "/>
+        <Property name="text" type="java.lang.String" value="List periods of Theater: "/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAdd">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="14" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Add period to Movie"/>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

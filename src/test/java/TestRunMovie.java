@@ -1,5 +1,6 @@
 
-import ngthtrong.theatermanager.controller.MoiveController;
+import ngthtrong.theatermanager.controller.MovieController;
+import ngthtrong.theatermanager.controller.TheaterController;
 import ngthtrong.theatermanager.views.MovieForm;
 
 /*
@@ -13,8 +14,7 @@ import ngthtrong.theatermanager.views.MovieForm;
 public class TestRunMovie {
 
     public static void main(String[] args) {
-        MoiveController control = new MoiveController();
+        MovieController control = new MovieController();
         control.showMovieFormDB();
-        System.out.println("Hello World!");
     }
 }

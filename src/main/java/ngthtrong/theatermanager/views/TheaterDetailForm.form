@@ -2,9 +2,7 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="btnGrOnShow">
-    </Component>
-    <Component class="javax.swing.ButtonGroup" name="btnGrCommingSoon">
+    <Component class="javax.swing.ButtonGroup" name="btnUsing">
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -33,63 +31,62 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnSaveChange" pref="125" max="32767" attributes="0"/>
-                          <Component id="btnEdit" pref="125" max="32767" attributes="0"/>
-                          <Component id="btnBack" pref="125" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnCreatePeriod" max="32767" attributes="0"/>
-                          <Component id="btnDeletePeriod" max="32767" attributes="0"/>
-                          <Component id="btnCancel" alignment="1" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Component id="lbMovieID1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbOnShowing" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbMovieID3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lbMovieDescription" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="onShowingTrue" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="commingTrue" alignment="2" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="commingFalse" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="onShowingFalse" alignment="2" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="lbMovieID" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="lbTheaterID" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="txtMovieID" min="-2" pref="146" max="-2" attributes="0"/>
+                          <Component id="txtTheaterID" min="-2" pref="146" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="txtMovieName" alignment="1" min="-2" pref="187" max="-2" attributes="0"/>
+                      <Component id="txtTheaterName" alignment="1" min="-2" pref="187" max="-2" attributes="0"/>
+                      <Component id="txtCapacity" alignment="1" min="-2" pref="187" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="btnUserForm" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnMovieForm" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnTheaterForm" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnSaveChange" pref="125" max="32767" attributes="0"/>
+                              <Component id="btnEdit" pref="125" max="32767" attributes="0"/>
+                              <Component id="btnBack" pref="125" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnAddPeriod" max="32767" attributes="0"/>
+                              <Component id="btnDeletePeriod" max="32767" attributes="0"/>
+                              <Component id="btnCancel" alignment="1" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lbMovieID1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lbMovieID2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lbUsing" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                                  <Component id="Using" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="NotUsing" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" pref="536" max="32767" attributes="0"/>
+              <Component id="jScrollPane2" pref="553" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnUserForm" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="btnMovieForm" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="btnTheaterForm" min="-2" max="-2" attributes="0"/>
           </Group>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="313" max="32767" attributes="0"/>
-                  <Component id="lbOfTables" min="-2" pref="533" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="320" max="-2" attributes="0"/>
+                  <Component id="lbOfTables" pref="546" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -101,39 +98,34 @@
               <Component id="jScrollPane2" pref="441" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnUserForm" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="btnMovieForm" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="btnTheaterForm" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="txtMovieID" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="lbMovieID" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbTheaterID" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtTheaterID" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="txtMovieName" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtTheaterName" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="lbMovieID1" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="lbOnShowing" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="onShowingTrue" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="onShowingFalse" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="Using" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="NotUsing" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbUsing" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="2" attributes="0">
-                  <Component id="lbMovieID3" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="commingTrue" alignment="2" min="-2" max="-2" attributes="0"/>
-                  <Component id="commingFalse" alignment="2" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="lbMovieDescription" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="2" attributes="0">
+                  <Component id="txtCapacity" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbMovieID2" alignment="2" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnEdit" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="btnDeletePeriod" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
@@ -141,7 +133,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnSaveChange" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="btnCreatePeriod" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="btnAddPeriod" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -185,20 +177,20 @@
         <Property name="text" type="java.lang.String" value="Theater"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbMovieID">
+    <Component class="javax.swing.JLabel" name="lbTheaterID">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Movie ID:"/>
+        <Property name="text" type="java.lang.String" value="Theater ID:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtMovieID">
+    <Component class="javax.swing.JTextField" name="txtTheaterID">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMovieIDActionPerformed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTheaterIDKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbMovieID1">
@@ -209,32 +201,8 @@
         <Property name="text" type="java.lang.String" value="Name:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtMovieName">
+    <Component class="javax.swing.JTextField" name="txtTheaterName">
     </Component>
-    <Component class="javax.swing.JLabel" name="lbMovieDescription">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Description:"/>
-      </Properties>
-    </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="javax.swing.JTextArea" name="txtDescription">
-          <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="lineWrap" type="boolean" value="true"/>
-            <Property name="rows" type="int" value="5"/>
-          </Properties>
-        </Component>
-      </SubComponents>
-    </Container>
     <Component class="javax.swing.JButton" name="btnEdit">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -270,7 +238,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeletePeriodActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnCreatePeriod">
+    <Component class="javax.swing.JButton" name="btnAddPeriod">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
@@ -278,7 +246,7 @@
         <Property name="text" type="java.lang.String" value="Add Period"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreatePeriodActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddPeriodActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -317,7 +285,7 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -341,54 +309,30 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JRadioButton" name="onShowingTrue">
+    <Component class="javax.swing.JRadioButton" name="Using">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="btnGrOnShow"/>
+          <ComponentRef name="btnUsing"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Yes"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JRadioButton" name="onShowingFalse">
+    <Component class="javax.swing.JRadioButton" name="NotUsing">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="btnGrOnShow"/>
+          <ComponentRef name="btnUsing"/>
         </Property>
         <Property name="text" type="java.lang.String" value="No"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbOnShowing">
+    <Component class="javax.swing.JLabel" name="lbUsing">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Now Showing:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lbMovieID3">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="18" style="1"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Comming Soon:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="commingTrue">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="btnGrCommingSoon"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Yes"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JRadioButton" name="commingFalse">
-      <Properties>
-        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-          <ComponentRef name="btnGrCommingSoon"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="No"/>
+        <Property name="text" type="java.lang.String" value="Now using"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnBack">
@@ -418,8 +362,21 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="List period of movie:"/>
+        <Property name="text" type="java.lang.String" value="List period of theater:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbMovieID2">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Capacity:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCapacity">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCapacityKeyTyped"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

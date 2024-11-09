@@ -40,53 +40,51 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnCreate" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="btnUserForm" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                  <Component id="btnMovieForm" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnTheaterForm" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="lbTheater" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbTime" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbDate" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="btnCreate" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="btnUserForm" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                      <Component id="btnMovieForm" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="btnTheaterForm" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="lbTheater" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbTime" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lbDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="txtTheaterID" min="-2" pref="146" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="lbMovieID" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
                               <Component id="txtMovieID" min="-2" pref="146" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="txtTheaterID" min="-2" pref="146" max="-2" attributes="0"/>
-                                  <Component id="txtTime" alignment="1" min="-2" pref="146" max="-2" attributes="0"/>
-                                  <Component id="txtDate" alignment="1" min="-2" pref="146" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="txtTime" alignment="1" min="-2" pref="146" max="-2" attributes="0"/>
+                          <Component id="txtDate" alignment="1" min="-2" pref="146" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="lbMovieName" pref="456" max="32767" attributes="0"/>
+                      <Component id="lbOfTable" pref="456" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane2" max="32767" attributes="0"/>
@@ -97,38 +95,38 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnUserForm" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="btnMovieForm" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                   <Component id="btnTheaterForm" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="lbMovieName" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="lbOfTable" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane2" alignment="0" pref="395" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbMovieID" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtMovieID" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="lbMovieID" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtMovieID" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbTheater" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTheaterID" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="lbTheater" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTheaterID" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lbTime" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="lbTime" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTime" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lbDate" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtDate" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="2" attributes="0">
+                          <Component id="txtDate" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbDate" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="134" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnCreate" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                           <Component id="btnBack" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
@@ -174,9 +172,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtMovieID">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMovieIDKeyReleased"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMovieIDKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCreate">
       <Properties>
@@ -184,6 +183,7 @@
           <Font name="Segoe UI" size="14" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Create Period"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateActionPerformed"/>
@@ -242,7 +242,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lbMovieName">
+    <Component class="javax.swing.JLabel" name="lbOfTable">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
@@ -259,6 +259,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTheaterID">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTheaterIDKeyReleased"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtTheaterIDKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbTime">
       <Properties>
@@ -291,6 +295,9 @@
       <Properties>
         <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
       </Properties>
+      <Events>
+        <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="txtDateInputMethodTextChanged"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

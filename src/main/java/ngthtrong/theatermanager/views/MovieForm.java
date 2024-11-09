@@ -7,7 +7,7 @@ package ngthtrong.theatermanager.views;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import ngthtrong.theatermanager.controller.MoiveController;
+import ngthtrong.theatermanager.controller.MovieController;
 import ngthtrong.theatermanager.models.Movie;
 
 /**
@@ -80,6 +80,7 @@ public class MovieForm extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbAllMovies = new javax.swing.JTable();
         btnCancel = new javax.swing.JButton();
+        lbMovieName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,6 +105,9 @@ public class MovieForm extends javax.swing.JFrame {
         txtMovieID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtMovieIDKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMovieIDKeyTyped(evt);
             }
         });
 
@@ -154,17 +158,14 @@ public class MovieForm extends javax.swing.JFrame {
 
         tbAllMovies.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Movie ID", "Name", "On show", "Comming soon", "Description"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -180,7 +181,6 @@ public class MovieForm extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tbAllMovies);
         if (tbAllMovies.getColumnModel().getColumnCount() > 0) {
-            tbAllMovies.getColumnModel().getColumn(0).setResizable(false);
             tbAllMovies.getColumnModel().getColumn(2).setResizable(false);
             tbAllMovies.getColumnModel().getColumn(3).setResizable(false);
         }
@@ -192,6 +192,9 @@ public class MovieForm extends javax.swing.JFrame {
                 btnCancelActionPerformed(evt);
             }
         });
+
+        lbMovieName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbMovieName.setText("List all movies:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -228,16 +231,25 @@ public class MovieForm extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(btnTheaterForm))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbMovieName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMovieForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUserForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTheaterForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnMovieForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUserForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTheaterForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lbMovieName, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -273,6 +285,13 @@ public class MovieForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTheaterFormActionPerformed
 
+    private void txtMovieIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMovieIDKeyTyped
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMovieIDKeyTyped
+
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
         CleanTxt();
@@ -281,13 +300,14 @@ public class MovieForm extends javax.swing.JFrame {
     private void btnGetDetailActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnGetDetailActionPerformed
         // TODO add your handling code here:
 
-        MoiveController control = new MoiveController();
+        MovieController control = new MovieController();
         control.setMovieForm(this);
         control.openMovieDetail(Integer.valueOf(txtMovieID.getText()));
     }// GEN-LAST:event_btnGetDetailActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
+
         btnSave.setEnabled(true);
         txtMovieID.setText("");
         txtMovieID.setEnabled(false);
@@ -299,29 +319,33 @@ public class MovieForm extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        Movie movie = new Movie();
-        movie.setMovie_name(txtMovieName.getText());
-        movie.setDescription(txtDescription.getText());
-        movie.setOnShowing(false);
-        movie.setCommingSoon(true);
-        MoiveController control = new MoiveController();
-        control.setMovieForm(this);
-        control.addMovieToDB(movie);
+        if (txtMovieName.getText().equals("") || txtDescription.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields!");
+        } else {
+            Movie movie = new Movie();
+            movie.setMovie_name(txtMovieName.getText());
+            movie.setDescription(txtDescription.getText());
+            movie.setOnShowing(false);
+            movie.setCommingSoon(true);
+            MovieController control = new MovieController();
+            control.setMovieForm(this);
+            control.addMovieToDB(movie);
+        }
         CleanTxt();
 
     }// GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteByIDActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDeleteByIDActionPerformed
         // TODO add your handling code here:
-        String[] options = { "Cancel", "Delete" };
-        var selected = JOptionPane.showOptionDialog(this, "You sure to delete this movie with id = "+txtMovieID.getText()+"!", 
+        String[] options = {"Cancel", "Delete"};
+        var selected = JOptionPane.showOptionDialog(this, "You sure to delete this movie with id = " + txtMovieID.getText() + "!",
                 "Status add new user", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options,
                 options[0]);
         if (selected == 0) {
             return;
         }
         int id = Integer.valueOf(txtMovieID.getText());
-        MoiveController control = new MoiveController();
+        MovieController control = new MovieController();
         control.setMovieForm(this);
         control.deleteMovieInDB(id);
         CleanTxt();
@@ -339,30 +363,16 @@ public class MovieForm extends javax.swing.JFrame {
         }
     }// GEN-LAST:event_txtMovieIDKeyReleased
 
-    private int GetIndexRowByValue(int value) {
-        DefaultTableModel model = (DefaultTableModel) tbAllMovies.getModel();
-        for (int i = 0; i < model.getRowCount(); i++) {
-            if (model.getValueAt(i, 0).equals(value)) {
-                return i;
-            }
-        }
-        return -1;
-    }
 
     public void setMovies(List<Movie> Movies) {
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Movie ID");
-        model.addColumn("Name");
-        model.addColumn("On Show");
-        model.addColumn("Comming Soon");
-        model.addColumn("Description");
+        DefaultTableModel model = (DefaultTableModel) tbAllMovies.getModel();
         for (Movie movie : Movies) {
-            model.addRow(new Object[] {
-                    movie.getMovie_id(),
-                    movie.getMovie_name(),
-                    movie.isOnShowing(),
-                    movie.isCommingSoon(),
-                    movie.getDescription()
+            model.addRow(new Object[]{
+                String.valueOf(movie.getMovie_id()),
+                movie.getMovie_name(),
+                movie.isOnShowing(),
+                movie.isCommingSoon(),
+                movie.getDescription()
             });
         }
         tbAllMovies.setModel(model);
@@ -422,6 +432,7 @@ public class MovieForm extends javax.swing.JFrame {
     private javax.swing.JLabel lbMovieDescription;
     private javax.swing.JLabel lbMovieID;
     private javax.swing.JLabel lbMovieID1;
+    private javax.swing.JLabel lbMovieName;
     private javax.swing.JTable tbAllMovies;
     private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtMovieID;

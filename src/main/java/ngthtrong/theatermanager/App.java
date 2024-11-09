@@ -7,7 +7,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import ngthtrong.theatermanager.controller.MoiveController;
+import ngthtrong.theatermanager.controller.MovieController;
+import ngthtrong.theatermanager.controller.TheaterController;
 
 import ngthtrong.theatermanager.data.Database;
 import ngthtrong.theatermanager.views.MovieForm;
@@ -19,8 +20,7 @@ import ngthtrong.theatermanager.views.MovieForm;
 public class App {
 
     public static void main(String[] args) {
-        MoiveController control = new MoiveController();
-        control.showMovieFormDB();
-        System.out.println("Hello World!");
+        TheaterController    control = new TheaterController();
+        control.showTheaterForm();
     }
 }
