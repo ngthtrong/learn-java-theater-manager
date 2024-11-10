@@ -71,7 +71,6 @@ public String checkLogin(String username, String password) { // trả về role
                 return "error";
             }
         }
-        
         return role;
     }
     

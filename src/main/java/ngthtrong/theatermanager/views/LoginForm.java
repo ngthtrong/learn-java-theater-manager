@@ -17,14 +17,14 @@ import ngthtrong.theatermanager.models.User;
 public class LoginForm extends javax.swing.JFrame {
 
     private LoginController loginController;
-    
+
     /**
      * Creates new form LoginnForm
      */
     public LoginForm() {
         initComponents();
         this.setSize(430, 350);
-        this.setLocationRelativeTo(null);        
+        this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
@@ -144,57 +144,54 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         // TODO add your handling code here:
-            String username = usernameField.getText();
-            String password = String.valueOf(passwordField.getPassword());
-            loginController = new LoginController();
-           // if (this.loginController == null) {
-          //      JOptionPane.showMessageDialog(null, "Please Signup First!");
-           // }
-           
-            if (loginController.login(username, password)) {
-                JOptionPane.showMessageDialog(null, "Login successful!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Invalid username or password.");
-            }
-            
-            if (username.isBlank() || password.isBlank()) {
-                    JOptionPane.showMessageDialog(LoginForm.this, "Please enter both username and password.");
-                }
-        
+        String username = usernameField.getText();
+        String password = String.valueOf(passwordField.getPassword());
+        loginController = new LoginController();
+        // if (this.loginController == null) {
+        //      JOptionPane.showMessageDialog(null, "Please Signup First!");
+        // }
+
+        if (username.isBlank() || password.isBlank()) {
+            JOptionPane.showMessageDialog(LoginForm.this, "Please enter both username and password.");
+        } else if (loginController.login(username, password)) {
+            JOptionPane.showMessageDialog(null, "Login successful!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid username or password.");
+        }
+
+
     }//GEN-LAST:event_submitBtnActionPerformed
 
-    private boolean authenticateUser (String username, String password) {
+    private boolean authenticateUser(String username, String password) {
         if (username == null || password == null || username.isBlank() || password.isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "username and password must not be blank!");
             return false;
         }
         return true;
     }
-    
+
     public User getDangNhap() {
         boolean isAdmin;
         String username = usernameField.getText();
         String password = new String(passwordField.getPassword());
         System.out.println(password);
-        if (!authenticateUser (username, password)) {
+        if (!authenticateUser(username, password)) {
             return null;
         }
         isAdmin = username.equalsIgnoreCase("admin") & password.equalsIgnoreCase("admin");
-        
-        User currentUser = new User (username, password, isAdmin);
+
+        User currentUser = new User(username, password, isAdmin);
         return currentUser;
     }
-    
+
     public void addLoginListener(ActionListener listener) {
-        submitBtn.addActionListener(listener); 
+        submitBtn.addActionListener(listener);
     }
-    
-    
-    
+
     /**
      * @param args the command line arguments
      */
-    public static void main ( String args[] ) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

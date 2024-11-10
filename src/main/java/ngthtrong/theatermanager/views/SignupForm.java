@@ -20,7 +20,7 @@ import ngthtrong.theatermanager.models.User;
 public class SignupForm extends javax.swing.JFrame {
 
     private LoginController loginController = new LoginController();
-    private int id;
+    //private int id;
 
     /**
      * Creates new form SSignupForm
@@ -121,6 +121,11 @@ public class SignupForm extends javax.swing.JFrame {
         signupBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 signupBtnActionPerformed(evt);
+            }
+        });
+        signupBtn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                signupBtnKeyPressed(evt);
             }
         });
 
@@ -224,15 +229,15 @@ public class SignupForm extends javax.swing.JFrame {
 
         if (isExistUser(username)) {
             JOptionPane.showMessageDialog(null, "Username already exist! Please try another username");
+        } else if (!validateSignUp(username, fullname, email) || !validatePassword(password, rePassword)) {
+           // JOptionPane.showMessageDialog(null, "Username already exist! Please try another username");
         } else if (loginController.register(id, fullname, email, username, password, false)) {
             JOptionPane.showMessageDialog(null, "SignUp successful!");
             new LoginForm().setVisible(true);
             dispose();
-        } else {
+            } else {
             JOptionPane.showMessageDialog(null, "SignUp failed");
         }
-        validateSignUp(username, fullname, email);
-        validatePassword(password, rePassword);
     }//GEN-LAST:event_signupBtnActionPerformed
 
     private void backLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLoginMouseClicked
@@ -241,6 +246,10 @@ public class SignupForm extends javax.swing.JFrame {
         login.setVisible(true);
         dispose();
     }//GEN-LAST:event_backLoginMouseClicked
+
+    private void signupBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_signupBtnKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_signupBtnKeyPressed
 
     public boolean validateSignUp(String username, String fullname, String email) {
         if (fullname == null || username == null || email == null) {
