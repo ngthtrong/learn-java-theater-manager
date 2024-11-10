@@ -20,22 +20,14 @@ public class Database {
         Connection sConn = null;
         try{
             sConn = DriverManager.getConnection(url);
-            System.out.println("Ket noi thanh cong");
+            //System.out.println("Ket noi thanh cong");
         }
         catch(SQLException e){
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, e);
-            System.out.println("Ket noi that bai");
+          //  System.out.println("Ket noi that bai");
         }
         
         return sConn;
     }
-    
-    public static void main(String[] args) {
-    Database db = new Database(); Connection connection = db.connect();
-    if (connection != null) {
-        System.out.println("Connection to database was successful!");
-    } else {
-        System.out.println("Failed to connect to database.");
-    }
-    }
-}
+ }
+

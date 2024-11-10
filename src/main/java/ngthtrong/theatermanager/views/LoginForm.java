@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import ngthtrong.theatermanager.controller.LoginController;
+import static ngthtrong.theatermanager.dao.LoginDAO.isExistUser;
 import ngthtrong.theatermanager.models.User;
 
 /**
@@ -24,7 +25,7 @@ public class LoginForm extends javax.swing.JFrame {
      */
     public LoginForm() {
         initComponents();
-        this.setSize(430, 350);
+      //  this.setSize(430, 350);
         this.setLocationRelativeTo(null);
         this.setTitle("Theater Manager");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -146,7 +147,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void lbSignupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSignupMouseClicked
@@ -161,16 +162,15 @@ public class LoginForm extends javax.swing.JFrame {
         String username = usernameField.getText();
         String password = String.valueOf(passwordField.getPassword());
         loginController = new LoginController();
-        // if (this.loginController == null) {
-        //      JOptionPane.showMessageDialog(null, "Please Signup First!");
-        // }
 
         if (username.isBlank() || password.isBlank()) {
             JOptionPane.showMessageDialog(LoginForm.this, "Please enter both username and password.");
         } else if (loginController.login(username, password)) {
             JOptionPane.showMessageDialog(null, "Login successful!");
+        } else if (isExistUser(username)) {
+            JOptionPane.showMessageDialog(null, "Password incorrect!");
         } else {
-            JOptionPane.showMessageDialog(null, "Invalid username or password.");
+            JOptionPane.showMessageDialog(null, "Username have not signed up!");
         }
 
 
