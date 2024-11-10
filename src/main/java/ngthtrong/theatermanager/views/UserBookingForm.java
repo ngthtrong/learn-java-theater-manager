@@ -296,6 +296,7 @@ public class UserBookingForm extends javax.swing.JFrame {
 
     public void bookFromViews() {
         this.setVisible(true);
+        addBtn.setEnabled(false);
         setTableDefauth();
     }
 

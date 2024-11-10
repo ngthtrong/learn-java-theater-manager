@@ -80,6 +80,7 @@ public class UserController {
     
     public void detailsFormLoad(int user_id){
         detailsForm = new UserDetailForm();
+        detailsForm.setUser_id(user_id);
         detailsForm.detailsFormViews();
         detailsForm.setIdInfo(user_id);
         detailsForm.setTableDefault(user_id);

@@ -444,17 +444,22 @@ public class UserForm extends javax.swing.JFrame {
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void getDetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getDetailsBtnActionPerformed
-        UserController uc = new UserController();
-        uc.setUserForm(this);
+        if(!"".equals(idText.getText())){
+            UserController uc = new UserController();
+            uc.setUserForm(this);
 
-        int getIdNow = Integer.parseInt(idText.getText());
-        
-        boolean checkIdExist = uc.checkIdExist(getIdNow);
-        if(!checkIdExist){
-            JOptionPane.showMessageDialog(rootPane, "Id not exist");
-        }else{
-            UserFromDispose();
-            uc.detailsFormLoad(getIdNow);
+            int getIdNow = Integer.parseInt(idText.getText());
+
+            boolean checkIdExist = uc.checkIdExist(getIdNow);
+            if(!checkIdExist){
+                JOptionPane.showMessageDialog(rootPane, "Id not exist");
+            }else{
+                UserFromDispose();
+                uc.detailsFormLoad(getIdNow);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(rootPane, "Id is not available");
         }
     }//GEN-LAST:event_getDetailsBtnActionPerformed
 
