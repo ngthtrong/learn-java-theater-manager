@@ -20,7 +20,5 @@ import ngthtrong.theatermanager.views.MovieForm;
 public class App {
 
     public static void main(String[] args) {
-        TheaterController    control = new TheaterController();
-        control.showTheaterForm();
     }
 }
