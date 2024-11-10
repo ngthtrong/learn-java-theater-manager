@@ -4,6 +4,8 @@
 
 package ngthtrong.theatermanager;
 
+import ngthtrong.theatermanager.views.LoginForm;
+
 /**
  *
  * @author jhiny
@@ -11,6 +13,6 @@ package ngthtrong.theatermanager;
 public class App {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        new LoginForm().setVisible(true);
     }
 }
