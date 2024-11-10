@@ -80,7 +80,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="btnUserForm" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnMovieForm" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnTheaterForm" min="-2" max="-2" attributes="0"/>
@@ -179,6 +179,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Movie"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMovieFormActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnTheaterForm">
       <Properties>
@@ -187,6 +190,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Theater"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTheaterFormActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbMovieID">
       <Properties>
@@ -202,6 +208,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMovieIDActionPerformed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMovieIDKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbMovieID1">
@@ -213,6 +220,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtMovieName">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtMovieNameKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbMovieDescription">
       <Properties>
@@ -235,6 +245,9 @@
             <Property name="lineWrap" type="boolean" value="true"/>
             <Property name="rows" type="int" value="5"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtDescriptionKeyTyped"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

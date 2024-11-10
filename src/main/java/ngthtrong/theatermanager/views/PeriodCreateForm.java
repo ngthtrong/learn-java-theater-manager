@@ -23,7 +23,6 @@ public class PeriodCreateForm extends javax.swing.JFrame {
     /**
      * Creates new form MovieFrom
      */
-
     private boolean isMovie = false;
 
     public PeriodCreateForm() {
@@ -54,19 +53,19 @@ public class PeriodCreateForm extends javax.swing.JFrame {
 
     public void SetTheaters(List<Theater> theaters) {
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new Object[] { "Theater ID", "Theater Name", "Capacity" });
+        model.setColumnIdentifiers(new Object[]{"Theater ID", "Theater Name", "Capacity"});
         for (Theater theater : theaters) {
-            model.addRow(new Object[] { theater.getTheater_id(), theater.getTheater_name(),
-                    theater.getTheater_capactity() });
+            model.addRow(new Object[]{theater.getTheater_id(), theater.getTheater_name(),
+                theater.getTheater_capactity()});
         }
         tbTheaters.setModel(model);
     }
 
     public void SetMovies(List<Movie> movies) {
         DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new Object[] { "Movie ID", "Name", "Description" });
+        model.setColumnIdentifiers(new Object[]{"Movie ID", "Name", "Description"});
         for (Movie movie : movies) {
-            model.addRow(new Object[] { movie.getMovie_id(), movie.getMovie_name(), movie.getDescription() });
+            model.addRow(new Object[]{movie.getMovie_id(), movie.getMovie_name(), movie.getDescription()});
         }
         tbTheaters.setModel(model);
     }
@@ -82,7 +81,7 @@ public class PeriodCreateForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         btnGrOnShow = new javax.swing.ButtonGroup();
@@ -116,9 +115,19 @@ public class PeriodCreateForm extends javax.swing.JFrame {
 
         btnMovieForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMovieForm.setText("Movie");
+        btnMovieForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMovieFormActionPerformed(evt);
+            }
+        });
 
         btnTheaterForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTheaterForm.setText("Theater");
+        btnTheaterForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTheaterFormActionPerformed(evt);
+            }
+        });
 
         lbMovieID.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbMovieID.setText("Movie ID");
@@ -127,7 +136,6 @@ public class PeriodCreateForm extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtMovieIDKeyReleased(evt);
             }
-
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtMovieIDKeyTyped(evt);
             }
@@ -143,28 +151,29 @@ public class PeriodCreateForm extends javax.swing.JFrame {
         });
 
         tbTheaters.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null },
-                        { null, null, null },
-                        { null, null, null },
-                        { null, null, null }
-                },
-                new String[] {
-                        "Theater ID", "Theater Name", "Capacity"
-                }) {
-            Class[] types = new Class[] {
-                    java.lang.String.class, java.lang.String.class, java.lang.String.class
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Theater ID", "Theater Name", "Capacity"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean[] {
-                    false, false, false
+            boolean[] canEdit = new boolean [] {
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         jScrollPane2.setViewportView(tbTheaters);
@@ -191,7 +200,6 @@ public class PeriodCreateForm extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTheaterIDKeyReleased(evt);
             }
-
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTheaterIDKeyTyped(evt);
             }
@@ -200,8 +208,7 @@ public class PeriodCreateForm extends javax.swing.JFrame {
         lbTime.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbTime.setText("Time");
 
-        txtTime.setModel(new javax.swing.DefaultComboBoxModel<>(
-                new String[] { "10:00", "11:30", "13:00", "14:30", "15:00", "16:30", "18:00", "20:00", "22:00" }));
+        txtTime.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10:00","11:30","13:00","14:30","15:00","16:30","18:00","20:00","22:00" }));
 
         lbDate.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbDate.setText("Date");
@@ -210,7 +217,6 @@ public class PeriodCreateForm extends javax.swing.JFrame {
         txtDate.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
-
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtDateInputMethodTextChanged(evt);
             }
@@ -219,122 +225,96 @@ public class PeriodCreateForm extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnBack)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCreate)
+                                .addGap(23, 23, 23))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(20, 20, 20)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                                false)
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
-                                                                .createSequentialGroup()
-                                                                .addComponent(btnBack)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(btnCreate)
-                                                                .addGap(23, 23, 23))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addGroup(layout.createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addGroup(layout.createSequentialGroup()
-                                                                                .addComponent(btnUserForm)
-                                                                                .addGap(21, 21, 21)
-                                                                                .addComponent(btnMovieForm)
-                                                                                .addGap(18, 18, 18)
-                                                                                .addComponent(btnTheaterForm))
-                                                                        .addComponent(lbTheater)
-                                                                        .addComponent(lbTime)
-                                                                        .addComponent(lbDate))
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE))))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
-                                                .createSequentialGroup()
-                                                .addContainerGap()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(txtTheaterID,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 146,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(lbMovieID)
-                                                                .addGap(103, 103, 103)
-                                                                .addComponent(txtMovieID,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 146,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lbOfTable, javax.swing.GroupLayout.DEFAULT_SIZE, 456,
-                                                        Short.MAX_VALUE)
-                                                .addContainerGap())
-                                        .addComponent(jScrollPane2))));
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnUserForm)
+                                        .addGap(21, 21, 21)
+                                        .addComponent(btnMovieForm)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnTheaterForm))
+                                    .addComponent(lbTheater)
+                                    .addComponent(lbTime)
+                                    .addComponent(lbDate))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtTheaterID, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbMovieID)
+                                .addGap(103, 103, 103)
+                                .addComponent(txtMovieID, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbOfTable, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(jScrollPane2)))
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(btnUserForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnMovieForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnTheaterForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lbOfTable, javax.swing.GroupLayout.PREFERRED_SIZE, 45,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 395,
-                                                Short.MAX_VALUE)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(30, 30, 30)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                                        .addComponent(lbMovieID)
-                                                        .addComponent(txtMovieID,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                                        .addComponent(lbTheater)
-                                                        .addComponent(txtTheaterID,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                                        .addComponent(lbTime)
-                                                        .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(lbDate))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                        134, Short.MAX_VALUE)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(28, 28, 28)))));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUserForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMovieForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTheaterForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbOfTable, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(lbMovieID)
+                            .addComponent(txtMovieID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(lbTheater)
+                            .addComponent(txtTheaterID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(lbTime)
+                            .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbDate))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28))))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTheaterFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTheaterFormActionPerformed
+        // TODO add your handling code here:
+        TheaterController control = new TheaterController();
+        control.showTheaterForm();
+    }//GEN-LAST:event_btnTheaterFormActionPerformed
+
+    private void btnMovieFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovieFormActionPerformed
+        // TODO add your handling code here:
+        MovieController control = new MovieController();
+        control.showMovieFormDB();
+    }//GEN-LAST:event_btnMovieFormActionPerformed
 
     private void txtDateInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {// GEN-FIRST:event_txtDateInputMethodTextChanged
         // TODO add your handling code here:
@@ -382,17 +362,17 @@ public class PeriodCreateForm extends javax.swing.JFrame {
     }// GEN-LAST:event_txtMovieIDKeyReleased
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {
-        if(txtDate.getDate() == null){
+        if (txtDate.getDate() == null) {
             javax.swing.JOptionPane.showMessageDialog(this, "Please choose a date");
 
-        }else{
+        } else {
             Period period = new Period();
             period.setMovie_id(Integer.parseInt(txtMovieID.getText()));
             period.setTheater_id(Integer.parseInt(txtTheaterID.getText()));
             period.setPeriod_time(Time.valueOf(txtTime.getSelectedItem().toString() + ":00"));
             period.setPeriod_date(new Date(txtDate.getDate().getTime()));
             period.setPeriod_size(0);
-            if(txtDate.getDate().before(new java.util.Date())){
+            if (txtDate.getDate().before(new java.util.Date())) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Please choose a date in the future");
                 return;
             }

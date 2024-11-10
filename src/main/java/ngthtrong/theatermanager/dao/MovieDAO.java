@@ -213,7 +213,8 @@ public class MovieDAO {
         }
         return null;
     }
-    public void SetMovieOnShowing(int id,boolean onShowing) {
+
+    public void SetMovieOnShowing(int id, boolean onShowing) {
         Connection conn = new Database().connect();
         String sql = "UPDATE movie SET onShowing = ? WHERE movie_id = ?";
         try {
@@ -231,7 +232,8 @@ public class MovieDAO {
             }
         }
     }
-    public void SetComingSoon(int id,boolean commingSoon) {
+
+    public void SetComingSoon(int id, boolean commingSoon) {
         Connection conn = new Database().connect();
         String sql = "UPDATE movie SET commingSoon = ? WHERE movie_id = ?";
         try {
@@ -250,4 +252,90 @@ public class MovieDAO {
         }
     }
 
+    public List<Movie> SortMoviesByName() {
+        List<Movie> movies = new ArrayList<>();
+        Connection conn = new Database().connect();
+        String sql = "SELECT * FROM movie ORDER BY movie_name";
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                Movie movie = new Movie();
+                movie.setMovie_id(rs.getInt("movie_id"));
+                movie.setMovie_name(rs.getString("movie_name"));
+                movie.setDescription(rs.getString("description"));
+                movie.setCommingSoon(rs.getBoolean("commingSoon"));
+                movie.setOnShowing(rs.getBoolean("onShowing"));
+                movies.add(movie);
+            }
+            return movies;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public List<Movie> GetMovieComingSoon() {
+        List<Movie> movies = new ArrayList<>();
+        Connection conn = new Database().connect();
+        String sql = "SELECT * FROM movie WHERE commingSoon = 1";
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                Movie movie = new Movie();
+                movie.setMovie_id(rs.getInt("movie_id"));
+                movie.setMovie_name(rs.getString("movie_name"));
+                movie.setDescription(rs.getString("description"));
+                movie.setCommingSoon(rs.getBoolean("commingSoon"));
+                movie.setOnShowing(rs.getBoolean("onShowing"));
+                movies.add(movie);
+            }
+            return movies;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public List<Movie> GetMovieOnShowing() {
+        List<Movie> movies = new ArrayList<>();
+        Connection conn = new Database().connect();
+        String sql = "SELECT * FROM movie WHERE onShowing = 1";
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                Movie movie = new Movie();
+                movie.setMovie_id(rs.getInt("movie_id"));
+                movie.setMovie_name(rs.getString("movie_name"));
+                movie.setDescription(rs.getString("description"));
+                movie.setCommingSoon(rs.getBoolean("commingSoon"));
+                movie.setOnShowing(rs.getBoolean("onShowing"));
+                movies.add(movie);
+            }
+            return movies;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 }

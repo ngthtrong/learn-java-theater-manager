@@ -26,9 +26,11 @@ public class TheaterDeletePeriodForm extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-     public TheaterDeletePeriodForm(TheaterController theaterController) {
+
+    public TheaterDeletePeriodForm(TheaterController theaterController) {
         this.theaterController = theaterController;
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public void setTheaterController(TheaterController theaterController) {
@@ -75,7 +77,7 @@ public class TheaterDeletePeriodForm extends javax.swing.JFrame {
         for (Period period : periods) {
             model.addRow(
                     new Object[]{String.valueOf(period.getPeriod_id()), period.getMovie_name(), period.getTheater_name(),
-                        String.valueOf(period.getPeriod_size()),period.getPeriod_time(), period.getPeriod_date()});
+                        String.valueOf(period.getPeriod_size()), period.getPeriod_time(), period.getPeriod_date()});
         }
         tbPeriods.setModel(model);
     }
@@ -112,9 +114,19 @@ public class TheaterDeletePeriodForm extends javax.swing.JFrame {
 
         btnMovieForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMovieForm.setText("Movie");
+        btnMovieForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMovieFormActionPerformed(evt);
+            }
+        });
 
         btnTheaterForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTheaterForm.setText("Theater");
+        btnTheaterForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTheaterFormActionPerformed(evt);
+            }
+        });
 
         lbMovieID.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbMovieID.setText("Period ID");
@@ -241,8 +253,8 @@ public class TheaterDeletePeriodForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (txtPeriodID.getText().isEmpty()) {
             btnDeletePeriod.setEnabled(false);
-        } else{
-            if(tbPeriods.getRowCount() > 0){
+        } else {
+            if (tbPeriods.getRowCount() > 0) {
                 btnDeletePeriod.setEnabled(true);
             }
         }
@@ -259,8 +271,25 @@ public class TheaterDeletePeriodForm extends javax.swing.JFrame {
         if (!Character.isDigit(c)) {
             evt.consume();
         }
+        if (txtPeriodID.getText().length() >= 10) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtPeriodIDKeyTyped
 
+    private void btnMovieFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovieFormActionPerformed
+        // TODO add your handling code here:
+        MovieController control = new MovieController();
+        control.showMovieFormDB();
+        this.dispose();
+
+    }//GEN-LAST:event_btnMovieFormActionPerformed
+
+    private void btnTheaterFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTheaterFormActionPerformed
+        // TODO add your handling code here:
+        if (theaterController != null) {
+            theaterController.showTheaterForm();
+        }
+    }//GEN-LAST:event_btnTheaterFormActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:

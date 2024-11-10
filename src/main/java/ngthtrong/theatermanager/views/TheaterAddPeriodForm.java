@@ -32,6 +32,7 @@ public class TheaterAddPeriodForm extends javax.swing.JFrame {
     public TheaterAddPeriodForm(TheaterController theaterController) {
         initComponents();
         this.theaterController = theaterController;
+        this.setLocationRelativeTo(null);
     }
 
     public void setTheaterController(TheaterController theaterController) {
@@ -112,16 +113,25 @@ public class TheaterAddPeriodForm extends javax.swing.JFrame {
         btnAdd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         btnUserForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnUserForm.setText("User");
 
         btnMovieForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMovieForm.setText("Movie");
+        btnMovieForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMovieFormActionPerformed(evt);
+            }
+        });
 
         btnTheaterForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTheaterForm.setText("Theater");
+        btnTheaterForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTheaterFormActionPerformed(evt);
+            }
+        });
 
         lbMovieID.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbMovieID.setText("Period ID");
@@ -257,9 +267,27 @@ public class TheaterAddPeriodForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnMovieFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovieFormActionPerformed
+        // TODO add your handling code here:
+        MovieController control = new MovieController();
+        control.showMovieFormDB();
+        this.dispose();
+
+    }//GEN-LAST:event_btnMovieFormActionPerformed
+
+    private void btnTheaterFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTheaterFormActionPerformed
+        // TODO add your handling code here:
+        if (theaterController != null) {
+            theaterController.showTheaterForm();
+        }
+    }//GEN-LAST:event_btnTheaterFormActionPerformed
+
     private void txtPeriodIDKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtPeriodIDKeyTyped
         char c = evt.getKeyChar();
         if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+        if (txtPeriodID.getText().length() >= 10) {
             evt.consume();
         }
     }// GEN-LAST:event_txtPeriodIDKeyTyped

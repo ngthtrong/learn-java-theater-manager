@@ -36,6 +36,7 @@ public class TheaterForm extends javax.swing.JFrame {
         initComponents();
         this.theaterController = theaterController;
         theaterController.setTheaterForm(this);
+        this.setLocationRelativeTo(null);
     }
 
     public void FormLoad() {
@@ -66,14 +67,13 @@ public class TheaterForm extends javax.swing.JFrame {
         model.addColumn("Capacity");
         model.addColumn("Is Using");
         //set column "is using" as boolean view
-        
-        
+
         for (Theater t : theater) {
-            model.addRow(new Object[] {
-                    String.valueOf(t.getTheater_id()),
-                    t.getTheater_name(),
-                    String.valueOf(t.getTheater_capactity()),
-                    t.isIsUsing() });
+            model.addRow(new Object[]{
+                String.valueOf(t.getTheater_id()),
+                t.getTheater_name(),
+                String.valueOf(t.getTheater_capactity()),
+                t.isIsUsing()});
         }
         tbAllTheater.setModel(model);
         tbAllTheater.getColumnModel().getColumn(3).setCellRenderer(tbAllTheater.getDefaultRenderer(Boolean.class));
@@ -115,13 +115,17 @@ public class TheaterForm extends javax.swing.JFrame {
         btnSortByName = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         btnUserForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnUserForm.setText("User");
 
         btnMovieForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMovieForm.setText("Movie");
+        btnMovieForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMovieFormActionPerformed(evt);
+            }
+        });
 
         btnTheaterForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTheaterForm.setText("Theater");
@@ -150,6 +154,11 @@ public class TheaterForm extends javax.swing.JFrame {
         txtTheaterName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTheaterNameActionPerformed(evt);
+            }
+        });
+        txtTheaterName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTheaterNameKeyTyped(evt);
             }
         });
 
@@ -349,7 +358,7 @@ public class TheaterForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbMovieID2)
                             .addComponent(txtCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(72, 72, 72)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnDeleteByID, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -364,6 +373,22 @@ public class TheaterForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtTheaterNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTheaterNameKeyTyped
+        // TODO add your handling code here:
+        if (txtTheaterName.getText().length() >= 100) {
+            evt.consume();
+        }
+
+
+    }//GEN-LAST:event_txtTheaterNameKeyTyped
+
+    private void btnMovieFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovieFormActionPerformed
+        // TODO add your handling code here:
+        MovieController control = new MovieController();
+        control.showMovieFormDB();
+        this.dispose();
+    }//GEN-LAST:event_btnMovieFormActionPerformed
 
     private void btnSortByNameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSortByNameActionPerformed
         if (btnSortByName.isSelected()) {
@@ -445,7 +470,7 @@ public class TheaterForm extends javax.swing.JFrame {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         if (txtTheaterName.getText().equals("") || txtCapacity.getText().equals("")) {
-            String[] options = { "Ok" };
+            String[] options = {"Ok"};
             JOptionPane.showOptionDialog(null, "Please fill all the field", "Error", JOptionPane.DEFAULT_OPTION,
                     JOptionPane.WARNING_MESSAGE, null, options, options[0]);
         } else {
@@ -463,7 +488,7 @@ public class TheaterForm extends javax.swing.JFrame {
 
     private void btnDeleteByIDActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDeleteByIDActionPerformed
         // TODO add your handling code here:
-        String[] options = { "Cancel", "Delete" };
+        String[] options = {"Cancel", "Delete"};
         var selected = JOptionPane.showOptionDialog(this,
                 "You sure to delete this movie with id = " + txtTheaterID.getText() + "!",
                 "Status add new user", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options,

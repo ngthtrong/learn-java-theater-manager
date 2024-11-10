@@ -79,7 +79,20 @@ public class TheaterController {
 
     // --------------------Theater Form--------------------//
     public void showTheaterForm() {
-        theaterForm = new TheaterForm(this);
+        if(theaterDetailForm != null) {
+            theaterDetailForm.dispose();
+        }
+        if(theaterDeletePeriodForm != null) {
+            theaterDeletePeriodForm.dispose();
+        }
+        if(theaterAddPeriodForm != null) {
+            theaterAddPeriodForm.dispose();
+        }
+        if(periodCreateForm != null) {
+            periodCreateForm.dispose();
+        }
+        if (theaterForm == null)
+            theaterForm = new TheaterForm(this);
         theaterForm.setTitle("Theater management");
         theaterForm.FormLoad();
         theaterForm.setTheaterTables(theaterDAO.GetAllTheater());
@@ -121,7 +134,8 @@ public class TheaterController {
             if (theaterAddPeriodForm != null) {
                 theaterAddPeriodForm.dispose();
             }
-            theaterDetailForm = new TheaterDetailForm(this);
+            if (theaterDetailForm == null)
+                theaterDetailForm = new TheaterDetailForm(this);
             theaterDetailForm.setTitle("Theater Detail");
             theaterDetailForm.FormLoad();
             theaterDetailForm.SetDetailTheater(theaterDAO.GetTheaterByID(id));
@@ -145,7 +159,8 @@ public class TheaterController {
                 theaterName = theaterDetailForm.getTheaterName();
                 theaterDetailForm.dispose();
             }
-            theaterDeletePeriodForm = new TheaterDeletePeriodForm(this);
+            if (theaterDeletePeriodForm == null)
+                theaterDeletePeriodForm = new TheaterDeletePeriodForm(this);
             theaterDeletePeriodForm.setTitle("Delete Period of Theater");
             theaterDeletePeriodForm.FormLoad(theaterName);
             theaterDeletePeriodForm.setTheater_id(id);
@@ -199,7 +214,8 @@ public class TheaterController {
             if (theaterDeletePeriodForm != null) {
                 theaterDeletePeriodForm.dispose();
             }
-            theaterAddPeriodForm = new TheaterAddPeriodForm(this);
+            if (theaterAddPeriodForm == null)
+                theaterAddPeriodForm = new TheaterAddPeriodForm(this);
             theaterAddPeriodForm.setTitle("Add Period of Theater");
             theaterAddPeriodForm.FormLoad(theaterName);
             theaterAddPeriodForm.setTheater_id(id);
@@ -236,15 +252,17 @@ public class TheaterController {
     // --------------------Theater Create Period--------------------//
 
     public void showCreatePeriodForm(int id) {
-            if(theaterAddPeriodForm != null) {
-                theaterAddPeriodForm.dispose();
-            }
+        if (theaterAddPeriodForm != null) {
+            theaterAddPeriodForm.dispose();
+        }
+        if (periodCreateForm == null)
+
             periodCreateForm = new PeriodCreateForm();
-            periodCreateForm.setTitle("Create Period with Theater");
-            periodCreateForm.FormLoad();
-            periodCreateForm.setTheaterID(id);
-            MovieDAO movieDao = new MovieDAO();
-            periodCreateForm.SetMovies(movieDao.GetAllMovie());
+        periodCreateForm.setTitle("Create Period with Theater");
+        periodCreateForm.FormLoad();
+        periodCreateForm.setTheaterID(id);
+        MovieDAO movieDao = new MovieDAO();
+        periodCreateForm.SetMovies(movieDao.GetAllMovie());
 
     }
 
@@ -263,7 +281,7 @@ public class TheaterController {
                     "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
         } else {
             MovieDAO movieDao = new MovieDAO();
-            if(!movieDao.MovieIdExist(period.getMovie_id())) {
+            if (!movieDao.MovieIdExist(period.getMovie_id())) {
                 return;
             }
             periodDao.AddPeriod(period);

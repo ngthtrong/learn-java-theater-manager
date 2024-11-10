@@ -34,6 +34,7 @@ public class TheaterDetailForm extends javax.swing.JFrame {
     public TheaterDetailForm(TheaterController theaterController) {
         this.theaterController = theaterController;
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public void setTheaterController(TheaterController theaterController) {
@@ -151,9 +152,19 @@ public class TheaterDetailForm extends javax.swing.JFrame {
 
         btnMovieForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMovieForm.setText("Movie");
+        btnMovieForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMovieFormActionPerformed(evt);
+            }
+        });
 
         btnTheaterForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTheaterForm.setText("Theater");
+        btnTheaterForm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTheaterFormActionPerformed(evt);
+            }
+        });
 
         lbTheaterID.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbTheaterID.setText("Theater ID:");
@@ -167,6 +178,12 @@ public class TheaterDetailForm extends javax.swing.JFrame {
 
         lbMovieID1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbMovieID1.setText("Name:");
+
+        txtTheaterName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTheaterNameKeyTyped(evt);
+            }
+        });
 
         btnEdit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEdit.setText("Edit");
@@ -388,12 +405,40 @@ public class TheaterDetailForm extends javax.swing.JFrame {
         if (!Character.isDigit(c)) {
             evt.consume();
         }
+        if (txtTheaterName.getText().length() >= 10) {
+            evt.consume();
+        }
+
     }//GEN-LAST:event_txtCapacityKeyTyped
 
     private void btnAddPeriodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddPeriodActionPerformed
         theaterController.showTheaterAddPeriodForm(Integer.valueOf(txtTheaterID.getText()));
 
     }//GEN-LAST:event_btnAddPeriodActionPerformed
+
+    private void txtTheaterNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTheaterNameKeyTyped
+        // TODO add your handling code here:
+        if (txtTheaterName.getText().length() >= 80) {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_txtTheaterNameKeyTyped
+
+    private void btnMovieFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovieFormActionPerformed
+        // TODO add your handling code here:
+        MovieController control = new MovieController();
+        control.showMovieFormDB();
+        this.dispose();
+
+    }//GEN-LAST:event_btnMovieFormActionPerformed
+
+    private void btnTheaterFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTheaterFormActionPerformed
+        // TODO add your handling code here:
+        if (theaterController != null) {
+            theaterController.showTheaterForm();
+        }
+
+    }//GEN-LAST:event_btnTheaterFormActionPerformed
 
     private void btnDeletePeriodActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDeletePeriodActionPerformed
         theaterController.showTheaterDeletePeriodForm(Integer.valueOf(txtTheaterID.getText()));

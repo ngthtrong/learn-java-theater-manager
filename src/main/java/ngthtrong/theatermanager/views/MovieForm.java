@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ngthtrong.theatermanager.controller.MovieController;
+import ngthtrong.theatermanager.controller.TheaterController;
 import ngthtrong.theatermanager.models.Movie;
 
 /**
@@ -63,6 +64,9 @@ public class MovieForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -84,9 +88,12 @@ public class MovieForm extends javax.swing.JFrame {
         tbAllMovies = new javax.swing.JTable();
         btnCancel = new javax.swing.JButton();
         lbMovieName = new javax.swing.JLabel();
+        btnSortByName = new javax.swing.JToggleButton();
+        btnNowShowing = new javax.swing.JToggleButton();
+        btnComingSoon = new javax.swing.JToggleButton();
+        btnGetAll = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         btnUserForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnUserForm.setText("User");
@@ -123,12 +130,23 @@ public class MovieForm extends javax.swing.JFrame {
         lbMovieID1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbMovieID1.setText("Name:");
 
+        txtMovieName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMovieNameKeyTyped(evt);
+            }
+        });
+
         lbMovieDescription.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbMovieDescription.setText("Description:");
 
         txtDescription.setColumns(20);
         txtDescription.setLineWrap(true);
         txtDescription.setRows(5);
+        txtDescription.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDescriptionKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(txtDescription);
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -207,6 +225,38 @@ public class MovieForm extends javax.swing.JFrame {
         lbMovieName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbMovieName.setText("List all movies:");
 
+        btnSortByName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSortByName.setText("Sort by Name");
+        btnSortByName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSortByNameActionPerformed(evt);
+            }
+        });
+
+        btnNowShowing.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnNowShowing.setText("Now Showing");
+        btnNowShowing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNowShowingActionPerformed(evt);
+            }
+        });
+
+        btnComingSoon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnComingSoon.setText("Coming Soon");
+        btnComingSoon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComingSoonActionPerformed(evt);
+            }
+        });
+
+        btnGetAll.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnGetAll.setText("All movies");
+        btnGetAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGetAllActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -243,10 +293,19 @@ public class MovieForm extends javax.swing.JFrame {
                             .addComponent(btnTheaterForm))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbMovieName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGetAll)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSortByName)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnNowShowing)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnComingSoon)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,13 +327,15 @@ public class MovieForm extends javax.swing.JFrame {
                             .addComponent(lbMovieID)
                             .addComponent(txtMovieID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbMovieID1)
-                            .addComponent(txtMovieName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(txtMovieName, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lbMovieDescription)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,18 +343,88 @@ public class MovieForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnGetDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                            .addComponent(btnGetDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGetAll, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSortByName, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNowShowing, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnComingSoon, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnGetAllActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnGetAllActionPerformed
+        // TODO add your handling code here:
+        if (btnGetAll.isSelected()) {
+            btnSortByName.setSelected(false);
+            btnNowShowing.setSelected(false);
+            btnComingSoon.setSelected(false);
+            MovieController control = new MovieController();
+            control.setMovieForm(this);
+            control.sortMovieById();
+        }
+
+    }// GEN-LAST:event_btnGetAllActionPerformed
+
+    private void txtMovieNameKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtMovieNameKeyTyped
+        // TODO add your handling code here:
+        if (txtMovieName.getText().length() >= 80) {
+            evt.consume();
+        }
+    }// GEN-LAST:event_txtMovieNameKeyTyped
+
+    private void txtDescriptionKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtDescriptionKeyTyped
+        // TODO add your handling code here:
+        if (txtDescription.getText().length() >= 255) {
+            evt.consume();
+        }
+    }// GEN-LAST:event_txtDescriptionKeyTyped
+
+    private void btnSortByNameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSortByNameActionPerformed
+        if (btnSortByName.isSelected()) {
+            btnGetAll.setSelected(false);
+            btnNowShowing.setSelected(false);
+            btnComingSoon.setSelected(false);
+            MovieController control = new MovieController();
+            control.setMovieForm(this);
+            control.sortMoviesByName();
+        }
+
+    }// GEN-LAST:event_btnSortByNameActionPerformed
+
+    private void btnNowShowingActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnNowShowingActionPerformed
+        if (btnNowShowing.isSelected()) {
+            btnGetAll.setSelected(false);
+            btnComingSoon.setSelected(false);
+            btnSortByName.setSelected(false);
+            MovieController control = new MovieController();
+            control.setMovieForm(this);
+            control.filterMovieOnShowing();
+        }
+    }// GEN-LAST:event_btnNowShowingActionPerformed
+
+    private void btnComingSoonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnComingSoonActionPerformed
+        btnAdd.setEnabled(true);
+        if (btnComingSoon.isSelected()) {
+            btnNowShowing.setSelected(false);
+            btnGetAll.setSelected(false);
+            MovieController control = new MovieController();
+            control.setMovieForm(this);
+            control.filterMovieComingSoon();
+        }
+    }// GEN-LAST:event_btnComingSoonActionPerformed
+
     private void btnTheaterFormActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnTheaterFormActionPerformed
         // TODO add your handling code here:
+        TheaterController control = new TheaterController();
+        control.showTheaterForm();
+        this.dispose();
+
     }// GEN-LAST:event_btnTheaterFormActionPerformed
 
     private void txtMovieIDKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtMovieIDKeyTyped
@@ -442,10 +573,14 @@ public class MovieForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JToggleButton btnComingSoon;
     private javax.swing.JButton btnDeleteByID;
+    private javax.swing.JToggleButton btnGetAll;
     private javax.swing.JButton btnGetDetail;
     private javax.swing.JButton btnMovieForm;
+    private javax.swing.JToggleButton btnNowShowing;
     private javax.swing.JButton btnSave;
+    private javax.swing.JToggleButton btnSortByName;
     private javax.swing.JButton btnTheaterForm;
     private javax.swing.JButton btnUserForm;
     private javax.swing.JScrollPane jScrollPane1;

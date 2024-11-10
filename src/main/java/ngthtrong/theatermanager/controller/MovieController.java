@@ -88,7 +88,21 @@ public class MovieController {
 
     // --------------------MovieForm--------------------//
     public void showMovieFormDB() {
-        movieForm = new MovieForm();
+        if (movieDetailForm != null) {
+            movieDetailForm.FormClose();
+        }
+        if (movieDeletePeriodForm != null) {
+            movieDeletePeriodForm.FormClose();
+        }
+        if (movieAddPeriodForm != null) {
+            movieAddPeriodForm.FormClose();
+        }
+        if (movieCreatePeriodForm != null) {
+            movieCreatePeriodForm.FormClose();
+        }
+        if (movieForm == null) {
+            movieForm = new MovieForm();
+        }
         movieForm.FormLoad(movieDao.GetAllMovie());
         movieForm.setTitle("Movie management");
 
@@ -102,7 +116,7 @@ public class MovieController {
     public void deleteMovieInDB(int movie_id) {
         if (movieDao.MovieIdExist(movie_id)) {
             if (movieDao.GetMovieByID(movie_id).isOnShowing()) {
-                String[] options = {"Edit Detail", "Cancal"};
+                String[] options = { "Edit Detail", "Cancal" };
                 var selection = JOptionPane.showOptionDialog(movieForm,
                         "This movie is on showing, do you want to edit detail?",
                         "Warning", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
@@ -118,6 +132,23 @@ public class MovieController {
             movieForm.CleanTxt();
         }
     }
+
+    public void sortMoviesByName() {
+        movieForm.setMovies(movieDao.SortMoviesByName());
+    }
+
+    public void sortMovieById() {
+        movieForm.setMovies(movieDao.GetAllMovie());
+    }
+
+    public void filterMovieComingSoon() {
+        movieForm.setMovies(movieDao.GetMovieComingSoon());
+    }
+
+    public void filterMovieOnShowing() {
+        movieForm.setMovies(movieDao.GetMovieOnShowing());
+    }
+
     // --------------------MovieDetailForm--------------------//
 
     public void openMovieDetail(int movie_id) {
@@ -128,7 +159,9 @@ public class MovieController {
             if (movieDeletePeriodForm != null) {
                 movieDeletePeriodForm.FormClose();
             }
-            movieDetailForm = new MovieDetailForm();
+            if (movieDeletePeriodForm == null) {
+                movieDetailForm = new MovieDetailForm();
+            }
             movieDetailForm.FormLoad();
             movieDetailForm.setTitle("Movie detail");
             movieDetailForm.SetDetailMovie(movieDao.GetMovieByID(movie_id));
@@ -148,7 +181,7 @@ public class MovieController {
     public void updateMovieDetail(Movie movie) {
         movieDao.UpdateMovie(movie);
         movieDetailForm.SetDetailMovie(movie);
-        String[] options = {"Ok"};
+        String[] options = { "Ok" };
         JOptionPane.showOptionDialog(null, "Updated moive: " + movie.getMovie_name(),
                 "", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         movieDetailForm.SetPeriods(periodDao.getPeriodByMovie(movie.getMovie_id()));
@@ -158,7 +191,9 @@ public class MovieController {
     // --------------------MovieDeletePeriod--------------------//
     public void showDeletePeriodForm(int movie_id) {
         movieDetailForm.FormClose();
-        movieDeletePeriodForm = new MovieDeletePeriodForm();
+        if (movieAddPeriodForm == null) {
+            movieDeletePeriodForm = new MovieDeletePeriodForm();
+        }
         movieDeletePeriodForm.SetMovieID(movie_id);
         movieDeletePeriodForm.FormLoad(movieDao.GetMovieNameById(movie_id));
         movieDeletePeriodForm.setTitle("Delete period of movie");
@@ -167,17 +202,17 @@ public class MovieController {
 
     public void deleteMovieInPeriod(int period_id, int movie_id) {
         if (!periodDao.ExistPeriodInMovieId(period_id, movie_id)) {
-            String[] options = {"Ok"};
+            String[] options = { "Ok" };
             JOptionPane.showOptionDialog(null,
                     "Period of this movie with id: " + String.valueOf(period_id) + " not found!",
                     "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
         } else if (periodDao.GetSize(period_id) != 0) {
-            String[] options = {"Ok"};
+            String[] options = { "Ok" };
             JOptionPane.showOptionDialog(null,
                     "Can't delete period has been booked!",
                     "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
         } else {
-            String[] options = {"Cancel", "Delete!"};
+            String[] options = { "Cancel", "Delete!" };
             var selection = JOptionPane.showOptionDialog(movieDeletePeriodForm,
                     "Do you want to delete this period?",
                     "", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
@@ -203,7 +238,9 @@ public class MovieController {
         if (movieDetailForm != null) {
             movieDetailForm.FormClose();
         }
-        movieAddPeriodForm = new MovieAddPeriodForm();
+        if (movieAddPeriodForm == null) {
+            movieAddPeriodForm = new MovieAddPeriodForm();
+        }
         movieAddPeriodForm.SetMovieID(movie_id);
         movieAddPeriodForm.FormLoad(movieDao.GetMovieNameById(movie_id));
         movieAddPeriodForm.setTitle("Add period of movie");
@@ -212,17 +249,17 @@ public class MovieController {
 
     public void addMovieInPeriod(int period_id, int movie_id) {
         if (periodDao.ExistPeriodInMovieId(period_id, movie_id)) {
-            String[] options = {"Ok"};
+            String[] options = { "Ok" };
             JOptionPane.showOptionDialog(null,
                     "Period of this movie with id: " + String.valueOf(period_id) + " already exist!",
                     "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
         } else if (!periodDao.ExistPeriodId(period_id)) {
-            String[] options = {"Ok"};
+            String[] options = { "Ok" };
             JOptionPane.showOptionDialog(null,
                     "Period with id: " + String.valueOf(period_id) + " not found!",
                     "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
         } else if (!periodDao.PeriodMovieIdIsNull(period_id)) {
-            String[] options = {"Ok"};
+            String[] options = { "Ok" };
             JOptionPane.showOptionDialog(null,
                     "Period with id: " + String.valueOf(period_id) + " already have movie!",
                     "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
@@ -237,7 +274,9 @@ public class MovieController {
     // --------------------Movie Create Period--------------------//
     public void showCreatePeriodForm(int movie_id) {
         movieAddPeriodForm.FormClose();
-        movieCreatePeriodForm = new PeriodCreateForm();
+        if (movieCreatePeriodForm == null) {
+            movieCreatePeriodForm = new PeriodCreateForm();
+        }
         movieCreatePeriodForm.FormLoad();
         movieCreatePeriodForm.setMovieID(movie_id);
         movieCreatePeriodForm.setTitle("Create period to movie");
@@ -247,15 +286,15 @@ public class MovieController {
 
     public void createPeriod(Period period) {
         if (period == null) {
-            String[] options = {"Ok"};
+            String[] options = { "Ok" };
             JOptionPane.showOptionDialog(null,
                     "Period is null!",
                     "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
         } else if (periodDao.ExistPeriodInfo(period)) {
-            String[] options = {"Ok"};
+            String[] options = { "Ok" };
             JOptionPane.showOptionDialog(null,
                     "Period with date: " + period.getPeriod_date() + " and time: " + period.getPeriod_time()
-                    + " already exist!",
+                            + " already exist!",
                     "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
         } else {
             TheaterDAO theaterDAO = new TheaterDAO();
