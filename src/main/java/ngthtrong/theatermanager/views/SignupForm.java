@@ -6,6 +6,7 @@ package ngthtrong.theatermanager.views;
 
 import ngthtrong.theatermanager.dao.LoginDAO;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import ngthtrong.theatermanager.controller.LoginController;
 import static ngthtrong.theatermanager.dao.LoginDAO.GetMaxUserId;
@@ -27,7 +28,7 @@ public class SignupForm extends javax.swing.JFrame {
      */
     public SignupForm() {
         initComponents();
-        //     this.setSize(534, 464);
+        this.setTitle("Theater Manager");
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -83,6 +84,11 @@ public class SignupForm extends javax.swing.JFrame {
                 usernameFieldActionPerformed(evt);
             }
         });
+        usernameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                usernameFieldKeyPressed(evt);
+            }
+        });
 
         fullnameField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         fullnameField.setToolTipText("");
@@ -90,6 +96,11 @@ public class SignupForm extends javax.swing.JFrame {
         fullnameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fullnameFieldActionPerformed(evt);
+            }
+        });
+        fullnameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                fullnameFieldKeyPressed(evt);
             }
         });
 
@@ -101,12 +112,27 @@ public class SignupForm extends javax.swing.JFrame {
                 emailFieldActionPerformed(evt);
             }
         });
+        emailField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                emailFieldKeyPressed(evt);
+            }
+        });
 
         passwordField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         passwordField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        passwordField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordFieldKeyPressed(evt);
+            }
+        });
 
         confirmField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         confirmField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        confirmField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                confirmFieldKeyPressed(evt);
+            }
+        });
 
         backLogin.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         backLogin.setText("Back to Login");
@@ -230,12 +256,12 @@ public class SignupForm extends javax.swing.JFrame {
         if (isExistUser(username)) {
             JOptionPane.showMessageDialog(null, "Username already exist! Please try another username");
         } else if (!validateSignUp(username, fullname, email) || !validatePassword(password, rePassword)) {
-           // JOptionPane.showMessageDialog(null, "Username already exist! Please try another username");
+            // JOptionPane.showMessageDialog(null, "Username already exist! Please try another username");
         } else if (loginController.register(id, fullname, email, username, password, false)) {
             JOptionPane.showMessageDialog(null, "SignUp successful!");
             new LoginForm().setVisible(true);
             dispose();
-            } else {
+        } else {
             JOptionPane.showMessageDialog(null, "SignUp failed");
         }
     }//GEN-LAST:event_signupBtnActionPerformed
@@ -250,6 +276,41 @@ public class SignupForm extends javax.swing.JFrame {
     private void signupBtnKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_signupBtnKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_signupBtnKeyPressed
+
+    private void usernameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            signupBtn.doClick();
+        }
+    }//GEN-LAST:event_usernameFieldKeyPressed
+
+    private void fullnameFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fullnameFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            signupBtn.doClick();
+        }
+    }//GEN-LAST:event_fullnameFieldKeyPressed
+
+    private void emailFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emailFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            signupBtn.doClick();
+        }
+    }//GEN-LAST:event_emailFieldKeyPressed
+
+    private void passwordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            signupBtn.doClick();
+        }
+    }//GEN-LAST:event_passwordFieldKeyPressed
+
+    private void confirmFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_confirmFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            signupBtn.doClick();
+        }
+    }//GEN-LAST:event_confirmFieldKeyPressed
 
     public boolean validateSignUp(String username, String fullname, String email) {
         if (fullname == null || username == null || email == null) {
