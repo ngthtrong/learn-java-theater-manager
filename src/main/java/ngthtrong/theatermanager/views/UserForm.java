@@ -544,13 +544,13 @@ public class UserForm extends javax.swing.JFrame {
         uc.setUserForm(this);
         user = uc.userData();
         DefaultTableModel dtm = new DefaultTableModel();
+        
         dtm.addColumn("ID");
         dtm.addColumn("Username");
         dtm.addColumn("Fullname");
         dtm.addColumn("Email");
         dtm.addColumn("Admin");
         dtm.addColumn("Booked");
-        
         Object[] oj = new Object[6];
         for(User uss : user){
             oj[0] = uss.getUser_id();
@@ -562,6 +562,7 @@ public class UserForm extends javax.swing.JFrame {
             dtm.addRow(oj);
         }
         ListOfUserTable.setModel(dtm);
+        ListOfUserTable.getColumnModel().getColumn(4).setCellRenderer(ListOfUserTable.getDefaultRenderer(Boolean.class));        
     }
    
     /**
