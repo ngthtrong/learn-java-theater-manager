@@ -26,7 +26,6 @@ public class Database {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, e);
           //  System.out.println("Ket noi that bai");
         }
-        
         return sConn;
     }
  }

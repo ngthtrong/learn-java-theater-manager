@@ -14,17 +14,17 @@ public class Movie {
     private String movie_name;
     private String description;
     private boolean commingSoon;
-    private boolean onShow;
+    private boolean onShowing;
 
     public Movie() {
     }
-    public Movie(int movie_id, String movie_name, String description, boolean commingSoon, boolean onShow) {
+    public Movie(int movie_id, String movie_name, String description, boolean commingSoon, boolean onShowing) {
         super();
         this.movie_id = movie_id;
         this.movie_name = movie_name;
         this.description = description;
         this.commingSoon = commingSoon;
-        this.onShow = onShow;
+        this.onShowing = onShowing;
 
     }
     public int getMovie_id() {
@@ -51,16 +51,16 @@ public class Movie {
     public void setCommingSoon(boolean commingSoon) {
         this.commingSoon = commingSoon;
     }
-    public boolean isOnShow() {
-        return onShow;
+    public boolean isOnShowing() {
+        return onShowing;
     }
-    public void setOnShow(boolean onShow) {
-        this.onShow = onShow;
+    public void setOnShowing(boolean onShowing) {
+        this.onShowing = onShowing;
     }
     @Override
     public String toString() {
         return "Movie [movie_id=" + movie_id + ", movie_name=" + movie_name + ", description=" + description
-                + ", commingSoon=" + commingSoon + ", onShow=" + onShow + "]";
+                + ", commingSoon=" + commingSoon + ", onShowing=" + onShowing + "]";
     }
     
 }

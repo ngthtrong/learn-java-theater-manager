@@ -1,10 +1,8 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package ngthtrong.theatermanager;
 
-import ngthtrong.theatermanager.views.LoginForm;
 
 /**
  *
@@ -13,6 +11,5 @@ import ngthtrong.theatermanager.views.LoginForm;
 public class App {
 
     public static void main(String[] args) {
-        new LoginForm().setVisible(true);
     }
 }
