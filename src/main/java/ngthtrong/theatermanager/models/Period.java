@@ -6,9 +6,6 @@ package ngthtrong.theatermanager.models;
 
 import java.sql.Date;
 import java.sql.Time;
-import java.text.DateFormat;
-
-import microsoft.sql.DateTimeOffset;
 
 /**
  *

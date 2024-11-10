@@ -16,7 +16,7 @@ public class User {
     private String email;
     private String fullName;
     private boolean isAdmin;
-
+    private int booking_amount;
     public User() {
     }
 
@@ -41,6 +41,15 @@ public class User {
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
+    }
+    public User(int user_id, String username, String password, String email, String fullName, boolean isAdmin, int booking_amount) {
+      this.user_id = user_id;
+      this.username = username;
+      this.password = password;
+      this.email = email;
+      this.fullName = fullName;
+      this.isAdmin = isAdmin;
+      this.booking_amount = booking_amount;
     }
 
     public int getUser_id() {
@@ -90,6 +99,12 @@ public class User {
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
+    public void setBooking_amout(int booking_amount){
+      this.booking_amount = booking_amount;
+  }
+   public int getBooking_amount(){
+      return this.booking_amount;
+  }
 
     @Override
     public String toString() {
