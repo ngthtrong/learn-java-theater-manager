@@ -17,7 +17,7 @@ import ngthtrong.theatermanager.models.User;
  * @author adkm2
  */
 public class LoginForm extends javax.swing.JFrame {
-
+    private String unSignUpUserName;
     private LoginController loginController;
 
     /**
@@ -66,12 +66,18 @@ public class LoginForm extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 passwordFieldKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                passwordFieldKeyTyped(evt);
+            }
         });
 
         usernameField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         usernameField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 usernameFieldKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                usernameFieldKeyTyped(evt);
             }
         });
 
@@ -154,6 +160,7 @@ public class LoginForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         SignupForm signup = new SignupForm();
         signup.setVisible(true);
+        signup.usernameField.setText(unSignUpUserName);
         dispose();
     }//GEN-LAST:event_lbSignupMouseClicked
 
@@ -171,6 +178,7 @@ public class LoginForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Password incorrect!");
         } else {
             JOptionPane.showMessageDialog(null, "Username have not signed up!");
+            unSignUpUserName = username;
         }
 
 
@@ -189,6 +197,19 @@ public class LoginForm extends javax.swing.JFrame {
             submitBtn.doClick();
         }
     }//GEN-LAST:event_passwordFieldKeyPressed
+
+    private void usernameFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameFieldKeyTyped
+        // TODO add your handling code here:
+        if(usernameField.getText().length() >= 60){
+            evt.consume();
+        }
+    }//GEN-LAST:event_usernameFieldKeyTyped
+
+    private void passwordFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordFieldKeyTyped
+        // TODO add your handling code here:
+       
+        
+    }//GEN-LAST:event_passwordFieldKeyTyped
 
     private boolean authenticateUser(String username, String password) {
         if (username == null || password == null || username.isBlank() || password.isBlank()) {

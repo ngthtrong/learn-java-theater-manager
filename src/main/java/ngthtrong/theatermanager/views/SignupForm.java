@@ -86,6 +86,9 @@ public class SignupForm extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 usernameFieldKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                usernameFieldKeyTyped(evt);
+            }
         });
 
         fullnameField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -100,6 +103,9 @@ public class SignupForm extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 fullnameFieldKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fullnameFieldKeyTyped(evt);
+            }
         });
 
         emailField.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -113,6 +119,9 @@ public class SignupForm extends javax.swing.JFrame {
         emailField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 emailFieldKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                emailFieldKeyTyped(evt);
             }
         });
 
@@ -313,6 +322,27 @@ public class SignupForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_confirmFieldKeyPressed
 
+    private void usernameFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameFieldKeyTyped
+        // TODO add your handling code here:
+        if(passwordField.getText().length() >= 60){
+            evt.consume();
+        }
+    }//GEN-LAST:event_usernameFieldKeyTyped
+
+    private void fullnameFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fullnameFieldKeyTyped
+        // TODO add your handling code here:
+        if(passwordField.getText().length() >= 60){
+            evt.consume();
+        }
+    }//GEN-LAST:event_fullnameFieldKeyTyped
+
+    private void emailFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_emailFieldKeyTyped
+        // TODO add your handling code here:
+        if(passwordField.getText().length() >= 60){
+            evt.consume();
+        }
+    }//GEN-LAST:event_emailFieldKeyTyped
+
     public boolean validateSignUp(String username, String fullname, String email) {
         if (fullname == null || username == null || email == null) {
             JOptionPane.showMessageDialog(rootPane, "Please enter information completely!");
@@ -373,6 +403,6 @@ public class SignupForm extends javax.swing.JFrame {
     private javax.swing.JLabel lbUsername;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton signupBtn;
-    private javax.swing.JTextField usernameField;
+    public javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }
