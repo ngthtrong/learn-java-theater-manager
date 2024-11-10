@@ -21,6 +21,8 @@ public class MovieDeletePeriodForm extends javax.swing.JFrame {
      */
     public MovieDeletePeriodForm() {
         initComponents();
+                this.setLocationRelativeTo(null);
+
     }
 
     private int movie_id;
@@ -90,6 +92,7 @@ public class MovieDeletePeriodForm extends javax.swing.JFrame {
         lbMovieName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         btnUserForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnUserForm.setText("User");

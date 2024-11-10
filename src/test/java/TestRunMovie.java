@@ -1,6 +1,9 @@
 
+import java.time.Period;
+
 import ngthtrong.theatermanager.controller.MovieController;
 import ngthtrong.theatermanager.controller.TheaterController;
+import ngthtrong.theatermanager.dao.PeriodDAO;
 import ngthtrong.theatermanager.views.MovieForm;
 
 /*
@@ -14,7 +17,10 @@ import ngthtrong.theatermanager.views.MovieForm;
 public class TestRunMovie {
 
     public static void main(String[] args) {
+        PeriodDAO periodDAO = new PeriodDAO();
+        periodDAO.DeleteAllPeriodsIsPassed();
         MovieController control = new MovieController();
         control.showMovieFormDB();
+
     }
 }

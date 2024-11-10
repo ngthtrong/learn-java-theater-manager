@@ -25,6 +25,8 @@ public class TheaterAddPeriodForm extends javax.swing.JFrame {
 
     public TheaterAddPeriodForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
+
     }
 
     public TheaterAddPeriodForm(TheaterController theaterController) {
@@ -92,7 +94,7 @@ public class TheaterAddPeriodForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         btnGrOnShow = new javax.swing.ButtonGroup();
@@ -110,6 +112,7 @@ public class TheaterAddPeriodForm extends javax.swing.JFrame {
         btnAdd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         btnUserForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnUserForm.setText("User");
@@ -127,7 +130,6 @@ public class TheaterAddPeriodForm extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtPeriodIDKeyReleased(evt);
             }
-
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtPeriodIDKeyTyped(evt);
             }
@@ -142,29 +144,29 @@ public class TheaterAddPeriodForm extends javax.swing.JFrame {
         });
 
         tbPeriods.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][] {
-                        { null, null, null, null, null, null },
-                        { null, null, null, null, null, null },
-                        { null, null, null, null, null, null },
-                        { null, null, null, null, null, null }
-                },
-                new String[] {
-                        "Period ID", "Movie Name", "Theater", "Booked", "Time", "Date"
-                }) {
-            Class[] types = new Class[] {
-                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class,
-                    java.lang.String.class, java.lang.String.class
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Period ID", "Movie Name", "Theater", "Booked", "Time", "Date"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean[] {
-                    false, false, false, true, false, false
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         jScrollPane2.setViewportView(tbPeriods);
@@ -198,82 +200,59 @@ public class TheaterAddPeriodForm extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(btnBack)
+                            .addGap(26, 26, 26)
+                            .addComponent(btnCreate))
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                        layout.createSequentialGroup()
-                                                                .addComponent(btnBack)
-                                                                .addGap(26, 26, 26)
-                                                                .addComponent(btnCreate))
-                                                .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(btnUserForm)
-                                                        .addGap(21, 21, 21)
-                                                        .addComponent(btnMovieForm)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(btnTheaterForm))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
-                                                        layout.createSequentialGroup()
-                                                                .addComponent(lbMovieID)
-                                                                .addGap(49, 49, 49)
-                                                                .addComponent(txtPeriodID,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 146,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(btnAdd))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane2)
-                                        .addComponent(lbMovieName, javax.swing.GroupLayout.DEFAULT_SIZE, 529,
-                                                Short.MAX_VALUE))
-                                .addContainerGap()));
+                            .addComponent(btnUserForm)
+                            .addGap(21, 21, 21)
+                            .addComponent(btnMovieForm)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnTheaterForm))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(lbMovieID)
+                            .addGap(49, 49, 49)
+                            .addComponent(txtPeriodID, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnAdd))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addComponent(lbMovieName, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE))
+                .addContainerGap())
+        );
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
-                                                .createSequentialGroup()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(btnUserForm,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 45,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(btnMovieForm,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 45,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(btnTheaterForm,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 45,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(41, 41, 41)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(lbMovieID)
-                                                        .addComponent(txtPeriodID,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(154, 154, 154)
-                                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 45,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(0, 78, Short.MAX_VALUE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout
-                                                .createSequentialGroup()
-                                                .addComponent(lbMovieName, javax.swing.GroupLayout.PREFERRED_SIZE, 37,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 411,
-                                                        Short.MAX_VALUE)))
-                                .addContainerGap()));
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnUserForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMovieForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTheaterForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbMovieID)
+                            .addComponent(txtPeriodID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(154, 154, 154)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 78, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lbMovieName, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -305,6 +284,7 @@ public class TheaterAddPeriodForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         int period_id = Integer.parseInt(txtPeriodID.getText());
         theaterController.AddPeriodToTheater(period_id, theater_id);
+        txtPeriodID.setText("");
     }// GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBackActionPerformed

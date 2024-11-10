@@ -258,8 +258,11 @@ public class MovieController {
                     + " already exist!",
                     "", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, options, options[0]);
         } else {
-            periodDao.AddPeriod(period);
             TheaterDAO theaterDAO = new TheaterDAO();
+            if (!theaterDAO.TheaterIdExist(period.getTheater_id())) {
+                return;
+            }
+            periodDao.AddPeriod(period);
             movieCreatePeriodForm.SetTheaters(theaterDAO.GetAllTheater());
             movieDao.SetComingSoon(period.getMovie_id(), false);
             theaterDAO.SetIsUsing(period.getTheater_id(), true);

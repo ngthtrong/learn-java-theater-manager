@@ -21,6 +21,8 @@ public class MovieForm extends javax.swing.JFrame {
      */
     public MovieForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
+
     }
 
     public void FormLoad() {
@@ -60,6 +62,7 @@ public class MovieForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -83,6 +86,7 @@ public class MovieForm extends javax.swing.JFrame {
         lbMovieName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         btnUserForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnUserForm.setText("User");
@@ -102,6 +106,11 @@ public class MovieForm extends javax.swing.JFrame {
         lbMovieID.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbMovieID.setText("Movie ID:");
 
+        txtMovieID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMovieIDActionPerformed(evt);
+            }
+        });
         txtMovieID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtMovieIDKeyReleased(evt);
@@ -158,7 +167,8 @@ public class MovieForm extends javax.swing.JFrame {
 
         tbAllMovies.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
                 "Movie ID", "Name", "On show", "Comming soon", "Description"
@@ -181,8 +191,9 @@ public class MovieForm extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(tbAllMovies);
         if (tbAllMovies.getColumnModel().getColumnCount() > 0) {
+            tbAllMovies.getColumnModel().getColumn(0).setResizable(false);
+            tbAllMovies.getColumnModel().getColumn(1).setResizable(false);
             tbAllMovies.getColumnModel().getColumn(2).setResizable(false);
-            tbAllMovies.getColumnModel().getColumn(3).setResizable(false);
         }
 
         btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -281,16 +292,20 @@ public class MovieForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnTheaterFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTheaterFormActionPerformed
+    private void btnTheaterFormActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnTheaterFormActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnTheaterFormActionPerformed
+    }// GEN-LAST:event_btnTheaterFormActionPerformed
 
-    private void txtMovieIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMovieIDKeyTyped
+    private void txtMovieIDKeyTyped(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_txtMovieIDKeyTyped
         char c = evt.getKeyChar();
         if (!Character.isDigit(c)) {
             evt.consume();
         }
-    }//GEN-LAST:event_txtMovieIDKeyTyped
+    }// GEN-LAST:event_txtMovieIDKeyTyped
+
+    private void txtMovieIDActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_txtMovieIDActionPerformed
+        // TODO add your handling code here:
+    }// GEN-LAST:event_txtMovieIDActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
@@ -338,7 +353,8 @@ public class MovieForm extends javax.swing.JFrame {
     private void btnDeleteByIDActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDeleteByIDActionPerformed
         // TODO add your handling code here:
         String[] options = {"Cancel", "Delete"};
-        var selected = JOptionPane.showOptionDialog(this, "You sure to delete this movie with id = " + txtMovieID.getText() + "!",
+        var selected = JOptionPane.showOptionDialog(this,
+                "You sure to delete this movie with id = " + txtMovieID.getText() + "!",
                 "Status add new user", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options,
                 options[0]);
         if (selected == 0) {
@@ -363,19 +379,24 @@ public class MovieForm extends javax.swing.JFrame {
         }
     }// GEN-LAST:event_txtMovieIDKeyReleased
 
-
     public void setMovies(List<Movie> Movies) {
-        DefaultTableModel model = (DefaultTableModel) tbAllMovies.getModel();
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Movie ID");
+        model.addColumn("Name");
+        model.addColumn("On show");
+        model.addColumn("Comming soon");
+        model.addColumn("Description");
         for (Movie movie : Movies) {
             model.addRow(new Object[]{
                 String.valueOf(movie.getMovie_id()),
                 movie.getMovie_name(),
                 movie.isOnShowing(),
                 movie.isCommingSoon(),
-                movie.getDescription()
-            });
+                movie.getDescription()});
         }
         tbAllMovies.setModel(model);
+        tbAllMovies.getColumnModel().getColumn(2).setCellRenderer(tbAllMovies.getDefaultRenderer(Boolean.class));
+        tbAllMovies.getColumnModel().getColumn(3).setCellRenderer(tbAllMovies.getDefaultRenderer(Boolean.class));
     }
 
     /**

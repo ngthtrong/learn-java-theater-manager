@@ -21,6 +21,8 @@ public class MovieAddPeriodForm extends javax.swing.JFrame {
      */
     public MovieAddPeriodForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
+
     }
 
     private int movie_id;
@@ -59,9 +61,9 @@ public class MovieAddPeriodForm extends javax.swing.JFrame {
         for (Period period : periods) {
             if (period.getMovie_id() == 0) {
                 model.addRow(
-                       new Object[] { String.valueOf(period.getPeriod_id()), period.getMovie_name(),
-                            period.getTheater_name(),String.valueOf(period.getPeriod_size()),
-                            period.getPeriod_time(), period.getPeriod_date() });
+                        new Object[]{String.valueOf(period.getPeriod_id()), period.getMovie_name(),
+                            period.getTheater_name(), String.valueOf(period.getPeriod_size()),
+                            period.getPeriod_time(), period.getPeriod_date()});
             }
         }
         tbPeriods.setModel(model);
@@ -94,6 +96,7 @@ public class MovieAddPeriodForm extends javax.swing.JFrame {
         btnAdd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 600));
 
         btnUserForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnUserForm.setText("User");
@@ -268,6 +271,7 @@ public class MovieAddPeriodForm extends javax.swing.JFrame {
         MovieController control = new MovieController();
         control.setMovieAddPeriodForm(this);
         control.addMovieInPeriod(period_id, movie_id);
+        txtPeriodID.setText("");
     }// GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBackActionPerformed

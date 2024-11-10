@@ -339,10 +339,10 @@ public class TheaterDAO {
             stm.setBoolean(1, isUsing);
             stm.setInt(2, id);
             stm.executeUpdate();
-            String[] options = { "Ok" };
-            JOptionPane.showOptionDialog(null, "Update theater with id = " + String.valueOf(id) + " suscess!",
-                    "Status update theater", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options,
-                    options[0]);
+//            String[] options = { "Ok" };
+//            JOptionPane.showOptionDialog(null, "Update theater with id = " + String.valueOf(id) + " suscess!",
+//                    "Status update theater", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options,
+//                    options[0]);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

@@ -28,6 +28,7 @@ public class TheaterDetailForm extends javax.swing.JFrame {
 
     public TheaterDetailForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public TheaterDetailForm(TheaterController theaterController) {
@@ -138,6 +139,7 @@ public class TheaterDetailForm extends javax.swing.JFrame {
         txtCapacity = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 600));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 formKeyTyped(evt);

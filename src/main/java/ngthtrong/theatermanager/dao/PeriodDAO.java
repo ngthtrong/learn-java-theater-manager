@@ -204,15 +204,14 @@ public class PeriodDAO {
     public void DeleteTheaterInPeriods(int period_id, int theater_id) {
 
         Connection conn = new Database().connect();
-        String sql = "DELETE FROM period WHERE theater_id = " + String.valueOf(theater_id) + " AND period_id = "
-                + String.valueOf(period_id);
+        String sql = "Update period set theater_id = null where period_id = " + String.valueOf(period_id)
+                + " AND theater_id = " + String.valueOf(theater_id);
         try {
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(sql);
             String[] options = { "Ok" };
             JOptionPane.showOptionDialog(null, "Deleted this theater in period with id: " + String.valueOf(period_id),
-                    "",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+                    "", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -222,6 +221,7 @@ public class PeriodDAO {
                 e.printStackTrace();
             }
         }
+
     }
 
     public void AddMovieInPeriod(int period_id, int movie_id) {
@@ -467,5 +467,20 @@ public class PeriodDAO {
         }
         return 0;
     }
-
+    public void DeleteAllPeriodsIsPassed(){
+        Connection conn = new Database().connect();
+        String sql = "DELETE FROM period WHERE period_date < CAST(SYSDATETIME() AS DATE) AND period_time < CAST(SYSDATETIME() AS TIME) and (movie_id is null or theater_id is null)";
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(sql);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

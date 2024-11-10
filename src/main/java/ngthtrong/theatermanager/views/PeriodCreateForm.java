@@ -386,15 +386,17 @@ public class PeriodCreateForm extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Please choose a date");
 
         }else{
-            
             Period period = new Period();
             period.setMovie_id(Integer.parseInt(txtMovieID.getText()));
             period.setTheater_id(Integer.parseInt(txtTheaterID.getText()));
             period.setPeriod_time(Time.valueOf(txtTime.getSelectedItem().toString() + ":00"));
             period.setPeriod_date(new Date(txtDate.getDate().getTime()));
             period.setPeriod_size(0);
+            if(txtDate.getDate().before(new java.util.Date())){
+                javax.swing.JOptionPane.showMessageDialog(this, "Please choose a date in the future");
+                return;
+            }
             if (isMovie) {
-                
                 MovieController movieController = new MovieController();
                 movieController.setMovieCreatePeriodForm(this);
                 movieController.createPeriod(period);

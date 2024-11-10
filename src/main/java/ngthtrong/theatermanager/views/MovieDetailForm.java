@@ -23,6 +23,7 @@ public class MovieDetailForm extends javax.swing.JFrame {
      */
     public MovieDetailForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public void FormLoad() {
@@ -59,6 +60,14 @@ public class MovieDetailForm extends javax.swing.JFrame {
         onShowingFalse.setSelected(!movie.isOnShowing());
         commingTrue.setSelected(movie.isCommingSoon());
         commingFalse.setSelected(!movie.isCommingSoon());
+        if(movie.isOnShowing() == true){
+            commingTrue.setEnabled(false);
+            commingFalse.setEnabled(false);
+        }
+        else{
+            commingTrue.setEnabled(true);
+            commingFalse.setEnabled(true);
+        }
         lbOfTables.setText("List period of movie: " + movie.getMovie_name());
     }
 
@@ -118,6 +127,7 @@ public class MovieDetailForm extends javax.swing.JFrame {
         lbOfTables = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1000, 600));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 formKeyTyped(evt);
