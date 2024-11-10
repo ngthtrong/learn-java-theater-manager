@@ -75,7 +75,7 @@ public class TheaterDetailForm extends javax.swing.JFrame {
         theaterInfo = theater;
         txtTheaterID.setText(String.valueOf(theater.getTheater_id()));
         txtTheaterName.setText(theater.getTheater_name());
-        txtCapacity.setText(String.valueOf(theater.getTheater_capactity()));
+        txtCapacity.setText(String.valueOf(theater.getTheater_capacity()));
         Using.setSelected(theater.isIsUsing());
         NotUsing.setSelected(!theater.isIsUsing());
         lbOfTables.setText("List period of theater: " + theater.getTheater_name());
@@ -474,7 +474,7 @@ public class TheaterDetailForm extends javax.swing.JFrame {
             Theater theater = new Theater();
             theater.setTheater_id(Integer.valueOf(txtTheaterID.getText()));
             theater.setTheater_name(txtTheaterName.getText());
-            theater.setTheater_capactity(Integer.valueOf(txtCapacity.getText()));
+            theater.setTheater_capacity(Integer.valueOf(txtCapacity.getText()));
             theater.setIsUsing(Using.isSelected());
             theaterController.UpdateTheaterDetail(theater);
         }

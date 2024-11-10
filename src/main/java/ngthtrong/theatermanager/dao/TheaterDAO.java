@@ -99,7 +99,7 @@ public class TheaterDAO {
                 theater.setTheater_id(rs.getInt("theater_id"));
                 theater.setTheater_name(rs.getString("theater_name"));
                 theater.setIsUsing(rs.getBoolean("isUsing"));
-                theater.setTheater_capactity(rs.getInt("theater_capacity"));
+                theater.setTheater_capacity(rs.getInt("theater_capacity"));
                 list.add(theater);
             }
             return list;
@@ -123,7 +123,7 @@ public class TheaterDAO {
             PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, theater.getTheater_name());
             stm.setBoolean(2, theater.isIsUsing());
-            stm.setInt(3, theater.getTheater_capactity());
+            stm.setInt(3, theater.getTheater_capacity());
             stm.setInt(4, theater.getTheater_id());
             stm.executeUpdate();
             String[] options = { "Ok" };
@@ -154,7 +154,7 @@ public class TheaterDAO {
                 theater.setTheater_id(rs.getInt("theater_id"));
                 theater.setTheater_name(rs.getString("theater_name"));
                 theater.setIsUsing(rs.getBoolean("isUsing"));
-                theater.setTheater_capactity(rs.getInt("theater_capacity"));
+                theater.setTheater_capacity(rs.getInt("theater_capacity"));
                 list.add(theater);
             }
             return list;
@@ -183,7 +183,7 @@ public class TheaterDAO {
                 theater.setTheater_id(rs.getInt("theater_id"));
                 theater.setTheater_name(rs.getString("theater_name"));
                 theater.setIsUsing(rs.getBoolean("isUsing"));
-                theater.setTheater_capactity(rs.getInt("theater_capacity"));
+                theater.setTheater_capacity(rs.getInt("theater_capacity"));
                 return theater;
             }
         } catch (SQLException e) {
@@ -208,7 +208,7 @@ public class TheaterDAO {
             stm.setInt(1, this.GetMaxTheaterId() + 1);
             stm.setString(2, theater.getTheater_name());
             stm.setBoolean(3, theater.isIsUsing());
-            stm.setInt(4, theater.getTheater_capactity());
+            stm.setInt(4, theater.getTheater_capacity());
             stm.executeUpdate();
              String[] options = { "Ok" };
             JOptionPane.showOptionDialog(null, "Add theater suscess!",
@@ -287,7 +287,7 @@ public class TheaterDAO {
                 theater.setTheater_id(rs.getInt("theater_id"));
                 theater.setTheater_name(rs.getString("theater_name"));
                 theater.setIsUsing(rs.getBoolean("isUsing"));
-                theater.setTheater_capactity(rs.getInt("theater_capacity"));
+                theater.setTheater_capacity(rs.getInt("theater_capacity"));
                 list.add(theater);
             }
             return list;
@@ -314,7 +314,7 @@ public class TheaterDAO {
                 theater.setTheater_id(rs.getInt("theater_id"));
                 theater.setTheater_name(rs.getString("theater_name"));
                 theater.setIsUsing(rs.getBoolean("isUsing"));
-                theater.setTheater_capactity(rs.getInt("theater_capacity"));
+                theater.setTheater_capacity(rs.getInt("theater_capacity"));
                 list.add(theater);
             }
             return list;

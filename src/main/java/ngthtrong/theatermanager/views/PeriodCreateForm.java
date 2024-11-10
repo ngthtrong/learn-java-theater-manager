@@ -56,7 +56,7 @@ public class PeriodCreateForm extends javax.swing.JFrame {
         model.setColumnIdentifiers(new Object[]{"Theater ID", "Theater Name", "Capacity"});
         for (Theater theater : theaters) {
             model.addRow(new Object[]{theater.getTheater_id(), theater.getTheater_name(),
-                theater.getTheater_capactity()});
+                theater.getTheater_capacity()});
         }
         tbTheaters.setModel(model);
     }

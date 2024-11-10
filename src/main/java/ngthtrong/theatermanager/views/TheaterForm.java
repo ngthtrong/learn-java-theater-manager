@@ -72,7 +72,7 @@ public class TheaterForm extends javax.swing.JFrame {
             model.addRow(new Object[]{
                 String.valueOf(t.getTheater_id()),
                 t.getTheater_name(),
-                String.valueOf(t.getTheater_capactity()),
+                String.valueOf(t.getTheater_capacity()),
                 t.isIsUsing()});
         }
         tbAllTheater.setModel(model);
@@ -476,7 +476,7 @@ public class TheaterForm extends javax.swing.JFrame {
         } else {
             Theater theater = new Theater();
             theater.setTheater_name(txtTheaterName.getText());
-            theater.setTheater_capactity(Integer.valueOf(txtCapacity.getText()));
+            theater.setTheater_capacity(Integer.valueOf(txtCapacity.getText()));
             theater.setIsUsing(false);
             TheaterController control = new TheaterController();
             control.setTheaterForm(this);
