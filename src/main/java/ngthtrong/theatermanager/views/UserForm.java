@@ -171,6 +171,9 @@ public class UserForm extends javax.swing.JFrame {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 idTextKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                idTextKeyTyped(evt);
+            }
         });
 
         userNameText.setPreferredSize(new java.awt.Dimension(160, 34));
@@ -399,6 +402,14 @@ public class UserForm extends javax.swing.JFrame {
     private void rePasswordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rePasswordTextActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rePasswordTextActionPerformed
+
+    private void idTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idTextKeyTyped
+        // TODO add your handling code here:
+        char test = evt.getKeyChar();
+        if(!Character.isDigit(test)){
+            evt.consume();
+        }
+    }//GEN-LAST:event_idTextKeyTyped
 
     public void UserFromViews(){
         this.setVisible(true);
