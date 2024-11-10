@@ -67,10 +67,11 @@ public class UserForm extends javax.swing.JFrame {
         rePasswordLabel = new javax.swing.JLabel();
         fullNameLabel = new javax.swing.JLabel();
         idText = new javax.swing.JTextField();
-        passwordText = new javax.swing.JTextField();
         userNameText = new javax.swing.JTextField();
-        rePasswordText = new javax.swing.JTextField();
+        passwordText = new javax.swing.JPasswordField();
+        rePasswordText = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
+        cancelBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setForeground(java.awt.Color.lightGray);
@@ -162,11 +163,16 @@ public class UserForm extends javax.swing.JFrame {
         });
 
         rePasswordLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rePasswordLabel.setText("Re-Password :");
+        rePasswordLabel.setText("Confirm password :");
 
         fullNameLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         fullNameLabel.setText("Full name :");
 
+        idText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idTextActionPerformed(evt);
+            }
+        });
         idText.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 idTextKeyReleased(evt);
@@ -180,6 +186,12 @@ public class UserForm extends javax.swing.JFrame {
         userNameText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userNameTextActionPerformed(evt);
+            }
+        });
+
+        passwordText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordTextActionPerformed(evt);
             }
         });
 
@@ -202,14 +214,14 @@ public class UserForm extends javax.swing.JFrame {
                             .addComponent(fullNameLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(emailLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(passwordLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rePasswordLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
+                            .addComponent(rePasswordLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(userNameText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(passwordText)
-                            .addComponent(rePasswordText)
                             .addComponent(emailText)
-                            .addComponent(fullNameText)))
+                            .addComponent(fullNameText)
+                            .addComponent(passwordText)
+                            .addComponent(rePasswordText)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(idLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -238,18 +250,27 @@ public class UserForm extends javax.swing.JFrame {
                     .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordText, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 21, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rePasswordText, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rePasswordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(13, 13, 13))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(passwordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(passwordText))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(rePasswordLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(rePasswordText, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("List of user :");
+
+        cancelBtn.setBackground(new java.awt.Color(204, 255, 255));
+        cancelBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cancelBtn.setText("Cancel");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -261,7 +282,7 @@ public class UserForm extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(movieBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(Threater, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Threater, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(41, 41, 41)
@@ -277,11 +298,16 @@ public class UserForm extends javax.swing.JFrame {
                                 .addComponent(getDetailsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
-                                .addComponent(adminCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                                .addComponent(adminCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(315, 315, 315)))
                 .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
@@ -297,15 +323,17 @@ public class UserForm extends javax.swing.JFrame {
                         .addGap(23, 23, 23)
                         .addComponent(jLabel1)
                         .addGap(34, 34, 34)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(97, 97, 97))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(adminCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
-                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                            .addComponent(cancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -321,67 +349,114 @@ public class UserForm extends javax.swing.JFrame {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         UserController uc = new UserController();
         uc.setUserForm(this);
+        
+        userNameText.setEnabled(true);
+        emailText.setEnabled(true);
+        fullNameText.setEnabled(true);
+        passwordText.setEnabled(true);
+        rePasswordText.setEnabled(true);
+        
         int maxId = uc.getMaxId() + 1;
         idText.setText(String.valueOf(maxId));
         idText.setEnabled(false);
         addBtn.setEnabled(false);
+        getDetailsBtn.setEnabled(false);
+        saveBtn.setEnabled(true);
     }//GEN-LAST:event_addBtnActionPerformed
-
+    
+    public boolean checkIdComplete(){
+        if("".equals(idText.getText())){
+            return false;
+        }
+        if("".equals(userNameText.getText())){
+            return false;
+        }
+        if("".equals(fullNameText.getText())){
+            return false;
+        }
+        if("".equals(passwordText.getText())){
+            return false;
+        }
+        if("".equals(rePasswordText.getText())){
+            return false;
+        }
+        return true;
+    }
+    
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        if(passwordText.getText().equals(rePasswordText.getText())){            
-            getDetailsBtn.setEnabled(false);
+        addBtn.setEnabled(false);
+        
+        if(checkIdComplete()){
+            if(passwordText.getText().equals(rePasswordText.getText())){            
+                getDetailsBtn.setEnabled(true);
+                saveBtn.setEnabled(false);
+                UserController uc = new UserController();
+                uc.setUserForm(this);
+                idText.setText("");
+                idText.setEnabled(true);
+                String id       = String.valueOf(uc.getMaxId() + 1);
+                String userName = userNameText.getText();
+                String fullName = fullNameText.getText();
+                String email    = emailText.getText();
+                String password = passwordText.getText();
+                boolean isAdmin = adminCheckBox.isSelected();
+
+                Object[] oj = new Object[6];
+                oj[0] = id;
+                oj[1] = userName;
+                oj[2] = fullName;
+                oj[3] = email;
+                oj[4] = password;
+                oj[5] = isAdmin;
+                uc.addObject(oj);
+
+                setTableUserForm(uc.userData());
+
+                getDetailsBtn.setEnabled(true);
+                idText.setEnabled(true);
+                idText.setText("");
+                emailText.setText("");
+                userNameText.setText("");
+                fullNameText.setText("");
+                passwordText.setText("");
+                rePasswordText.setText("");
+                adminCheckBox.setSelected(false);
+                addBtn.setEnabled(true);
+                saveBtn.setEnabled(false);
+
+                //Text
+                userNameText.setEnabled(false);
+                emailText.setEnabled(false);
+                fullNameText.setEnabled(false);
+                passwordText.setEnabled(false);
+                rePasswordText.setEnabled(false);
+                JOptionPane.showMessageDialog(this,"Save success!");
+            }
+            else{
+                JOptionPane.showMessageDialog(rootPane, "Password not equal confirm-password");
+                addBtn.setEnabled(true);
+                saveBtn.setEnabled(false);
+            }
         }
         else{
-            JOptionPane.showMessageDialog(rootPane, "Password not equal re-password");
-        } 
-        
-        UserController uc = new UserController();
-        uc.setUserForm(this);
-        String id       = idText.getText();
-        String userName = userNameText.getText();
-        String fullName = fullNameText.getText();
-        String email    = emailText.getText();
-        String password = passwordText.getText();
-        boolean isAdmin = adminCheckBox.isSelected();
-
-        Object[] oj = new Object[6];
-        oj[0] = id;
-        oj[1] = userName;
-        oj[2] = fullName;
-        oj[3] = email;
-        oj[4] = password;
-        oj[5] = isAdmin;
-        uc.addObject(oj);
-
-        setTableUserForm(uc.userData());
-        getDetailsBtn.setEnabled(true);
-        idText.setEnabled(true);
-        idText.setText("");
-        emailText.setText("");
-        userNameText.setText("");
-        fullNameText.setText("");
-        passwordText.setText("");
-        rePasswordText.setText("");
-        adminCheckBox.setSelected(false);
-        addBtn.setEnabled(true);
+            JOptionPane.showMessageDialog(rootPane,"Please complete infomation user!");
+        }
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void getDetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getDetailsBtnActionPerformed
         UserController uc = new UserController();
         uc.setUserForm(this);
-        
+
         int getIdNow = Integer.parseInt(idText.getText());
-        UserFromDispose();
-        uc.detailsFormLoad(getIdNow);
         
         boolean checkIdExist = uc.checkIdExist(getIdNow);
         if(!checkIdExist){
             JOptionPane.showMessageDialog(rootPane, "Id not exist");
+        }else{
+            UserFromDispose();
+            uc.detailsFormLoad(getIdNow);
         }
     }//GEN-LAST:event_getDetailsBtnActionPerformed
-
-    private void idTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idTextKeyReleased
-    }//GEN-LAST:event_idTextKeyReleased
 
     private void adminCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminCheckBoxActionPerformed
         // TODO add your handling code here:
@@ -399,23 +474,60 @@ public class UserForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailTextActionPerformed
 
-    private void rePasswordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rePasswordTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rePasswordTextActionPerformed
-
     private void idTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idTextKeyTyped
-        // TODO add your handling code here:
         char test = evt.getKeyChar();
         if(!Character.isDigit(test)){
             evt.consume();
         }
     }//GEN-LAST:event_idTextKeyTyped
 
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        idText.setText("");
+        userNameText.setText("");
+        fullNameText.setText("");
+        emailText.setText("");
+        passwordText.setText("");
+        rePasswordText.setText("");
+        idText.setEnabled(true);
+        adminCheckBox.setSelected(false);
+        addBtn.setEnabled(true);
+        saveBtn.setEnabled(false);
+    }//GEN-LAST:event_cancelBtnActionPerformed
+
+    private void rePasswordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rePasswordTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rePasswordTextActionPerformed
+
+    private void idTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idTextActionPerformed
+
+    private void idTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idTextKeyReleased
+        if(!idText.getText().equals("")){
+            getDetailsBtn.setEnabled(true);
+        }   
+    }//GEN-LAST:event_idTextKeyReleased
+
+    private void passwordTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_passwordTextActionPerformed
+
     public void UserFromViews(){
         this.setVisible(true);
         UserController uc = new UserController();
         uc.setUserForm(this);
-//        this.setTableUserForm();
+        
+        //Text
+        userNameText.setEnabled(false);
+        emailText.setEnabled(false);
+        fullNameText.setEnabled(false);
+        passwordText.setEnabled(false);
+        rePasswordText.setEnabled(false);
+        
+        //Button
+        saveBtn.setEnabled(false);
+        getDetailsBtn.setEnabled(false);
+
     }    
     public void UserFromDispose(){
         UserController uc = new UserController();
@@ -423,27 +535,28 @@ public class UserForm extends javax.swing.JFrame {
         this.setVisible(false);
     } 
     public void setTableUserForm(List<User> user){
-            UserController uc = new UserController();
-            uc.setUserForm(this);
-            user = uc.userData();
-            DefaultTableModel dtm = new DefaultTableModel();
-            dtm.addColumn("ID");
-            dtm.addColumn("Username");
-            dtm.addColumn("Fullname");
-            dtm.addColumn("Email");
-            dtm.addColumn("Admin");
-            dtm.addColumn("Booked");
-            Object[] oj = new Object[6];
-            for(User uss : user){
-                oj[0] = uss.getUser_id();
-                oj[1] = uss.getUsername();
-                oj[2] = uss.getFullName();
-                oj[3] = uss.getEmail();
-                oj[4] = uss.isIsAdmin();
-                oj[5] = uss.getBooking_amount();
-                dtm.addRow(oj);
-            }
-            ListOfUserTable.setModel(dtm);
+        UserController uc = new UserController();
+        uc.setUserForm(this);
+        user = uc.userData();
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.addColumn("ID");
+        dtm.addColumn("Username");
+        dtm.addColumn("Fullname");
+        dtm.addColumn("Email");
+        dtm.addColumn("Admin");
+        dtm.addColumn("Booked");
+        
+        Object[] oj = new Object[6];
+        for(User uss : user){
+            oj[0] = uss.getUser_id();
+            oj[1] = uss.getUsername();
+            oj[2] = uss.getFullName();
+            oj[3] = uss.getEmail();
+            oj[4] = uss.isIsAdmin();
+            oj[5] = uss.getBooking_amount();
+            dtm.addRow(oj);
+        }
+        ListOfUserTable.setModel(dtm);
     }
    
     /**
@@ -489,6 +602,7 @@ public class UserForm extends javax.swing.JFrame {
     private javax.swing.JButton Threater;
     private javax.swing.JButton addBtn;
     private javax.swing.JCheckBox adminCheckBox;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailText;
     private javax.swing.JLabel fullNameLabel;
@@ -501,9 +615,9 @@ public class UserForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton movieBtn;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JTextField passwordText;
+    private javax.swing.JPasswordField passwordText;
     private javax.swing.JLabel rePasswordLabel;
-    private javax.swing.JTextField rePasswordText;
+    private javax.swing.JPasswordField rePasswordText;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton userBtn;
     private javax.swing.JLabel userNameLabel;

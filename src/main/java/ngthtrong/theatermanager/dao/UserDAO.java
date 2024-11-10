@@ -31,7 +31,7 @@ public class UserDAO {
             p.setInt(1, user_id);
             ResultSet rs = p.executeQuery();
             while(rs.next()){
-                result = Integer.parseInt(rs.getString("booking_amount"));
+                result = result + 1;
             }        
             sConn.close();
             return result;
@@ -103,10 +103,14 @@ public class UserDAO {
             while(rs.next()){
                 maxId = rs.getInt("user_id");
             }
-            sConn.close();
         }catch(SQLException e){
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, e);
-
+        }finally{
+            try {            
+                sConn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return maxId;
     }    
@@ -124,7 +128,13 @@ public class UserDAO {
             }
         }catch(SQLException e){
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, e);
-
+        }
+        finally{
+            try {            
+                sConn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return false;
     }    
@@ -142,7 +152,13 @@ public class UserDAO {
             }
         }catch(SQLException e){
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, e);
-
+        }
+        finally{
+            try {            
+                sConn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return false;
     }
@@ -210,6 +226,7 @@ public class UserDAO {
         catch (SQLException ex){
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return list;
     }
     
@@ -235,6 +252,7 @@ public class UserDAO {
         catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return oj;
     }
     
@@ -277,7 +295,13 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        finally{
+            try {            
+                sConn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
         return list;
     }
@@ -321,8 +345,13 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+        finally{
+            try {            
+                sConn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return list;
     }
     
@@ -331,9 +360,9 @@ public class UserDAO {
             " [period].period_time, [period].period_date" +
             " from [period] " +
             " inner join movie " +
-            " on [period].movie_id = movie.movie_id " +
+            " on [period].movie_id = movie.movie_id and movie.movie_id is not null " +
             " inner join theater " +
-            " on [period].theater_id = theater.theater_id;";
+            " on [period].theater_id = theater.theater_id and theater.theater_id is not null;";
         Database db = new Database();
         List<Object[]> list = new ArrayList<>();
         Connection sConn = db.connect();
@@ -355,7 +384,46 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally{
+            try {            
+                sConn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return list;
+    }
+    
+    public boolean checkIdAvailable(int booking_id){
+                String sql = "select [period].period_id " +
+            " from [period] " +
+            " inner join movie " +
+            " on [period].movie_id = movie.movie_id and movie.movie_id is not null " +
+            " inner join theater " +
+            " on [period].theater_id = theater.theater_id and theater.theater_id is not null;";
+        Database db = new Database();
+        Connection sConn = db.connect();
+        PreparedStatement p; 
+        try {
+            p = sConn.prepareStatement(sql);
+            ResultSet rs = p.executeQuery();
+            while(rs.next()){
+                int test = rs.getInt("period_id");
+                if(test == booking_id){
+                    return true;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try {            
+                sConn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return false;
     }
     
     public int getPeriodSize( int booking_id){
@@ -374,6 +442,13 @@ public class UserDAO {
             return size;
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try {            
+                sConn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return size;
     }
@@ -414,6 +489,13 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally{
+            try {            
+                sConn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return res;
     }
     
@@ -452,6 +534,13 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally{
+            try {            
+                sConn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public boolean checkPeriodIdExist(int period_id){
@@ -469,8 +558,31 @@ public class UserDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        finally{
+            try {            
+                sConn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         return false;
     }
     
-
+    public void editUser(int user_id, String userName, String fullName, String email){
+        String sql = "update [user] " +
+"            set [user].username = ?, [user].fullName = ?, [user].email = ? " +
+"            where [user].[user_id] = ?;";
+        Connection sConn = new Database().connect();
+        try {
+            PreparedStatement p = sConn.prepareStatement(sql);
+            p.setInt(4, user_id);
+            p.setString(1, userName);
+            p.setString(2, fullName);
+            p.setString(3, email);
+            p.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }

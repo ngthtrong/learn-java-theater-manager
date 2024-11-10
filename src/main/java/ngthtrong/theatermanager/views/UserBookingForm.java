@@ -4,6 +4,7 @@
  */
 package ngthtrong.theatermanager.views;
 
+import java.text.NumberFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import ngthtrong.theatermanager.controller.UserController;
@@ -14,9 +15,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ASUS PC
  */
-public class bookForm extends javax.swing.JFrame {
+public class UserBookingForm extends javax.swing.JFrame {
+
     /**
-     * Creates new form bookForm
+     * Creates new form UserBookingForm
      */
     private int user_id;
 
@@ -27,11 +29,10 @@ public class bookForm extends javax.swing.JFrame {
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
-    
-    public bookForm() {
+
+    public UserBookingForm() {
         initComponents();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,9 +55,9 @@ public class bookForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listOfBookingTable = new javax.swing.JTable();
-        saveBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("User Booking ");
 
         userBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         userBtn.setText("User");
@@ -68,10 +69,29 @@ public class bookForm extends javax.swing.JFrame {
         Threater.setText("Threater");
 
         AmoutLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        AmoutLabel.setText("Amout");
+        AmoutLabel.setText("Amount");
 
         bookIdLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         bookIdLabel.setText("Book id");
+
+        BookIdText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                BookIdTextKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                BookIdTextKeyTyped(evt);
+            }
+        });
+
+        amountText.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        amountText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                amountTextKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                amountTextKeyTyped(evt);
+            }
+        });
 
         backToUserBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         backToUserBtn.setText("Back to user");
@@ -113,13 +133,6 @@ public class bookForm extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(listOfBookingTable);
 
-        saveBtn.setText("Save");
-        saveBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveBtnActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,16 +163,15 @@ public class bookForm extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(backToUserBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                    .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(34, 34, 34)
-                                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(47, 47, 47)
+                                    .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(70, 70, 70)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(80, Short.MAX_VALUE))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                .addGap(460, 460, 460))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE))))
+                .addGap(80, 80, 80))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,10 +184,10 @@ public class bookForm extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                         .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(108, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                        .addGap(108, 108, 108))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,9 +200,7 @@ public class bookForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(saveBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(backToUserBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                        .addComponent(backToUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(122, 122, 122))))
         );
 
@@ -203,55 +213,71 @@ public class bookForm extends javax.swing.JFrame {
         uc.detailsFormLoad(user_id);
     }//GEN-LAST:event_backToUserBtnActionPerformed
 
-    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        // TODO add your handling code here:
-        int period_id = Integer.parseInt(BookIdText.getText());
-        int amountBooking = Integer.parseInt(amountText.getText());
-        UserController uc = new UserController();
-        uc.setBookForm(this);
-        int periodId = Integer.parseInt(BookIdText.getText());
-        int periodAmount = Integer.parseInt(amountText.getText());
-        int recentPeriod = uc.getPeriodSize(periodId);
-        int recentCapacity = uc.getTheaterCapacity(periodId);
-        
-        if((periodAmount + recentPeriod) > recentCapacity){
-            JOptionPane.showMessageDialog(rootPane, "Amount incorrect, the capacity not enough !");
-            saveBtn.setEnabled(false);
-        }else{
-            uc.addBooking(period_id, user_id, amountBooking);
-            uc.updatePeriodSize(period_id, amountBooking);
-        }
-
-        setTableDefauth();
-        addBtn.setEnabled(true);
-        saveBtn.setEnabled(false);        
-    }//GEN-LAST:event_saveBtnActionPerformed
-
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         UserController uc = new UserController();
         int periodId = Integer.parseInt(BookIdText.getText());
         int periodAmount = Integer.parseInt(amountText.getText());
         int recentPeriod = uc.getPeriodSize(periodId);
         int recentCapacity = uc.getTheaterCapacity(periodId);
-        if(!uc.checkPeriodIdExist(periodId)){
+
+        if (!uc.checkPeriodIdExist(periodId)) {
             JOptionPane.showMessageDialog(rootPane, "Id is not exist!");
-            saveBtn.setEnabled(false);
-        }    
-        else{
-            saveBtn.setEnabled(true);
+        } else {
+            if ((periodAmount + recentPeriod) > recentCapacity || periodAmount <= 0) {
+                JOptionPane.showMessageDialog(rootPane, "Amount incorrect !");
+            }else{
+                uc.addBooking(periodId, user_id, recentCapacity);
+                uc.updatePeriodSize(periodId, periodAmount);
+                JOptionPane.showMessageDialog(rootPane, "Added !");
+            }
         }
-        if((periodAmount + recentPeriod) > recentCapacity){
-            JOptionPane.showMessageDialog(rootPane, "Amount incorrect, the capacity not enough !");
-            saveBtn.setEnabled(false);
-        }
-        else{
-            saveBtn.setEnabled(true);
-        }
-        addBtn.setEnabled(false);
-        saveBtn.setEnabled(true);
+        addBtn.setEnabled(true);
+        setTableDefauth();
     }//GEN-LAST:event_addBtnActionPerformed
-    
-    public void setTableDefauth(){
+
+    private void BookIdTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BookIdTextKeyTyped
+        char test = evt.getKeyChar();
+        if (!Character.isDigit(test)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_BookIdTextKeyTyped
+
+    private void amountTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountTextKeyTyped
+        char test = evt.getKeyChar();
+        if (!Character.isDigit(test)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_amountTextKeyTyped
+
+    private void BookIdTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BookIdTextKeyReleased
+        if ("".equals(BookIdText.getText()) || "".equals(amountText.getText())) {
+            addBtn.setEnabled(false);
+        } else {
+            addBtn.setEnabled(true);
+        }
+         char test = evt.getKeyChar();
+        if (!Character.isDigit(test)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_BookIdTextKeyReleased
+
+    private void amountTextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountTextKeyReleased
+        if ("".equals(amountText.getText()) || "".equals(BookIdText.getText())) {
+            addBtn.setEnabled(false);
+        } else {
+            addBtn.setEnabled(true);
+        }
+         char test = evt.getKeyChar();
+        if (!Character.isDigit(test)) {
+            evt.consume();
+        }
+        String getLength = amountText.getText();
+        if(getLength.length() > 6){
+            evt.consume();
+        }
+    }//GEN-LAST:event_amountTextKeyReleased
+
+    public void setTableDefauth() {
         UserController uc = new UserController();
         List<Object[]> list = uc.getBookingForBookForm();
         DefaultTableModel dtm = new DefaultTableModel();
@@ -262,21 +288,21 @@ public class bookForm extends javax.swing.JFrame {
         dtm.addColumn("Booked");
         dtm.addColumn("Time");
         dtm.addColumn("Date");
-        for(Object[] oj : list){
+        for (Object[] oj : list) {
             dtm.addRow(oj);
         }
         listOfBookingTable.setModel(dtm);
-    }    
-    
-    public void bookFromViews(){
+    }
+
+    public void bookFromViews() {
         this.setVisible(true);
         setTableDefauth();
-        saveBtn.setEnabled(false);
-    }    
-    
-    public void bookFromDispose(){
+    }
+
+    public void bookFromDispose() {
         this.setVisible(false);
     }
+
     /**
      * @param args the command line arguments
      */
@@ -293,25 +319,22 @@ public class bookForm extends javax.swing.JFrame {
                     break;
                 }
             }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(UserBookingForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(UserBookingForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(UserBookingForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(UserBookingForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(bookForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(bookForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(bookForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(bookForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new bookForm().setVisible(true);
+                new UserBookingForm().setVisible(true);
             }
         });
     }
@@ -328,7 +351,6 @@ public class bookForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable listOfBookingTable;
     private javax.swing.JButton movieBtn;
-    private javax.swing.JButton saveBtn;
     private javax.swing.JButton userBtn;
     // End of variables declaration//GEN-END:variables
 }
