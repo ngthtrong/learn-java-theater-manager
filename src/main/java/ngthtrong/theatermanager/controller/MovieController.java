@@ -304,6 +304,7 @@ public class MovieController {
             periodDao.AddPeriod(period);
             movieCreatePeriodForm.SetTheaters(theaterDAO.GetAllTheater());
             movieDao.SetComingSoon(period.getMovie_id(), false);
+            movieDao.SetMovieOnShowing(period.getMovie_id(), true);
             theaterDAO.SetIsUsing(period.getTheater_id(), true);
         }
     }

@@ -286,6 +286,7 @@ public class TheaterController {
             }
             periodDao.AddPeriod(period);
             movieDao.SetComingSoon(period.getMovie_id(), false);
+            movieDao.SetMovieOnShowing(period.getMovie_id(), true);
             theaterDAO.SetIsUsing(period.getTheater_id(), true);
         }
     }
