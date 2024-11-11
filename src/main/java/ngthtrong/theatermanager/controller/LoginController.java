@@ -18,14 +18,14 @@ import ngthtrong.theatermanager.views.UserForm;
  *
  * @author jhiny
  */
-public class LoginController  {
-    
+public class LoginController {
+
     private User user;
-    
+
     private LoginForm loginForm;
 
     private LoginDAO loginDAO;
-    
+
     private SignupForm signupForm;
 
     private UserForm userForm;
@@ -35,10 +35,23 @@ public class LoginController  {
     public LoginController(LoginForm loginForm) {
         this.loginForm = loginForm;
         loginForm.addLoginListener(new LoginListener());
-       //loginForm.addSubmitButtonListener();
+        //loginForm.addSubmitButtonListener();
 
     }
-    
+
+    public void setLoginForm(LoginForm loginForm) {
+        this.loginForm = loginForm;
+    }
+
+    public LoginForm getLoginForm() {
+        return loginForm;
+    }
+
+    public void LoadLoginForm() {
+        LoginForm loginForm = new LoginForm();
+        loginForm.setVisible(true);
+    }
+
     public LoginController() {
         this.loginDAO = new LoginDAO();
     }
@@ -51,7 +64,7 @@ public class LoginController  {
         User user = new User(id, fullname, email, username, password, false);
         return LoginDAO.SignupUser(user);
     }
-    
+
     public void showLoginForm() {
         loginForm.setVisible(true);
     }
@@ -60,12 +73,12 @@ public class LoginController  {
         loginForm.dispose();
     }
 
-public String checkLogin(String username, String password) { // trả về role
+    public String checkLogin(String username, String password) { // trả về role
         String role = null; // null : no account
         LoginDAO dnDao = new LoginDAO();
         if (dnDao.isExistUser(username)) {
             if (dnDao.authenticateUser(username, password)) {
-               // System.out.println("check login cdv");
+                // System.out.println("check login cdv");
                 return "Login Success";
             } else {
                 return "error";
@@ -73,8 +86,17 @@ public String checkLogin(String username, String password) { // trả về role
         }
         return role;
     }
-    
-    
+
+    public void handleLoginSuccess(){
+        HomePageController homePageController = new HomePageController();
+        homePageController.loadHomePage();
+        loginForm.dispose();
+    }
+
+
+
+
+
     private class LoginListener implements ActionListener {
 
         @Override
@@ -89,9 +111,9 @@ public String checkLogin(String username, String password) { // trả về role
                         nguoiDung.setNguoiDungHienTai(user.getUsername(), false);
 
                         userForm = new UserForm();
-                        
+
                         UserController userController = new UserController();
-                       // userController.userFormLoad();                        
+                        // userController.userFormLoad();                        
                         disposeLoginForm();
                     }
                     case "err" ->
@@ -116,4 +138,3 @@ public String checkLogin(String username, String password) { // trả về role
 
     }
 }
-

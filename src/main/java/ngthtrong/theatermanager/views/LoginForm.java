@@ -4,9 +4,11 @@
  */
 package ngthtrong.theatermanager.views;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import ngthtrong.theatermanager.controller.LoginController;
 import static ngthtrong.theatermanager.dao.LoginDAO.isExistUser;
@@ -25,10 +27,11 @@ public class LoginForm extends javax.swing.JFrame {
      */
     public LoginForm() {
         initComponents();
-      //  this.setSize(430, 350);
+       this.setSize(800, 480);
         this.setLocationRelativeTo(null);
-        this.setTitle("Theater Manager");
+        this.setTitle("CTU cinema");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        getContentPane().setBackground(Color.getHSBColor(0.2f, 0.05f, 0.95f));
     }
 
     /**
@@ -47,13 +50,19 @@ public class LoginForm extends javax.swing.JFrame {
         lbUsername = new javax.swing.JLabel();
         lbSignup = new javax.swing.JLabel();
         submitBtn = new javax.swing.JButton();
+        lbBg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 204));
+        setName("frameLogin"); // NOI18N
+        setResizable(false);
 
         lbLogin.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        lbLogin.setForeground(new java.awt.Color(204, 0, 0));
         lbLogin.setText("Login");
 
-        lbPassword.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        lbPassword.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbPassword.setForeground(new java.awt.Color(204, 0, 0));
         lbPassword.setText("Password");
 
         passwordField.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -81,10 +90,11 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
-        lbUsername.setFont(new java.awt.Font("Segoe UI", 0, 22)); // NOI18N
+        lbUsername.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbUsername.setForeground(new java.awt.Color(204, 0, 0));
         lbUsername.setText("Username");
 
-        lbSignup.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
+        lbSignup.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         lbSignup.setText("Sign up?");
         lbSignup.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -92,7 +102,9 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
-        submitBtn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        submitBtn.setBackground(new java.awt.Color(204, 0, 0));
+        submitBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        submitBtn.setForeground(new java.awt.Color(255, 255, 255));
         submitBtn.setText("Submit");
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,52 +112,52 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
+        lbBg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ngthtrong/theatermanager/img/bgLogin.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
             .addGroup(layout.createSequentialGroup()
+                .addComponent(lbBg, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(145, Short.MAX_VALUE)
-                        .addComponent(lbLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE))
+                        .addComponent(lbLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(48, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbUsername)
-                            .addComponent(lbPassword))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(lbSignup, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(submitBtn)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbUsername)
+                                    .addComponent(lbPassword)
+                                    .addComponent(lbSignup, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(usernameField, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                                    .addComponent(passwordField))))
+                        .addGap(51, 51, 51))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(91, 91, 91)
                 .addComponent(lbLogin)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(lbUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbUsername)
                     .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(lbPassword)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(52, 52, 52)
+                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
                 .addComponent(lbSignup)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
+            .addComponent(lbBg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -173,7 +185,8 @@ public class LoginForm extends javax.swing.JFrame {
         if (username.isBlank() || password.isBlank()) {
             JOptionPane.showMessageDialog(LoginForm.this, "Please enter both username and password.");
         } else if (loginController.login(username, password)) {
-            JOptionPane.showMessageDialog(null, "Login successful!");
+                loginController.setLoginForm(this);
+                loginController.handleLoginSuccess();
         } else if (isExistUser(username)) {
             JOptionPane.showMessageDialog(null, "Password incorrect!");
         } else {
@@ -239,6 +252,7 @@ public class LoginForm extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lbBg;
     private javax.swing.JLabel lbLogin;
     private javax.swing.JLabel lbPassword;
     private javax.swing.JLabel lbSignup;

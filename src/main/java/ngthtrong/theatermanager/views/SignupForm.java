@@ -5,6 +5,8 @@
 package ngthtrong.theatermanager.views;
 
 import ngthtrong.theatermanager.dao.LoginDAO;
+
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -29,7 +31,8 @@ public class SignupForm extends javax.swing.JFrame {
         this.setTitle("Theater Manager");
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
+    getContentPane().setBackground(Color.getHSBColor(0.2f, 0.05f, 0.95f));
+}
 
     /**
      * This method is called from within the constructor to initialize the form.

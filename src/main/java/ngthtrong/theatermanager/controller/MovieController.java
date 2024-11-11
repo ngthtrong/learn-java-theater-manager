@@ -159,7 +159,7 @@ public class MovieController {
             if (movieDeletePeriodForm != null) {
                 movieDeletePeriodForm.FormClose();
             }
-            if (movieDeletePeriodForm == null) {
+            if (movieDetailForm == null) {
                 movieDetailForm = new MovieDetailForm();
             }
             movieDetailForm.FormLoad();

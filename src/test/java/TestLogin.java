@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import ngthtrong.theatermanager.controller.LoginController;
 import ngthtrong.theatermanager.views.LoginForm;
 
 /**
@@ -11,7 +12,7 @@ import ngthtrong.theatermanager.views.LoginForm;
  */
 public class TestLogin {
       public static void main(String[] args) {
-        LoginForm loginForm = new LoginForm();
-        loginForm.setVisible(true);
+        LoginController control = new LoginController();
+        control.LoadLoginForm();
       }
 }

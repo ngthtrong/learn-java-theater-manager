@@ -14,13 +14,12 @@ import ngthtrong.theatermanager.views.MovieForm;
  *
  * @author jhiny
  */
-public class TestRunMovie {
+public class TestMovie {
 
     public static void main(String[] args) {
         PeriodDAO periodDAO = new PeriodDAO();
         periodDAO.DeleteAllPeriodsIsPassed();
         MovieController control = new MovieController();
         control.showMovieFormDB();
-
     }
 }

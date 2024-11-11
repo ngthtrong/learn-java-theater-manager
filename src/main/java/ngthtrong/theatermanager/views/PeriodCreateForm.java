@@ -4,10 +4,13 @@
  */
 package ngthtrong.theatermanager.views;
 
+import java.awt.Color;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+
+import ngthtrong.theatermanager.controller.HomePageController;
 import ngthtrong.theatermanager.controller.MovieController;
 import ngthtrong.theatermanager.controller.TheaterController;
 import ngthtrong.theatermanager.models.Movie;
@@ -27,6 +30,9 @@ public class PeriodCreateForm extends javax.swing.JFrame {
 
     public PeriodCreateForm() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setSize(1000, 630);
+        getContentPane().setBackground(Color.getHSBColor(0.2f, 0.05f, 0.95f));
     }
 
     public void FormLoad() {
@@ -91,7 +97,6 @@ public class PeriodCreateForm extends javax.swing.JFrame {
         jDatePickerUtil3 = new org.jdatepicker.util.JDatePickerUtil();
         jDatePickerUtil4 = new org.jdatepicker.util.JDatePickerUtil();
         jDatePickerUtil5 = new org.jdatepicker.util.JDatePickerUtil();
-        btnUserForm = new javax.swing.JButton();
         btnMovieForm = new javax.swing.JButton();
         btnTheaterForm = new javax.swing.JButton();
         lbMovieID = new javax.swing.JLabel();
@@ -107,11 +112,9 @@ public class PeriodCreateForm extends javax.swing.JFrame {
         txtTime = new javax.swing.JComboBox<>();
         lbDate = new javax.swing.JLabel();
         txtDate = new com.toedter.calendar.JDateChooser();
+        btnHome = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btnUserForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnUserForm.setText("User");
 
         btnMovieForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMovieForm.setText("Movie");
@@ -222,6 +225,16 @@ public class PeriodCreateForm extends javax.swing.JFrame {
             }
         });
 
+        btnHome.setBackground(new java.awt.Color(204, 0, 0));
+        btnHome.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnHome.setForeground(new java.awt.Color(255, 255, 255));
+        btnHome.setText("Home");
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -238,15 +251,15 @@ public class PeriodCreateForm extends javax.swing.JFrame {
                                 .addGap(23, 23, 23))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnUserForm)
-                                        .addGap(21, 21, 21)
-                                        .addComponent(btnMovieForm)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnTheaterForm))
                                     .addComponent(lbTheater)
                                     .addComponent(lbTime)
-                                    .addComponent(lbDate))
+                                    .addComponent(lbDate)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnMovieForm)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnTheaterForm)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
@@ -261,22 +274,21 @@ public class PeriodCreateForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbOfTable, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
+                        .addComponent(lbOfTable, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
                         .addContainerGap())
                     .addComponent(jScrollPane2)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUserForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMovieForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTheaterForm, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbOfTable, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnTheaterForm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                    .addComponent(btnMovieForm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
@@ -294,11 +306,15 @@ public class PeriodCreateForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbDate))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(28, 28, 28))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(lbOfTable, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(548, 548, 548))
         );
 
         pack();
@@ -308,13 +324,24 @@ public class PeriodCreateForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         TheaterController control = new TheaterController();
         control.showTheaterForm();
+        this.dispose();
+
     }//GEN-LAST:event_btnTheaterFormActionPerformed
 
     private void btnMovieFormActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMovieFormActionPerformed
         // TODO add your handling code here:
         MovieController control = new MovieController();
         control.showMovieFormDB();
+        this.dispose();
+
     }//GEN-LAST:event_btnMovieFormActionPerformed
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        // TODO add your handling code here:
+        HomePageController backHome = new HomePageController();
+        backHome.loadHomePage();
+        this.dispose();
+    }//GEN-LAST:event_btnHomeActionPerformed
 
     private void txtDateInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {// GEN-FIRST:event_txtDateInputMethodTextChanged
         // TODO add your handling code here:
@@ -578,9 +605,9 @@ public class PeriodCreateForm extends javax.swing.JFrame {
     private javax.swing.JButton btnCreate;
     private javax.swing.ButtonGroup btnGrCommingSoon;
     private javax.swing.ButtonGroup btnGrOnShow;
+    private javax.swing.JButton btnHome;
     private javax.swing.JButton btnMovieForm;
     private javax.swing.JButton btnTheaterForm;
-    private javax.swing.JButton btnUserForm;
     private org.jdatepicker.util.JDatePickerUtil jDatePickerUtil1;
     private org.jdatepicker.util.JDatePickerUtil jDatePickerUtil2;
     private org.jdatepicker.util.JDatePickerUtil jDatePickerUtil3;
