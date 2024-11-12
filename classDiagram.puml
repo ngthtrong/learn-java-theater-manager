@@ -1,0 +1,347 @@
+@startuml
+
+package ngthtrong.theatermanager.models {
+    class Movie {
+        -int movie_id
+        -String movie_name
+        -String description
+        -boolean commingSoon
+        -boolean onShowing
+        +void setMovie_id(int movie_id)
+        +void setMovie_name(String movie_name)
+        +void setDescription(String description)
+        +void setCommingSoon(boolean commingSoon)
+        +void setOnShowing(boolean onShowing)
+        +String toString()
+    }
+
+    class Period {
+        -int period_id
+        -int period_size
+        -Time period_time
+        -Date period_date
+        -int movie_id
+        -int theater_id
+        +void setPeriod_id(int period_id)
+        +void setPeriod_size(int period_size)
+        +void setPeriod_time(Time period_time)
+        +void setPeriod_date(Date period_date)
+        +void setMovie_id(int movie_id)
+        +void setTheater_id(int theater_id)
+        +String toString()
+    }
+
+    class Theater {
+        -int theater_id
+        -String theater_name
+        -boolean isUsing
+        -int theater_capacity
+        +void setTheater_id(int theater_id)
+        +void setTheater_name(String theater_name)
+        +void setIsUsing(boolean isUsing)
+        +void setTheater_capacity(int theater_capacity)
+        +String toString()
+    }
+
+    class User {
+        -int user_id
+        -String username
+        -String password
+        -String email
+        -String fullName
+        -boolean isAdmin
+        -int booking_amount
+        +void setUser_id(int user_id)
+        +void setUsername(String username)
+        +void setPassword(String password)
+        +void setEmail(String email)
+        +void setFullName(String fullName)
+        +void setIsAdmin(boolean isAdmin)
+        +void setBooking_amount(int booking_amount)
+        +String toString()
+    }
+
+    class Booking {
+        -int booking_id
+        -int period_id
+        -int user_id
+        -int booking_amount
+        +void setBooking_id(int booking_id)
+        +void setPeriod_id(int period_id)
+        +void setUser_id(int user_id)
+        +void setBooking_amount(int booking_amount)
+        +String toString()
+    }
+}
+
+package ngthtrong.theatermanager.controller {
+    class MovieController {
+        -MovieDAO movieDao
+        -PeriodDAO periodDao
+        -MovieForm movieForm
+        -MovieDetailForm movieDetailForm
+        -MovieDeletePeriodForm movieDeletePeriodForm
+        -MovieAddPeriodForm movieAddPeriodForm
+        -PeriodCreateForm movieCreatePeriodForm
+        +void setPeriodDao(PeriodDAO periodDao)
+        +PeriodDAO getPeriodDao()
+        +void setMovieForm(MovieForm movieForm)
+        +MovieForm getMovieForm()
+        +void setMovieDetailForm(MovieDetailForm movieDetailForm)
+        +MovieDetailForm getMovieDetailForm()
+        +void setMovieDeletePeriodForm(MovieDeletePeriodForm movieDeletePeriodForm)
+        +MovieDeletePeriodForm getMovieDeletePeriodForm()
+        +void setMovieAddPeriodForm(MovieAddPeriodForm movieAddPeriodForm)
+        +MovieAddPeriodForm getMovieAddPeriodForm()
+        +void showMovieFormDB()
+        +void addMovieToDB(Movie movie)
+        +void deleteMovieInDB(int movie_id)
+        +void sortMoviesByName()
+        +void sortMovieById()
+        +void filterMovieComingSoon()
+        +void filterMovieOnShowing()
+        +void openMovieDetail(int movie_id)
+        +void updateMovieDetail(Movie movie)
+        +void showDeletePeriodForm(int movie_id)
+        +void deleteMovieInPeriod(int period_id, int movie_id)
+        +void showAddPeriodForm(int movie_id)
+        +void addMovieInPeriod(int period_id, int movie_id)
+        +void showCreatePeriodForm(int movie_id)
+        +void createPeriod(Period period)
+    }
+
+    class TheaterController {
+        -TheaterDAO theaterDAO
+        -PeriodDAO periodDao
+        -TheaterForm theaterForm
+        -TheaterDetailForm theaterDetailForm
+        -TheaterDeletePeriodForm theaterDeletePeriodForm
+        -TheaterAddPeriodForm theaterAddPeriodForm
+        -PeriodCreateForm periodCreateForm
+        +void setTheaterForm(TheaterForm theaterForm)
+        +TheaterForm getTheaterForm()
+        +void setTheaterDetailForm(TheaterDetailForm theaterDetailForm)
+        +TheaterDetailForm getTheaterDetailForm()
+        +void setTheaterDeletePeriodForm(TheaterDeletePeriodForm theaterDeletePeriodForm)
+        +TheaterDeletePeriodForm getTheaterDeletePeriodForm()
+        +void setTheaterAddPeriodForm(TheaterAddPeriodForm theaterAddPeriodForm)
+        +TheaterAddPeriodForm getTheaterAddPeriodForm()
+        +void setPeriodCreateForm(PeriodCreateForm periodCreateForm)
+        +PeriodCreateForm getPeriodCreateForm()
+        +void showTheaterForm()
+        +void addTheater(Theater theater)
+        +void DeleteTheaterByID(int id)
+        +void handleSortByCapacity(boolean isSortByCapacity)
+        +void handleSortByName(boolean isSortByName)
+        +void showTheaterDetailForm(int id)
+        +void UpdateTheaterDetail(Theater theater)
+        +void showTheaterDeletePeriodForm(int id)
+        +void DeleteTheaterInPeriods(int period_id, int theater_id)
+        +void showTheaterAddPeriodForm(int id)
+        +void AddPeriodToTheater(int period_id, int theater_id)
+        +void showCreatePeriodForm(int id)
+        +void createPeriod(Period period)
+    }
+
+    class UserController {
+        -UserForm userForm
+        -UserDAO userDao
+        -UserDetailForm detailsForm
+        -UserBookingForm bookForm
+        -User user
+        +void setUserForm(UserForm userForm)
+        +UserForm getUserForm()
+        +void setUserDao(UserDAO userDao)
+        +UserDAO getUserDao()
+        +void setDetailsForm(UserDetailForm detailsForm)
+        +UserDetailForm getDetailsForm()
+        +void setBookForm(UserBookingForm bookForm)
+        +UserBookingForm getBookForm()
+        +void setUser(User user)
+        +User getUser()
+        +void userFormLoad()
+        +List<Object[]> userData()
+        +boolean checkIdExist(int user_id)
+        +void detailsFormLoad(int user_id)
+        +boolean checkIdBookingExist(int booking_id)
+        +void bookFormLoad(int user_id)
+        +List<Object[]> getBookingForBookForm()
+        +Object[] getInfoToFillDetailsForm(int user_id)
+        +List<Object[]> getWatched(int user_id)
+        +List<Object[]> getBooked(int user_id)
+        +List<Object[]> getInfoById(int user_id)
+        +void addObject(Object[] oj)
+        +int getMaxId()
+        +void addBooking(int period_id, int user_id, int amount_booking)
+        +int getTheaterCapacity(int period_id)
+        +int getPeriodSize(int period_id)
+        +void updatePeriodSize(int period_id, int amount_booking)
+        +boolean checkPeriodIdExist(int period_id)
+        +boolean checkIdAvailable(int booking_id)
+    }
+
+    class SignUpController {
+        -SignupForm registerView
+        -LoginForm loginView
+        +void showSignupForm()
+        +void disposeSignupForm()
+        +boolean isExistedUser(String tenDangNhap)
+    }
+}
+
+package ngthtrong.theatermanager.dao {
+    class MovieDAO {
+        -int GetMaxId()
+        +boolean MovieIdExist(int id)
+        +List<Movie> GetAllMovie()
+        +Movie GetMovieByID(int id)
+        +void AddMovie(Movie movie)
+        +void DeleteMovie(int id)
+        +void UpdateMovie(Movie movie)
+        +String GetMovieNameById(int id)
+        +void SetMovieOnShowing(int id, boolean onShowing)
+        +void SetComingSoon(int id, boolean commingSoon)
+        +void SortMoviesByName()
+        +List<Movie> GetMovieComingSoon()
+        +List<Movie> GetMovieOnShowing()
+    }
+
+    class PeriodDAO {
+        +int GetMaxPeriodId()
+        +List<Period> GetAllPeriod()
+        +List<Period> GetPeriodByTheaterID(int id)
+        +List<Period> getPeriodByMovie(int movie_id)
+        +void AddPeriod(Period period)
+        +void DeleteMovieInPeriod(int period_id)
+        +void DeleteTheaterInPeriods(int period_id, int theater_id)
+        +void AddMovieInPeriod(int period_id, int movie_id)
+        +void AddTheaterToPeriod(int period_id, int theater_id)
+        +boolean ExistPeriodId(int period_id)
+        +boolean PeriodMovieIdIsNull(int period_id)
+        +boolean PeriodTheaterIsNull(int period_id)
+        +boolean ExistPeriodByMovieId(int movie_id)
+        +boolean ExistTheaterInPeriods(int theater_id)
+        +boolean ExistPeriodInMovieId(int period_id, int movie_id)
+        +boolean ExistPeriodInTheater(int period_id, int theater_id)
+        +boolean ExistPeriodInfo(Period period)
+        +int GetSize(int period_id)
+        +void DeleteAllPeriodsIsPassed()
+    }
+
+    class TheaterDAO {
+        +boolean TheaterIdExist(int id)
+        +int GetMaxTheaterId()
+        +String GetTheaterNameById(int id)
+        +List<Theater> GetAllTheater()
+        +void UpdateTheater(Theater theater)
+        +List<Theater> GetAllTheaterIsUsing()
+        +Theater GetTheaterByID(int id)
+        +void AddTheater(Theater theater)
+        +void DeleteTheaterByID(int id)
+        +boolean getIsUsingByID(int id)
+        +void SortByCapacity()
+        +void SortByName()
+        +void SetIsUsing(int id, boolean isUsing)
+    }
+
+    class UserDAO {
+        +List<Object[]> getBooking(int user_id)
+        +List<Object[]> getTableDefaut()
+        +void addObject(Object[] oj)
+        +int getMaxId()
+        +int getId(int user_id)
+        +boolean checkIdBooking(int userId)
+        +String getTheaterName(Connection sConn, int theater_id)
+        +String getMovieName(Connection sConn, int movie_id)
+        +List<Object[]> getInfoById(int user_id)
+        +Object[] getInfoFillInDetailsForm(int user_id)
+        +List<Object[]> getWatched(int user_id)
+        +List<Object[]> getBooked(int user_id)
+        +List<Object[]> getBookingFillInBookForm()
+        +boolean checkIdAvailable(int booking_id)
+        +int getPeriodSize(int booking_id)
+    }
+
+    class LoginDAO {
+        +boolean isExistUser(String username)
+        +int GetMaxUserId()
+        +boolean authenticateUser(String username, String password)
+        +void SignupUser(User user)
+    }
+}
+
+package ngthtrong.theatermanager.views {
+    class MovieAddPeriodForm extends javax.swing.JFrame {
+        +void main(String args[])
+    }
+
+    class MovieDetailForm extends javax.swing.JFrame {
+        +void main(String args[])
+    }
+
+    class PeriodCreateForm extends javax.swing.JFrame {
+        +void main(String args[])
+    }
+
+    class SignupForm extends javax.swing.JFrame {
+        +void main(String args[])
+    }
+
+    class TheaterAddPeriodForm extends javax.swing.JFrame {
+        +void main(String args[])
+    }
+
+    class TheaterDetailForm extends javax.swing.JFrame {
+        +void main(String args[])
+    }
+
+    class UserDetailForm extends javax.swing.JFrame {
+        +void main(String args[])
+    }
+
+    class UserForm extends javax.swing.JFrame {
+        +void main(String args[])
+    }
+
+    class UserBookingForm extends javax.swing.JFrame {
+        +void main(String args[])
+    }
+}
+
+MovieController --> Movie
+MovieController --> Period
+MovieController --> MovieForm
+MovieController --> MovieDetailForm
+MovieController --> MovieDeletePeriodForm
+MovieController --> MovieAddPeriodForm
+MovieController --> PeriodCreateForm
+MovieController --> MovieDAO
+MovieController --> PeriodDAO
+
+TheaterController --> Theater
+TheaterController --> Period
+TheaterController --> TheaterForm
+TheaterController --> TheaterDetailForm
+TheaterController --> TheaterDeletePeriodForm
+TheaterController --> TheaterAddPeriodForm
+TheaterController --> PeriodCreateForm
+TheaterController --> PeriodDAO
+TheaterController --> TheaterDAO
+
+UserController --> User
+UserController --> UserForm
+UserController --> UserDetailForm
+UserController --> UserBookingForm
+UserController --> Booking
+UserController --> UserDAO
+
+SignUpController --> SignupForm
+SignUpController --> LoginForm
+SignUpController --> LoginDAO
+
+
+
+
+
+
+@enduml
