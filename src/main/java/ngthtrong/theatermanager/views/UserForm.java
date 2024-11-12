@@ -555,7 +555,7 @@ public class UserForm extends javax.swing.JFrame {
     } 
     public void setTableUserForm(List<User> user){
         UserController uc = new UserController();
-        uc.setUserForm(this);
+//        uc.setUserForm(this);
         user = uc.userData();
         DefaultTableModel dtm = new DefaultTableModel();
         
