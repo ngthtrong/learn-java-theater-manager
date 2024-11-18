@@ -337,11 +337,13 @@ public class UserDAO {
     public List<Object[]> getBookingFillInBookForm() {
         String sql = "select [period].period_id, movie.movie_name, theater.theater_name, theater.theater_capacity, [period].period_size, "
                 + " [period].period_time, [period].period_date"
-                + " from [period] "
+                + " from [period]  "
                 + " inner join movie "
                 + " on [period].movie_id = movie.movie_id and movie.movie_id is not null "
                 + " inner join theater "
-                + " on [period].theater_id = theater.theater_id and theater.theater_id is not null;";
+                + " on [period].theater_id = theater.theater_id and theater.theater_id is not null"
+                + " where [period].period_date > CAST(SYSDATETIME() AS DATE) ";
+                
         Database db = new Database();
         List<Object[]> list = new ArrayList<>();
         Connection sConn = db.connect();
@@ -559,5 +561,29 @@ public class UserDAO {
             Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    public boolean checkUsername(String username){
+        String sql = "select username from [user] where username = ?;";
+        Connection sConn = new Database().connect();
+        try {
+            PreparedStatement p = sConn.prepareStatement(sql);
+            p.setString(1, username);
+            ResultSet rs = p.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDAO.class.getName()).
+                    log(Level.SEVERE, null, ex);
+        }finally{
+            try {
+                sConn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserDAO.class.getName()).
+                        log(Level.SEVERE, null, ex);
+            }
+        }
+        return false;
     }
 }

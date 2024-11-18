@@ -12,7 +12,6 @@ import javax.swing.table.DefaultTableModel;
 
 import ngthtrong.theatermanager.controller.HomePageController;
 import ngthtrong.theatermanager.controller.MovieController;
-import ngthtrong.theatermanager.controller.TheaterController;
 import ngthtrong.theatermanager.models.Movie;
 import ngthtrong.theatermanager.models.Period;
 
@@ -137,7 +136,9 @@ public class MovieDetailForm extends javax.swing.JFrame {
             }
         });
 
+        btnMovieForm.setBackground(new java.awt.Color(204, 0, 0));
         btnMovieForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMovieForm.setForeground(new java.awt.Color(255, 255, 255));
         btnMovieForm.setText("Movie");
         btnMovieForm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,7 +183,9 @@ public class MovieDetailForm extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(txtDescription);
 
+        btnEdit.setBackground(new java.awt.Color(180, 10, 10));
         btnEdit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEdit.setForeground(new java.awt.Color(255, 255, 255));
         btnEdit.setText("Edit");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,7 +193,9 @@ public class MovieDetailForm extends javax.swing.JFrame {
             }
         });
 
+        btnSaveChange.setBackground(new java.awt.Color(180, 10, 10));
         btnSaveChange.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSaveChange.setForeground(new java.awt.Color(255, 255, 255));
         btnSaveChange.setText("Save change");
         btnSaveChange.setEnabled(false);
         btnSaveChange.addActionListener(new java.awt.event.ActionListener() {
@@ -199,7 +204,9 @@ public class MovieDetailForm extends javax.swing.JFrame {
             }
         });
 
+        btnDeletePeriod.setBackground(new java.awt.Color(180, 10, 10));
         btnDeletePeriod.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDeletePeriod.setForeground(new java.awt.Color(255, 255, 255));
         btnDeletePeriod.setText("Delete Period");
         btnDeletePeriod.setEnabled(false);
         btnDeletePeriod.addActionListener(new java.awt.event.ActionListener() {
@@ -208,7 +215,9 @@ public class MovieDetailForm extends javax.swing.JFrame {
             }
         });
 
+        btnCreatePeriod.setBackground(new java.awt.Color(180, 10, 10));
         btnCreatePeriod.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCreatePeriod.setForeground(new java.awt.Color(255, 255, 255));
         btnCreatePeriod.setText("Add Period");
         btnCreatePeriod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -216,6 +225,9 @@ public class MovieDetailForm extends javax.swing.JFrame {
             }
         });
 
+        tbPeriods.setBackground(new java.awt.Color(255, 225, 225));
+        tbPeriods.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tbPeriods.setForeground(new java.awt.Color(40, 0, 0));
         tbPeriods.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -242,6 +254,8 @@ public class MovieDetailForm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbPeriods.setGridColor(new java.awt.Color(255, 150, 150));
+        tbPeriods.setRowHeight(30);
         jScrollPane2.setViewportView(tbPeriods);
         if (tbPeriods.getColumnModel().getColumnCount() > 0) {
             tbPeriods.getColumnModel().getColumn(0).setResizable(false);
@@ -271,7 +285,9 @@ public class MovieDetailForm extends javax.swing.JFrame {
         btnGrCommingSoon.add(commingFalse);
         commingFalse.setText("No");
 
+        btnBack.setBackground(new java.awt.Color(180, 10, 10));
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,7 +295,9 @@ public class MovieDetailForm extends javax.swing.JFrame {
             }
         });
 
+        btnCancel.setBackground(new java.awt.Color(180, 10, 10));
         btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
