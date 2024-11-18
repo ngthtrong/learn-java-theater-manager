@@ -80,39 +80,17 @@ INSERT INTO movie(movie_id, movie_name, [description], onShowing, commingSoon)
 VALUES (5, 'movie 5', 'movie 5', 0, 1);
 
 INSERT INTO theater(theater_id, theater_name, isUsing, theater_capacity)
-VALUES (1, 'theater 1', 1, 10);
+VALUES (1, 'theater 1', 0, 10);
 
 INSERT INTO theater(theater_id, theater_name, isUsing, theater_capacity)
-VALUES (2, 'theater 2', 1, 10);
+VALUES (2, 'theater 2', 0, 10);
 
 INSERT INTO theater(theater_id, theater_name, isUsing, theater_capacity)
-VALUES (3, 'theater 3', 1, 5);
+VALUES (3, 'theater 3', 0, 5);
 
 INSERT INTO theater(theater_id, theater_name, isUsing, theater_capacity)
-VALUES (4, 'theater 4', 1, 5);
+VALUES (4, 'theater 4', 0, 5);
 
 INSERT INTO theater(theater_id, theater_name, isUsing, theater_capacity)
-VALUES (5, 'theater 5', 1, 10);
-
-INSERT INTO [period](period_id, period_date, period_time, period_size, movie_id, theater_id)
-VALUES (1, '2024-11-15',' 09:30:00', 0, null, null);
-
-INSERT INTO [period](period_id, period_date,period_time, period_size, movie_id, theater_id)
-VALUES (2, '2024-11-15',' 12:00:00', 0, null, null);
-
-INSERT INTO [period](period_id, period_date,period_time, period_size, movie_id, theater_id)
-VALUES (3, '2024-11-15',' 13:30:00', 0, null, null);
-
-INSERT INTO [period](period_id, period_date,period_time, period_size, movie_id, theater_id)
-VALUES (4, '2024-11-15',' 15:00:00', 0, null, null);
-
-INSERT INTO [period](period_id, period_date,period_time, period_size, movie_id, theater_id)
-VALUES (5, '2024-11-15',' 16:30:00', 0, null, null);
-
-INSERT INTO [period](period_id, period_date,period_time, period_size, movie_id, theater_id)
-VALUES (6, '2024-11-15',' 18:00:00', 0, null, null);
-
-
-INSERT INTO booking(booking_id, booking_amout, period_id, [user_id])
-VALUES (1, 2, 1, 1);
+VALUES (5, 'theater 5', 0, 10);
 

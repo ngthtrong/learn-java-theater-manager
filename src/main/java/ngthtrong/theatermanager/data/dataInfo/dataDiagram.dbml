@@ -1,0 +1,51 @@
+
+
+
+
+
+
+Table movie{
+movie_id int [primary key]
+	movie_name nvarchar(100)
+	description nvarchar(255)
+	onShowing bit
+	comingSoon bit
+}
+Table users {
+ user_id int [primary key]
+	username varchar
+	password varchar
+	email varchar
+  
+	fullName varchar
+	isAdmin bit
+}
+
+Table theater {
+  	theater_id int [primary key]
+	theater_name nvarchar(100)
+	isUsing bit
+	theater_capacity int
+}
+Table period {
+    period_id int [primary key]
+    period_date date
+    period_time time
+    period_size int
+    movie_id int
+    theater_id int
+  }
+
+  Table booking {
+    booking_id int [primary key]
+    booking_amount int
+    period_id int
+    user_id int
+  }
+
+  Ref: period.movie_id > movie.movie_id
+  Ref: period.theater_id > theater.theater_id
+  Ref: booking.period_id > period.period_id
+  Ref: booking.user_id > users.user_id
+
+
