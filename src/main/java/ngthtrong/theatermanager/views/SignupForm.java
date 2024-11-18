@@ -58,6 +58,7 @@ public class SignupForm extends javax.swing.JFrame {
         signupBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lbSignUp.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         lbSignUp.setText("Sign Up");
@@ -152,7 +153,9 @@ public class SignupForm extends javax.swing.JFrame {
             }
         });
 
+        signupBtn.setBackground(new java.awt.Color(180, 10, 10));
         signupBtn.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        signupBtn.setForeground(new java.awt.Color(255, 255, 255));
         signupBtn.setText("Sign Up");
         signupBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

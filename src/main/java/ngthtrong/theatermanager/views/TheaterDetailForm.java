@@ -11,9 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import ngthtrong.theatermanager.controller.HomePageController;
-import ngthtrong.theatermanager.controller.MovieController;
 import ngthtrong.theatermanager.controller.TheaterController;
-import ngthtrong.theatermanager.models.Movie;
 import ngthtrong.theatermanager.models.Period;
 import ngthtrong.theatermanager.models.Theater;
 
@@ -55,6 +53,8 @@ public class TheaterDetailForm extends javax.swing.JFrame {
     public void FormLoad() {
         this.setVisible(true);
         setEnable(false);
+        btnSaveChange.setEnabled(false);
+        btnEdit.setEnabled(true);
         theaterController.setTheaterDetailForm(this);
     }
 
@@ -71,7 +71,10 @@ public class TheaterDetailForm extends javax.swing.JFrame {
 
     public void setEnable(boolean enable) {
         txtTheaterName.setEnabled(enable);
-        txtCapacity.setEnabled(enable);
+        if (Using.isSelected())
+            NotUsing.setEnabled(false);
+        else
+            txtCapacity.setEnabled(enable);
     }
 
     public void SetBtnDeleteEnable(boolean enable) {
@@ -121,6 +124,7 @@ public class TheaterDetailForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -154,7 +158,9 @@ public class TheaterDetailForm extends javax.swing.JFrame {
             }
         });
 
+        btnTheaterForm.setBackground(new java.awt.Color(204, 0, 0));
         btnTheaterForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnTheaterForm.setForeground(new java.awt.Color(255, 255, 255));
         btnTheaterForm.setText("Theater");
         btnTheaterForm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,7 +187,9 @@ public class TheaterDetailForm extends javax.swing.JFrame {
             }
         });
 
+        btnEdit.setBackground(new java.awt.Color(180, 10, 10));
         btnEdit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnEdit.setForeground(new java.awt.Color(255, 255, 255));
         btnEdit.setText("Edit");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +197,9 @@ public class TheaterDetailForm extends javax.swing.JFrame {
             }
         });
 
+        btnSaveChange.setBackground(new java.awt.Color(180, 10, 10));
         btnSaveChange.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSaveChange.setForeground(new java.awt.Color(255, 255, 255));
         btnSaveChange.setText("Save change");
         btnSaveChange.setEnabled(false);
         btnSaveChange.addActionListener(new java.awt.event.ActionListener() {
@@ -198,7 +208,9 @@ public class TheaterDetailForm extends javax.swing.JFrame {
             }
         });
 
+        btnDeletePeriod.setBackground(new java.awt.Color(180, 10, 10));
         btnDeletePeriod.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDeletePeriod.setForeground(new java.awt.Color(255, 255, 255));
         btnDeletePeriod.setText("Delete Period");
         btnDeletePeriod.setEnabled(false);
         btnDeletePeriod.addActionListener(new java.awt.event.ActionListener() {
@@ -207,7 +219,9 @@ public class TheaterDetailForm extends javax.swing.JFrame {
             }
         });
 
+        btnAddPeriod.setBackground(new java.awt.Color(180, 10, 10));
         btnAddPeriod.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAddPeriod.setForeground(new java.awt.Color(255, 255, 255));
         btnAddPeriod.setText("Add Period");
         btnAddPeriod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,6 +229,9 @@ public class TheaterDetailForm extends javax.swing.JFrame {
             }
         });
 
+        tbPeriods.setBackground(new java.awt.Color(255, 225, 225));
+        tbPeriods.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tbPeriods.setForeground(new java.awt.Color(40, 0, 0));
         tbPeriods.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -241,6 +258,8 @@ public class TheaterDetailForm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbPeriods.setGridColor(new java.awt.Color(255, 150, 150));
+        tbPeriods.setRowHeight(30);
         jScrollPane2.setViewportView(tbPeriods);
         if (tbPeriods.getColumnModel().getColumnCount() > 0) {
             tbPeriods.getColumnModel().getColumn(0).setResizable(false);
@@ -260,7 +279,9 @@ public class TheaterDetailForm extends javax.swing.JFrame {
         lbUsing.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbUsing.setText("Now using");
 
+        btnBack.setBackground(new java.awt.Color(180, 10, 10));
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -268,7 +289,9 @@ public class TheaterDetailForm extends javax.swing.JFrame {
             }
         });
 
+        btnCancel.setBackground(new java.awt.Color(180, 10, 10));
         btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,7 +362,7 @@ public class TheaterDetailForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnHome)
-                .addGap(51, 51, 51)
+                .addGap(36, 36, 36)
                 .addComponent(btnTheaterForm)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -486,7 +509,6 @@ public class TheaterDetailForm extends javax.swing.JFrame {
 
     }// GEN-LAST:event_btnSaveChangeActionPerformed
 
-   
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         this.FormClose();

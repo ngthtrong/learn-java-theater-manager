@@ -9,9 +9,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ngthtrong.theatermanager.controller.HomePageController;
-import ngthtrong.theatermanager.controller.MovieController;
 import ngthtrong.theatermanager.controller.TheaterController;
-import ngthtrong.theatermanager.models.Movie;
 import ngthtrong.theatermanager.models.Theater;
 
 /**
@@ -124,7 +122,9 @@ public class TheaterForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 204));
 
+        btnTheaterForm.setBackground(new java.awt.Color(204, 0, 0));
         btnTheaterForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnTheaterForm.setForeground(new java.awt.Color(255, 255, 255));
         btnTheaterForm.setText("Theater");
         btnTheaterForm.setEnabled(false);
         btnTheaterForm.addActionListener(new java.awt.event.ActionListener() {
@@ -160,6 +160,9 @@ public class TheaterForm extends javax.swing.JFrame {
         });
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAdd.setBackground(new java.awt.Color(180, 10, 10));
+
+        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setText("Add");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,6 +171,9 @@ public class TheaterForm extends javax.swing.JFrame {
         });
 
         btnSave.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSave.setBackground(new java.awt.Color(180, 10, 10));
+
+        btnSave.setForeground(new java.awt.Color(255, 255, 255));
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,6 +182,9 @@ public class TheaterForm extends javax.swing.JFrame {
         });
 
         btnDeleteByID.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnDeleteByID.setBackground(new java.awt.Color(180, 10, 10));
+
+        btnDeleteByID.setForeground(new java.awt.Color(255, 255, 255));
         btnDeleteByID.setText("Delete by ID");
         btnDeleteByID.setEnabled(false);
         btnDeleteByID.addActionListener(new java.awt.event.ActionListener() {
@@ -186,6 +195,9 @@ public class TheaterForm extends javax.swing.JFrame {
 
         btnGetDetail.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnGetDetail.setText("Get Detail by ID");
+        btnGetDetail.setBackground(new java.awt.Color(180, 10, 10));
+
+        btnGetDetail.setForeground(new java.awt.Color(255, 255, 255));
         btnGetDetail.setEnabled(false);
         btnGetDetail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,6 +205,9 @@ public class TheaterForm extends javax.swing.JFrame {
             }
         });
 
+        tbAllTheater.setBackground(new java.awt.Color(255, 225, 225));
+        tbAllTheater.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tbAllTheater.setForeground(new java.awt.Color(40, 0, 0));
         tbAllTheater.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -219,6 +234,8 @@ public class TheaterForm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbAllTheater.setGridColor(new java.awt.Color(255, 150, 150));
+        tbAllTheater.setRowHeight(30);
         jScrollPane2.setViewportView(tbAllTheater);
         if (tbAllTheater.getColumnModel().getColumnCount() > 0) {
             tbAllTheater.getColumnModel().getColumn(0).setResizable(false);
@@ -227,6 +244,9 @@ public class TheaterForm extends javax.swing.JFrame {
         }
 
         btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCancel.setBackground(new java.awt.Color(180, 10, 10));
+
+        btnCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -252,6 +272,9 @@ public class TheaterForm extends javax.swing.JFrame {
         });
 
         btnSortByCapacity.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSortByCapacity.setBackground(new java.awt.Color(180, 10, 10));
+
+        btnSortByCapacity.setForeground(new java.awt.Color(255, 255, 255));
         btnSortByCapacity.setText("Sort by Capactity");
         btnSortByCapacity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,6 +283,9 @@ public class TheaterForm extends javax.swing.JFrame {
         });
 
         btnSortByName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnSortByName.setBackground(new java.awt.Color(180, 10, 10));
+
+        btnSortByName.setForeground(new java.awt.Color(255, 255, 255));
         btnSortByName.setText("Sort by Name");
         btnSortByName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -395,6 +421,7 @@ public class TheaterForm extends javax.swing.JFrame {
     private void btnSortByNameActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSortByNameActionPerformed
         if (btnSortByName.isSelected()) {
             theaterController.handleSortByName(true);
+            btnSortByCapacity.setSelected(false);
         } else {
             theaterController.handleSortByName(false);
         }
@@ -426,6 +453,7 @@ public class TheaterForm extends javax.swing.JFrame {
         if (btnSortByCapacity.isSelected()) {
             // btnSortByCapacity.setText("Sort by ID");
             theaterController.handleSortByCapacity(true);
+            btnSortByName.setSelected(false);
         } else {
             // btnSortByCapacity.setText("Sort by Capacity");
             theaterController.handleSortByCapacity(false);

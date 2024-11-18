@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 
 import ngthtrong.theatermanager.controller.HomePageController;
 import ngthtrong.theatermanager.controller.UserController;
-import ngthtrong.theatermanager.dao.UserDAO;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,8 +37,8 @@ public class UserBookingForm extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setSize(1000, 630);
         this.setTitle("Add booking by User");
-    getContentPane().setBackground(Color.getHSBColor(0.2f, 0.05f, 0.95f));
-}
+        getContentPane().setBackground(Color.getHSBColor(0.2f, 0.05f, 0.95f));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,7 +64,10 @@ public class UserBookingForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("User Booking ");
 
-        userBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        userBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        userBtn.setBackground(new java.awt.Color(204, 0, 0));
+
+        userBtn.setForeground(new java.awt.Color(255, 255, 255));
         userBtn.setText("User");
 
         AmoutLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -93,15 +95,21 @@ public class UserBookingForm extends javax.swing.JFrame {
             }
         });
 
-        backToUserBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        backToUserBtn.setText("Back to user");
+        backToUserBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        backToUserBtn.setBackground(new java.awt.Color(180, 0, 0));
+
+        backToUserBtn.setForeground(new java.awt.Color(255, 255, 255));
+        backToUserBtn.setText("Back");
         backToUserBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backToUserBtnActionPerformed(evt);
             }
         });
 
-        addBtn.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        addBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        addBtn.setBackground(new java.awt.Color(180, 0, 0));
+
+        addBtn.setForeground(new java.awt.Color(255, 255, 255));
         addBtn.setText("Add");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,6 +120,9 @@ public class UserBookingForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("List of booking");
 
+        listOfBookingTable.setBackground(new java.awt.Color(255, 225, 225));
+        listOfBookingTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        listOfBookingTable.setForeground(new java.awt.Color(40, 0, 0));
         listOfBookingTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -131,6 +142,8 @@ public class UserBookingForm extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        listOfBookingTable.setGridColor(new java.awt.Color(255, 150, 150));
+        listOfBookingTable.setRowHeight(30);
         jScrollPane1.setViewportView(listOfBookingTable);
 
         btnHome.setBackground(new java.awt.Color(204, 0, 0));
@@ -150,36 +163,30 @@ public class UserBookingForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(userBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(bookIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(BookIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(AmoutLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(amountText, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(btnHome)))
-                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bookIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(30, 30, 30)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(backToUserBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                                    .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(BookIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                .addGap(460, 460, 460))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE))))
-                .addGap(80, 80, 80))
+                                .addComponent(AmoutLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(amountText, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnHome)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(backToUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(userBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,16 +194,11 @@ public class UserBookingForm extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(userBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(29, 29, 29)
+                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
-                        .addGap(108, 108, 108))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bookIdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BookIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,10 +207,14 @@ public class UserBookingForm extends javax.swing.JFrame {
                             .addComponent(AmoutLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(amountText, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(backToUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(122, 122, 122))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(backToUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(74, 74, 74))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         pack();
@@ -232,7 +238,7 @@ public class UserBookingForm extends javax.swing.JFrame {
         } else {
             if ((periodAmount + recentPeriod) > recentCapacity || periodAmount <= 0) {
                 JOptionPane.showMessageDialog(rootPane, "Amount incorrect !");
-            }else{
+            } else {
                 uc.addBooking(periodId, user_id, recentCapacity);
                 uc.updatePeriodSize(periodId, periodAmount);
                 JOptionPane.showMessageDialog(rootPane, "Added !");
@@ -262,7 +268,7 @@ public class UserBookingForm extends javax.swing.JFrame {
         } else {
             addBtn.setEnabled(true);
         }
-         char test = evt.getKeyChar();
+        char test = evt.getKeyChar();
         if (!Character.isDigit(test)) {
             evt.consume();
         }
@@ -274,12 +280,12 @@ public class UserBookingForm extends javax.swing.JFrame {
         } else {
             addBtn.setEnabled(true);
         }
-         char test = evt.getKeyChar();
+        char test = evt.getKeyChar();
         if (!Character.isDigit(test)) {
             evt.consume();
         }
         String getLength = amountText.getText();
-        if(getLength.length() > 6){
+        if (getLength.length() > 6) {
             evt.consume();
         }
     }//GEN-LAST:event_amountTextKeyReleased

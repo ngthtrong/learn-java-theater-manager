@@ -116,7 +116,9 @@ public class PeriodCreateForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnMovieForm.setBackground(new java.awt.Color(204, 0, 0));
         btnMovieForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMovieForm.setForeground(new java.awt.Color(255, 255, 255));
         btnMovieForm.setText("Movie");
         btnMovieForm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +126,9 @@ public class PeriodCreateForm extends javax.swing.JFrame {
             }
         });
 
+        btnTheaterForm.setBackground(new java.awt.Color(204, 0, 0));
         btnTheaterForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnTheaterForm.setForeground(new java.awt.Color(255, 255, 255));
         btnTheaterForm.setText("Theater");
         btnTheaterForm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +148,9 @@ public class PeriodCreateForm extends javax.swing.JFrame {
             }
         });
 
+        btnCreate.setBackground(new java.awt.Color(180, 10, 10));
         btnCreate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCreate.setForeground(new java.awt.Color(255, 255, 255));
         btnCreate.setText("Create Period");
         btnCreate.setEnabled(false);
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -153,6 +159,9 @@ public class PeriodCreateForm extends javax.swing.JFrame {
             }
         });
 
+        tbTheaters.setBackground(new java.awt.Color(255, 225, 225));
+        tbTheaters.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tbTheaters.setForeground(new java.awt.Color(40, 0, 0));
         tbTheaters.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -179,13 +188,17 @@ public class PeriodCreateForm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbTheaters.setGridColor(new java.awt.Color(255, 150, 150));
+        tbTheaters.setRowHeight(30);
         jScrollPane2.setViewportView(tbTheaters);
         if (tbTheaters.getColumnModel().getColumnCount() > 0) {
             tbTheaters.getColumnModel().getColumn(1).setResizable(false);
             tbTheaters.getColumnModel().getColumn(2).setResizable(false);
         }
 
+        btnBack.setBackground(new java.awt.Color(180, 10, 10));
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back to Add Periods");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -261,9 +274,9 @@ public class PeriodCreateForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnMovieForm)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addComponent(btnTheaterForm)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -278,9 +291,9 @@ public class PeriodCreateForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnTheaterForm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                    .addComponent(btnMovieForm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnTheaterForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMovieForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)

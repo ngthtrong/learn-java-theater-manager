@@ -9,8 +9,6 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import ngthtrong.theatermanager.controller.HomePageController;
 import ngthtrong.theatermanager.controller.MovieController;
-import ngthtrong.theatermanager.controller.TheaterController;
-import ngthtrong.theatermanager.models.Movie;
 import ngthtrong.theatermanager.models.Period;
 
 /**
@@ -102,7 +100,9 @@ public class MovieAddPeriodForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 204));
 
+        btnMovieForm.setBackground(new java.awt.Color(204, 0, 0));
         btnMovieForm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnMovieForm.setForeground(new java.awt.Color(255, 255, 255));
         btnMovieForm.setText("Movie");
         btnMovieForm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +122,9 @@ public class MovieAddPeriodForm extends javax.swing.JFrame {
             }
         });
 
+        btnCreate.setBackground(new java.awt.Color(180, 10, 10));
         btnCreate.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnCreate.setForeground(new java.awt.Color(255, 255, 255));
         btnCreate.setText("Create Period");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +132,9 @@ public class MovieAddPeriodForm extends javax.swing.JFrame {
             }
         });
 
+        tbPeriods.setBackground(new java.awt.Color(255, 225, 225));
+        tbPeriods.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tbPeriods.setForeground(new java.awt.Color(40, 0, 0));
         tbPeriods.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -156,6 +161,8 @@ public class MovieAddPeriodForm extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbPeriods.setGridColor(new java.awt.Color(255, 150, 150));
+        tbPeriods.setRowHeight(30);
         jScrollPane2.setViewportView(tbPeriods);
         if (tbPeriods.getColumnModel().getColumnCount() > 0) {
             tbPeriods.getColumnModel().getColumn(1).setResizable(false);
@@ -164,7 +171,9 @@ public class MovieAddPeriodForm extends javax.swing.JFrame {
             tbPeriods.getColumnModel().getColumn(5).setResizable(false);
         }
 
+        btnBack.setBackground(new java.awt.Color(180, 10, 10));
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back to Detail");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,7 +184,9 @@ public class MovieAddPeriodForm extends javax.swing.JFrame {
         lbMovieName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lbMovieName.setText("List periods available for add to movie: ");
 
+        btnAdd.setBackground(new java.awt.Color(180, 10, 10));
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(255, 255, 255));
         btnAdd.setText("Add period to Movie");
         btnAdd.setEnabled(false);
         btnAdd.addActionListener(new java.awt.event.ActionListener() {

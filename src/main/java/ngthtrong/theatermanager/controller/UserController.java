@@ -151,4 +151,10 @@ public class UserController {
     public void editUser(int user_id, String userName, String fullName, String email){
         userDao.editUser(user_id, userName, fullName, email);
     }
+
+
+
+    public boolean checkUsername(String username){
+        return userDao.checkUsername(username);
+    }
 }
